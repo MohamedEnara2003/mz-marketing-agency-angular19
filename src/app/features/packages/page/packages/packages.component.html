@@ -1,0 +1,49 @@
+<section class="w-full  bg-space">
+    <div class="w-full h-35"></div>
+    <ul class="w-full h-full flex flex-wrap justify-evenly items-center bg-transparent  ">
+    @for (package of packages(); track package.id) {
+    @defer (on viewport) {
+
+    <li class="w-80 min-h-[70vh] bg-base-200 mb-12 mt-2 rounded-2xl shadow-xl shadow-mz-secound
+    hover:shadow-sm duration-200 flex flex-col justify-start items-center ">
+
+    <div class="m-2 flex flex-col justify-center items-start w-[90%] gap-4">
+    <div class="w-full flex justify-between items-center">
+    <h1 class=" card-title uppercase font-extrabold text-gray-700 text-xl">{{package.level}}</h1>
+    <span class="text-sm font-semibold text-gray-600">{{package.discound / 100 | percent : '1.0-0'}}</span>
+    </div>
+    <h2 class="text-sm text-gray-500 capitalize">package {{package.level}} to halp you in project</h2>
+
+    <ul class="w-full flex justify-center items-center gap-2">
+    @let priceAfterDiscound =  package.price - package.price * package.discound / 100 ;
+    <li class="text-mz-secound font-bold card-title text-xl">
+    {{priceAfterDiscound  | currency : 'EGP'}}
+    </li> -
+    <li class="text-mz-secound font-semibold line-through">{{package.price | currency : 'EGP'}}</li>
+    </ul>
+    
+    <button class="w-[100%] btn  bg-mz-secound border-mz-primary border-2 duration-200
+    hover:bg-transparent hover:text-mz-secound capitalize font-semibold text-gray-50  ">
+    get package
+    </button>
+    <h1 class="capitalize text-gray-900 font-[300] text-lg">whats included :</h1>
+    <ul class="w-full flex flex-col justify-center items-start gap-2">
+    @for (value of package.package; track $index) {
+    <li class="w-full flex justify-between items-center">
+    <div>
+    <i class="fa-solid " [ngClass]="value.isSupport ? 'fa-check text-success' : 'fa-close text-error'"></i>
+    {{value.item}}
+    </div>
+    <i class="fa-solid fa-circle-info text-gray-800"></i>
+    </li>
+    }
+    </ul>
+    </div>
+
+    </li>
+    }@placeholder {
+    <li class="w-80 h-[70vh] bg-gray-300 animate-pulse mb-12 mt-2  rounded-2xl "></li>
+    }
+    }
+    </ul>
+</section>

@@ -1,0 +1,35 @@
+    <section class="w-full flex flex-col justify-center items-start gap-2 text-gray-50 capitalize ">
+
+    <nav class="w-full flex justify-between items-center">
+    <div class="font-semibold">
+    {{title()}}
+    </div>
+    
+    <ul class="flex justify-center items-center text-white gap-5 " >
+
+    <li title="dislike" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
+    <button type="button" class="cursor-pointer text-xs">
+    <i class="fa-regular fa-thumbs-down text-xl"></i>  {{dislikes()}}
+    </button>
+    </li>
+
+    <li title="like" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
+    <button type="button" class="cursor-pointer text-xs">
+    <i class="fa-regular fa-thumbs-up text-xl"></i> {{likes()}}
+    </button>
+    </li>
+
+    <li title="share" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
+    <button type="button" class="cursor-pointer ">
+    <i class="fa-solid fa-share"></i> share
+    </button>
+    </li>
+    </ul>
+    </nav>
+    
+    <ul class="text-xs  font-[500] flex justify-center items-center gap-5">
+    <li >{{views()}} views</li>
+    <li >{{created_at() | date : 'short'}}</li>
+    </ul>
+    </section>
+    

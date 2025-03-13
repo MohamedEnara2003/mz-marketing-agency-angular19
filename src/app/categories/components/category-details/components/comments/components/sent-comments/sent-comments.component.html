@@ -1,0 +1,72 @@
+<section class="w-full flex flex-col justify-center items-start gap-5">
+    @for (data of comments(); track data.id) {
+    @defer (on viewport) {
+    <div class="w-full flex-col justify-between items-center bg-zinc-600 p-2 rounded shadow-md shadow-black"
+    [ngClass]="isEdit_id() !== data.id && isEdit_id() !== null ? 'opacity-25' : ''">
+    <div class="w-full flex justify-between items-start gap-2 ">
+    <div class="w-full flex justify-start items-start gap-2">
+        
+    <app-user-image 
+    [userImage]="data.picture"
+    [userName]="data.userName"
+    imageClass="size-10" />
+
+    <div class="w-full flex flex-col justify-center items-start ">
+    <ul class="flex justify-center items-center gap-2 font-semibold text-gray-50 text-sm">
+    <li>{{data.userName || data.email}}</li>
+    <li class="font-[400] text-blue-400 text-xs">{{formatTime(data.created_at!)}}</li>
+    </ul>
+
+        <textarea [ngModel]="isEdit_id() === data.id ? editCommentValue() : null"
+        (ngModelChange)="changeCommentValue($event)"
+        [placeholder]="data.comment" [disabled]="isEdit_id() === data.id ? false : true"
+        class="w-full outline-none  placeholder:text-gray-50 text-sm"
+        
+        ></textarea>
+
+    </div>
+    </div>
+
+    <div *ngIf="isUser().user_id === data.user_id" class="relative">
+
+    <button (click)="initCommentEditActive(data.id!)" type="button" 
+    class="cursor-pointer text-lg  text-gray-50 mx-1">
+    <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+    
+    <ul *ngIf="isEditActive_id() === data.id && isEditActive()"
+    class="absolute top-8 right-0 p-2  text-sm text-gray-900 z-10  bg-white rounded  divide-gray-100 
+    shadow flex justify-between items-center flex-col gap-1">
+
+    <li (click)="initEditComment(data.id , data.comment)"
+    class="w-full flex justify-start items-center gap-1  cursor-pointer  duration-150 hover:bg-gray-300">
+    <i class="fa-solid fa-edit "></i>
+    <a >
+    Edit
+    </a>
+    </li>
+
+    <li (click)="removeComment(data.id)"
+    class="w-full flex justify-start items-center gap-1  cursor-pointer  duration-150 hover:bg-gray-300">
+    <i class="fa-regular fa-trash-can "></i>
+    <a >
+    Remove
+    </a>
+    </li>
+    </ul>
+    </div>
+
+    </div>
+
+
+    <ul *ngIf="isEdit_id() === data.id"class="w-full flex justify-end items-center gap-5">
+        <li (click)="cancelComment()" class="cursor-pointer"><a>cancel</a></li>
+        <li (click)="editComment(data)" class="cursor-pointer"><a>edit comment</a></li>
+        </ul>
+    </div>
+
+    }@placeholder {
+    <div class="w-full rounded bg-zinc-400 h-24 animate-pulse"></div>
+    }
+    }
+</section>

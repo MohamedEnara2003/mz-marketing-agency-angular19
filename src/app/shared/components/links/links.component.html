@@ -1,0 +1,18 @@
+<ul  [ngClass]="ulClass() ? ulClass() : 'w-full h-full flex justify-evenly items-center gap-2 m-1'">
+    @for (link of links(); track $index) {
+
+    <li [routerLink]="link.path"  [ngClass]="linksClass()"
+
+    [routerLinkActive]="styleActiveClass()">
+
+    <i *ngIf="showIcon()" [class]="link.iconName" class="icons" [ngClass]="iconClass()">
+    </i>
+
+    <a class="text-xs md:text-sm font-semibold capitalize " >
+    {{link.linkName | translate}} 
+    </a>
+
+    </li>
+
+    }
+</ul>

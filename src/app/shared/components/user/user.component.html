@@ -1,0 +1,24 @@
+<ul class="flex justify-center items-center gap-5">
+    <li>
+        <app-selection-translate />
+    </li>
+<li>
+    @if(authService.CurrentUser() === null ){
+
+    <div class="flex justify-center items-center gap-1">
+    <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]"
+
+    class="text-white links bg-mz-primary rounded-3xl p-1.5 hover:bg-mz-secound duration-200">
+    register
+    </a>
+    <a [routerLink]="[{outlets : {loginIn: 'loginIn' , register : null}}]"
+    class="text-white links hover:bg-mz-primary rounded-3xl p-1.5 duration-200">
+    log in
+    </a>
+    </div>
+    }@else {
+    <app-user-image (click)="initModleUserData()" imageClass="size-7 cursor-pointer"/>
+    }
+</li>
+
+</ul>

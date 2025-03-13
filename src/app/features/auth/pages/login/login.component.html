@@ -1,0 +1,17 @@
+<app-auth-model authTilte="log in"> 
+      <form [formGroup]="form" (ngSubmit)="login(form)"
+      class="w-[90%] flex flex-col justify-center items-center gap-5">
+
+      <app-form-feild [form]="form" class="w-full"/>
+      
+      <button type="submit"  
+          class="w-full  btn  btn-outline bg-gray-600 hover:bg-gray-800
+          duration-200 text-white ">
+          Log In
+      </button>
+      </form>
+
+      <p class="text-center mt-3 text-[14px]">Don&#x27;t have an account? 
+        <a  class="text-gray-600">Create one</a>
+      </p>
+    </app-auth-model>

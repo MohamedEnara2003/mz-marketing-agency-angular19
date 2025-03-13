@@ -1,0 +1,26 @@
+
+
+<section *ngIf="hidelayout() !== false" class="w-full flex justify-center ">
+
+<header class="w-full absolute top-0 left-0  flex justify-center items-center z-10">
+    <nav class="w-[95%] flex justify-between items-center  ">
+
+    <app-logo logoClass="w-36 sm:w-40 "/>
+
+    <app-links class="hidden md:inline-block "
+    linksClass="flex justify-center items-center gap-0.5 text-white
+    xs:w-15 sm:w-22 hover:bg-mz-primary hover:rounded-t-md  md:hover:rounded-3xl py-1 
+    cursor-pointer hover:text-gray-50"
+    [showIcon]="false"
+    iconClass="text-mz-primary"
+    styleActiveClass="bg-mz-primary rounded-3xl "
+    />
+    
+    <app-user />
+
+    </nav>
+</header>
+
+<app-nav-bar class="w-full"/>
+
+</section>

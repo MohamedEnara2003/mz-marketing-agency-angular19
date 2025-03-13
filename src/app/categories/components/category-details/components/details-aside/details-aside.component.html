@@ -1,0 +1,8 @@
+<aside class="w-full  h-[70vh] flex-col justify-start items-center hidden md:inline-flex gap-10">
+    <app-header-details-side class="w-full"/>
+    <app-related class="w-full"
+    [categoryRelated]="categoryData()"
+    [categoryRelatedData]="category()"
+    [isPlaying]="isPlaying()"
+    />
+</aside>

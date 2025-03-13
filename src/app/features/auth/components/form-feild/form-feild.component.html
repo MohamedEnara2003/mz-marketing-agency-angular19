@@ -1,0 +1,40 @@
+<div [formGroup]="form()" class="w-full flex flex-col justify-center items-center gap-5">
+
+<div class="w-full flex flex-col justify-center items-center ">
+    <input formControlName="email" type="email"
+    class="w-full" placeholder="Email" 
+    [ngClass]="form().get('email')?.errors && form().get('email')?.touched ? 
+    'input-error input ' : 'input input-neutral'"/>
+    @if(form().get('email')?.errors && form().get('email')?.touched){
+    <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
+    capitalize gap-1">
+    <p *ngIf="form().get('email')?.getError('required')">this email is required!</p>
+    <p *ngIf="form().get('email')?.getError('email')">write a valid email!</p>
+    </div>
+    }
+    </div>
+
+    <div class="w-full flex flex-col justify-center items-center">
+    
+    <div class="relative w-full flex justify-between items-center">
+      <input formControlName="password" [type]="isShowPass() ? 'text' : 'password'" 
+      class="w-full" placeholder="Password" 
+      [ngClass]="form().get('password')?.errors && form().get('email')?.touched ? 
+      'input-error input ' : 'input input-neutral'"/>
+
+    <i (click)="initShowPassword()" class="fa-solid icons absolute right-2 z-10 bg-white" 
+    [ngClass]="isShowPass() ? 'fa-eye' : 'fa-eye-slash'">
+    </i>
+    </div>
+
+    @if(form().get('password')?.errors && form().get('password')?.touched){
+    <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
+    capitalize gap-1">
+      <p *ngIf="form().get('password')?.getError('required')">this password is required!</p>
+      <p *ngIf="form().get('password')?.getError('minlength')">write a valid password!</p>
+      <p *ngIf="form().get('password')?.getError('maxlength')">write a valid password!</p>
+    </div>
+    
+    }
+    </div>
+</div>

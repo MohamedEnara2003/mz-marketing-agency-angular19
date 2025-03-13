@@ -1,0 +1,31 @@
+    <app-auth-model authTilte="register"> 
+        <form [formGroup]="form" (ngSubmit)="register(form)"
+            class="w-[90%] flex flex-col justify-center items-center gap-5">
+
+        <div class="w-full flex flex-col justify-center items-center">
+            <input formControlName="userName" type="text" 
+            class="w-full" placeholder="User Name" 
+            [ngClass]="form.get('userName')?.errors && form.get('userName')?.touched ? 
+            'input-error input' : 'input input-neutral'"/>
+
+    @if(form.get('userName')?.errors && form.get('userName')?.touched){
+    <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
+    capitalize gap-1">
+      <p *ngIf="form.get('userName')?.getError('required')">this userName is required!</p>
+      <p *ngIf="form.get('userName')?.getError('maxlength')">write a valid userName!</p>
+    </div>
+    }
+    </div>
+        <app-form-feild [form]="form" class="w-full"/>
+        
+            <button type="submit"  
+            class="w-full  btn  btn-outline bg-gray-600 hover:bg-gray-800
+            duration-200 text-white ">
+            Register
+            </button>
+            </form>
+        
+            <p class="text-center mt-3 text-[14px]">Don&#x27;t have an account? 
+            <a class="text-gray-600">Create one</a>
+            </p>
+</app-auth-model>

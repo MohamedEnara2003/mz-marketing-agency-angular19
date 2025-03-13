@@ -1,0 +1,9 @@
+{
+    "link" : {
+    "home" : "home",
+    "packages": "packages",
+    "categories": "categories",
+    "aboutUs": "about us",
+    "contactUs": "contact us"
+    }
+}

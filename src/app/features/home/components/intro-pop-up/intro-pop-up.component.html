@@ -1,0 +1,44 @@
+
+    <button (click)="initShowIntroPopUp()" type="button"
+    class="absolute left-2 top-[50%] translate-y-[-50%] cursor-pointer z-50">
+    <i class="fa-solid  text-[4rem] scale-y-200 text-white hover:opacity-70 duration-200"
+    [ngClass]="isIntro() ? 'fa-caret-right' : 'fa-caret-left'"></i>
+    </button>
+
+    <section  
+    class="bg-white fixed top-[50%] translate-y-[-50%]  left-[50%]  z-50 
+    w-[90%] md:w-auto duration-700 "
+    [ngClass]="isIntro() ? 'translate-x-[-50%]' : 'translate-x-[-300%]'">
+        <div class="relative bg-white  shadow-sm">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t  border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-900  capitalize">
+                Welcome to mz marketing agency
+                </h3>
+                <button (click)="initShowIntroPopUp()" 
+                type="button" class="cursor-pointer text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" >
+                <i class="fa-solid fa-close text-xl"></i>
+                </button>
+            </div>
+
+            <div class="p-4 md:p-5 space-y-4">
+            <p class="text-base leading-relaxed text-gray-500 ">
+            At MZ, we specialize in delivering innovative and results-driven marketing solutions tailored to elevate your brand. From strategic digital campaigns to creative branding and social media management, we help businesses grow and thrive in a competitive market.
+            Our team of experts combines creativity with data-driven strategies to ensure maximum impact and engagement. Whether you're a startup looking to establish your presence or an established brand aiming for expansion, MZ is your trusted partner in success.
+            </p>
+            <p class="text-base leading-relaxed text-gray-500 ">
+            Let&apos;s take your brand to the next leve
+            </p>
+            </div>
+
+            <div class="flex  items-center gap-2 p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button type="button" class="cursor-pointer text-white bg-mz-primary hover:bg-mz-secound 
+                font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                I accept
+            </button>
+            <button type="button" 
+            class="cursor-pointer text-mz-secound border border-zinc-300
+            font-medium rounded-lg text-sm px-5 py-2.5 text-center">Decline</button>
+            </div>
+        </div>
+</section>
+<section *ngIf="isIntro()" (click)="initShowIntroPopUp()"  class="fixed top-0 left-0 w-full h-screen"></section>

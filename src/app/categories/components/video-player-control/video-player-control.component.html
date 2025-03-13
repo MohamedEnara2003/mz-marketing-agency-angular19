@@ -1,0 +1,29 @@
+<footer class="fixed w-full h-16 flex flex-col justify-center items-center  bottom-0 left-0 bg-zinc-800">
+
+    <div class="w-full  absolute -top-[38px]">
+        <ngx-slider 
+        [value]="currentTime()"
+        [options]="options()"
+        (valueChange)="onSliderChange($event)"
+        />
+    </div>
+
+    <nav class="w-[90%] flex justify-between items-center text-gray-50  ">
+
+        <div class="w-[10%] flex justify-center items-center text-lg gap-8">
+        <i class="fa-solid fa-backward"></i>
+
+        <button [title]="isPlaying() ? 'pause' : 'play'" type="button" (click)="playPause()">
+        <i class="fa-solid text-3xl cursor-pointer" [ngClass]="isPlaying() ? 'fa-pause' : 'fa-play'"></i>
+        </button> 
+
+        <i class="fa-solid fa-forward"></i>
+        </div>
+
+        <div class="w-[10%] flex justify-evenly items-center gap-5 text-zinc-400">
+        <i class="fa-solid fa-volume-high text-xl"> </i>
+        <i class="fa-solid fa-caret-up text-2xl"></i>
+        </div>
+    </nav>
+
+</footer>

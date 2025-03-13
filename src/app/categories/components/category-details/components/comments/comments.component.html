@@ -1,0 +1,56 @@
+<section class="w-full flex flex-col justify-center items-start gap-5 text-gray-50  my-5  ">
+    <div class="flex justify-center items-center capitalize gap-7">
+    <h1 class="text-xl font-bold">0 comments</h1>
+    <h2 class="text-sm">
+    <i class="fa-solid fa-bars-staggered"></i>
+    sort by
+    </h2>
+    </div>
+    
+    <div class="w-full flex flex-col justify-center items-start gap-5">
+
+
+    <div class="flex justify-center items-center gap-2 text-sm">
+    <app-user-image imageClass="size-8"/>
+
+    <h2  (click)="initComment()" *ngIf="!isFocus()"
+    class="font-[400] cursor-auto text-gray-400 p-1">
+    Add a comment...
+    </h2>
+    
+    <div *ngIf="isFocus()" class=" flex flex-col justify-center items-start">
+    <h2>{{ UserData()?.userName}}</h2>
+    </div>
+    
+    </div>
+    
+    <form *ngIf="isFocus()" class="w-full flex flex-col gap-2" (ngSubmit)="addComment()">
+
+    <input #inputRef type="text" name="input comment" id="comments" [(ngModel)]="commentValue" (ngModelChange)="changeValue($event)"
+    class="w-full focus-within:border-b-gray-50 outline-none text-gray-50
+    border-b-1 border-gray-500 py-2">
+
+    <div class="w-full flex justify-end items-center gap-5 font-semibold">
+    <button type="button" (click)="initComment()"
+    class="cursor-pointer capitalize text-sm hover:opacity-50 duration-200 text-gray-50">
+    cancel
+    </button>
+
+    <button [disabled]="!commentValue()"  type="submit" 
+    class="capitalize text-sm  rounded-xl   text-gray-50 p-1"
+    [ngClass]="!commentValue() ? 'cursor-default opacity-50' 
+    : 'bg-mz-secound cursor-pointer hover:bg-mz-primary duration-200'">
+    add comment
+    </button>
+
+    </div>
+    </form>
+    <app-sent-comments class="w-full"
+    [comments]="commentsData()"  
+    (sindDeleteId)="initRemoveComment($event)"
+    (updatedComment)="initEditComment($event)"
+    [isUser]="UserData()!"
+    />
+    </div>
+
+</section>
