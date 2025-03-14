@@ -16,6 +16,14 @@
             "outputPath": "dist/mz-marketing-agency",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+            "zone.js",
+            "@messageformat/core",
+            "dayjs",
+            "ws",
+            "zone.js"
+              
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -29,12 +37,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "@messageformat/core",
-              "dayjs",
-              "ws"
-            ]
+            "scripts": []
           },
           
           "configurations": {
