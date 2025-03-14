@@ -20,7 +20,8 @@
               "@messageformat/core",
               "dayjs",
               "dayjs/plugin/relativeTime",
-              "ws"
+              "ws",
+              "zone.js"
             ],
             "polyfills": [
               "zone.js"
