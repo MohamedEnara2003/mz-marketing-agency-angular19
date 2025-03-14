@@ -17,12 +17,10 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "allowedCommonJsDependencies": [
-            "zone.js",
-            "@messageformat/core",
-            "dayjs",
-            "ws",
-            "zone.js"
-              
+              "@messageformat/core",
+              "dayjs",
+              "dayjs/plugin/relativeTime",
+              "ws"
             ],
             "polyfills": [
               "zone.js"
