@@ -14,9 +14,11 @@ import { SharedModule } from '../../../shared/modules/shared.module';
     #videoElement 
     [src]="src()" 
     [class]="categoryClass()"
+    playsInline
     [controls]="controls()"
     [muted]="muted()"
     [autoplay]="autoplay()"
+    
     >
     </video>
   }

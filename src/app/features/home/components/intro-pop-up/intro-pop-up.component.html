@@ -1,12 +1,12 @@
 
     <button (click)="initShowIntroPopUp()" type="button"
-    class="absolute left-2 top-[50%] translate-y-[-50%] cursor-pointer z-50">
+    class="absolute left-2 top-[50%] translate-y-[-50%] cursor-pointer z-20">
     <i class="fa-solid  text-[4rem] scale-y-200 text-white hover:opacity-70 duration-200"
     [ngClass]="isIntro() ? 'fa-caret-right' : 'fa-caret-left'"></i>
     </button>
 
     <section  
-    class="bg-white fixed top-[50%] translate-y-[-50%]  left-[50%]  z-50 
+    class="bg-white fixed top-[50%] translate-y-[-50%]  left-[50%]  z-20 
     w-[90%] md:w-auto duration-700 "
     [ngClass]="isIntro() ? 'translate-x-[-50%]' : 'translate-x-[-300%]'">
         <div class="relative bg-white  shadow-sm">

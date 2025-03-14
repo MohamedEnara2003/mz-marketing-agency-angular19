@@ -16,7 +16,7 @@ export class AuthenticationService {
   const promise = authClient.signInWithOAuth({
   provider : "google" ,
   options : {
-  redirectTo : window.location.origin === "http://localhost:4200/"  ? window.location.origin : "https://mz-marketing-agency-ng.vercel.app/"
+  redirectTo : window.location.pathname
   }
   })
   return from(promise)
