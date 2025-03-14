@@ -1,42 +1,35 @@
 
-<section class="relative w-full flex flex-wrap justify-center items-start">
+<section class="relative w-full flex flex-wrap justify-center items-start  ">
     
-    <section class="md:w-[70%] flex justify-center items-center ">
-        <div class="w-[90%] flex flex-col justify-center items-start gap-4">
-
+    <section class="w-[95%] flex flex-wrap flex-col md:flex-row justify-between items-start
+    gap-10">
+        <div class="md:w-[65%] flex flex-col justify-center items-start gap-4">
         <div class="rounded-2xl shadow-2xl shadow-black border-b-2 border-mz-primary"
         [ngClass]="categoryDataById()?.category  === 'reels' ? 'w-[50%]' : ''">
-
-        <video [src]="videoUrl()"
-        #videoDetailsRef
-        (click)="onVideoClick()"
-        (timeupdate)="onTimeUpDate()"
-        (loadedmetadata)="loadVideoDuration ()"
-        autoplay 
+        <app-category-view 
+        [src]="videoUrl()"
+        [type]="categoryDataById()?.type!"
+        [autoplay]="true"
+        [controls]="true"
         [muted]="true"
-        class="w-full h-full object-cover rounded-2xl" >
-        </video>
+        categoryClass="w-full h-full object-cover rounded-2xl"
+        />
         </div>
         <app-video-interaction class="w-full"
         [title]="categoryDataById()?.title!"
-        [likes]="categoryDataById()?.likes!"
-        [dislikes]="categoryDataById()?.dislikes!"
-        [views]="categoryDataById()?.views!"
+        [views]="categoryDataById()?.video_views!"
         [created_at]="categoryDataById()?.created_at!"
         />
-        <app-comments class="w-full" />
         </div>
-    </section>
     
-    <app-details-aside class="w-[30%]"
-    [category]="{id : queryId() , category : catagoryParameter()}"
-    [isPlaying]="isPlaying()"
-    />
-    <app-video-player-control class="w-full" 
-    [currentTime]="currentTime()"
-    [duration]="duration()"
-    (value)="onSliderChange($event)"
-    (postVideoState)="playPause($event)"
-    [getVideoState]="isPlaying()"
-    />
+        <app-details-aside class="w-full md:w-[30%]"
+        [category]="{id : queryId() , category : catagoryParameter()}"
+        />
+
+        <app-comments class="w-full md:w-[65%]" />
+    </section>
+
+
+
+
     </section>

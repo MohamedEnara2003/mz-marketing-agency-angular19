@@ -17,8 +17,6 @@ export interface CategoriesType {
     title : string ,
     category : string ,
     type : string
-    views : number ,
-    likes : number,
-    dislikes : number,
+    video_views : number ,
     comments : Comments[]
 }

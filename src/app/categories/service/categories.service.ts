@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { SingleTonSupabaseService } from '../../core/services/single-ton-supabase.service';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CategoriesType } from '../../shared/interfaces/categories';
 
 @Injectable({
@@ -20,8 +20,24 @@ export class CategoriesService {
   );
   }
 
+  getCategoriesValue() : Observable<string[]> {
+  return this.singleTonSupaBaseService.getData(this.Table).pipe(
+  map((data : unknown) => {
+  const categories = (data as CategoriesType[]);
+
+  const categoriesValues = categories.filter((prev, i) => {
+  return i == categories.findIndex((cur) => prev.category === cur.category);
+  }).map((res) => res.category);
+  return categoriesValues ;
+  })
+  );
+  }
+  
+  
   getCategoryById(id : number) : Observable<CategoriesType> {
   return this.singleTonSupaBaseService.getDataById(this.Table , id)
   }
-  
+
+
+
 }

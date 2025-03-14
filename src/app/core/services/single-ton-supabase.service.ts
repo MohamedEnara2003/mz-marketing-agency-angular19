@@ -33,9 +33,11 @@ export class SingleTonSupabaseService {
   const promise = this.supabase.from(tableName).update(data).match({id : id}).select('*').single()
   return from(promise).pipe(map((result) => result.data! )) ;
   }
-  
+
   deleteDataById(tableName : string , id : number) : Observable<void> {
   const promise = this.supabase.from(tableName).delete().match({id : id}).single()
   return from(promise).pipe(map(() =>{})) ;
   }
+
+
 }

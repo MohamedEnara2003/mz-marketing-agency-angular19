@@ -1,6 +1,6 @@
-<section class="relative w-full  flex justify-end items-center">
+<section class="relative w-full  flex justify-center items-center">
 
-<ul class="w-[90%] flex flex-wrap justify-start items-center">
+<ul class="w-[90%] flex flex-wrap  justify-center items-center">
 @for (data of categoryData(); track data.id) {
   
     <div [routerLink]="['/categories/watch',data.category]" [queryParams]="{id : data.id}"

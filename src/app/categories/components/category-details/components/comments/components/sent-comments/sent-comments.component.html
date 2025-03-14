@@ -59,8 +59,9 @@
     </div>
 
 
-    <ul *ngIf="isEdit_id() === data.id"class="w-full flex justify-end items-center gap-5">
-        <li (click)="cancelComment()" class="cursor-pointer"><a>cancel</a></li>
+    <ul *ngIf="isEdit_id() === data.id"
+    class="w-full flex justify-end items-center gap-5 capitalize">
+        <li (click)="cancelComment()"   class="cursor-pointer"><a>cancel</a></li>
         <li (click)="editComment(data)" class="cursor-pointer"><a>edit comment</a></li>
         </ul>
     </div>

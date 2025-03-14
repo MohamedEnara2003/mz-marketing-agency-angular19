@@ -1,10 +1,9 @@
-import { Component,  ElementRef, input, output, signal} from '@angular/core';
+import { Component,  input, output, signal} from '@angular/core';
 import { Comments } from '../../../../../../../shared/interfaces/categories';
 import { UserImageComponent } from "../../../../../../../shared/components/user-image/user-image.component";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { UserData } from '../../../../../../../core/models/user.model';
+import { DayJsService } from '../../../../../../service/day-js.service';
 
 
 @Component({
@@ -27,12 +26,11 @@ export class SentCommentsComponent {
   updatedComment = output<Comments>() ;
   isEdit_id = signal<number | null>(null);
   
-  constructor(){
-  dayjs.extend(relativeTime);
+  constructor(private dayJsService : DayJsService){
   }
 
   formatTime(timestamp: string): string {
-  return dayjs(timestamp).fromNow(); 
+  return this.dayJsService.formatTime(timestamp)
   }
   
   initCommentEditActive (id : number | null) : void {

@@ -2,6 +2,7 @@ import { Component, effect, ElementRef, input, signal, viewChildren } from '@ang
 import { CategoriesType } from '../../../../../../../shared/interfaces/categories';
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { CategoryViewComponent } from "../../../../../category-view/category-view.component";
+import { DayJsService } from '../../../../../../service/day-js.service';
 
 @Component({
   selector: 'app-related',
@@ -16,13 +17,16 @@ export class RelatedComponent {
 
   videosDurations = signal<number[]>([]) ;
   categoryViewComponent = viewChildren<CategoryViewComponent>(CategoryViewComponent) ;
-  isPlaying = input.required<boolean>()
-  constructor(){
-    effect(() => {
-    this.initVideosRef();
+
+  constructor(private dayJsService : DayJsService){
+  effect(() => {
+  this.initVideosRef();
   })
   }
-
+  
+  formatTime(timestamp: string): string {
+    return this.dayJsService.formatTime(timestamp)
+  }
   private initVideosRef () : void {
   const durations : number[] = [] ; 
 

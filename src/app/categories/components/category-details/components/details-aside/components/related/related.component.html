@@ -1,34 +1,41 @@
-<section class="w-full  flex flex-col justify-start items-start gap-5 h-[60vh] 
-overflow-y-scroll">
+<section class="w-full  flex flex-col justify-start items-start gap-5 ">
 
     @for (data of  categoryRelated(); track data.id ; let i = $index) {
-    <ul [routerLink]="['/categories/watch', data.category]" [queryParams]="{id : data.id}"
-    class="w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
-    gap-2 py-1 cursor-pointer"
+    <div [routerLink]="['/categories/watch', data.category]" [queryParams]="{id : data.id}"
+    class="w-full flex  justify-between items-start text-gray-50 border-b-[1px] border-b-zinc-500
+    gap-2 py-1  text-xs capitalize font-semibold"
     [ngClass]="categoryRelatedData().id === data.id ? 'bg-[#282828]' : ''">
 
-    <li class="flex justify-center items-center gap-2 text-xs capitalize font-semibold mx-1">
-    <div class="relative flex justify-center items-center ">
-        <app-category-view
-        [src]="data.url"
-        [type]="data.type"
-        [categoryClass]="'size-12 rounded'"
-        [muted]="true"
-        />
+    <div class="flex justify-center items-start gap-2">
 
-    <i *ngIf="categoryRelatedData().id === data.id" 
-    class="fa-solid  text-lg text-black  absolute"
-    [ngClass]="isPlaying() ? 'fa-volume-high' : 'fa-play'">
-    </i>
-
+        <div class="relative cursor-pointer">
+            <app-category-view
+            [src]="data.url"
+            [type]="data.type"
+            [categoryClass]="'w-[120px] h-[80px] object-cover rounded-md'"
+            [muted]="true"
+            />
+        <small class="absolute right-1 bottom-1 bg-[#333] p-1">
+        {{videosDurations()[i] | number : '1.2-2'}}
+        </small>
+        </div>
+    
+        <div class="flex flex-col justify-center items-start gap-5">
+            <h3 class="">{{data.title}}</h3>
+            <div class="flex justify-center items-center gap-2 lowercase">
+            <span>0 view</span>
+            <span>{{formatTime(data.created_at)}}</span>
+            </div>
+        </div>
     </div>
-    <h3 >{{data.title}}</h3>
-    </li>
 
-    <li  class="mx-1">
-    <small>{{videosDurations()[i] | number : '1.2-2'}}</small>
-    </li>
-    </ul>
+        <button  type="button" 
+        class="cursor-pointer text-lg  text-gray-50 mx-2">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+        </button>
+  
+
+</div>
     }
 
     

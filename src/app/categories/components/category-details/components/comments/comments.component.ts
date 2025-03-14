@@ -26,6 +26,7 @@ export class CommentsComponent {
   commentValue = signal<string>('') ;
   commentsData = signal<Comments[]>([]) ;
   UserData = signal<UserData | null>(null)
+  countComments = signal<number>(0);
 
   constructor(
   private authService  : AuthenticationService ,
@@ -39,6 +40,7 @@ export class CommentsComponent {
   });
   
   this.initSubscription();
+  this.getCountComments();
   }
   
   private initSubscription() : void {
@@ -46,6 +48,9 @@ export class CommentsComponent {
     switchMap((queryParamMap) => {
     const id = +queryParamMap.get('id')!;
     this.queryId.set(id);
+    this.commentsService.getCountComments(id).subscribe((value) => {
+    this.commentsService.initCountComment(value)
+    })
     return this.commentsService.getCommentsByCategoryId(id , this.UserData()?.user_id!);
     }),
     takeUntilDestroyed()
@@ -60,6 +65,12 @@ export class CommentsComponent {
     })
     }
 
+  private getCountComments() : void {
+    this.commentsService.countComment$.pipe(takeUntilDestroyed()).subscribe((value) => {
+    this.countComments.set(value);
+    })
+  }
+
     addComment() : void {
       if(this.authService.CurrentUser()){
       const Comments : Comments = {
@@ -72,6 +83,7 @@ export class CommentsComponent {
       }
       this.commentsService.postComment(Comments).subscribe((data) => {
       this.commentsData().push(data);
+      this.commentsService.incrementCommentCount();
       });
       this.initComment();
       }else{
@@ -83,6 +95,7 @@ export class CommentsComponent {
       if(id){
       this.commentsService.deleteComment(id).subscribe(() => {
       this.commentsData.set(this.commentsData().filter((comment) => comment.id !== id));
+      this.commentsService.decrementCommentCount()
       })
       }
       }
@@ -111,7 +124,4 @@ export class CommentsComponent {
   this.commentValue.set(value)
   }
   
-
-
-
 }

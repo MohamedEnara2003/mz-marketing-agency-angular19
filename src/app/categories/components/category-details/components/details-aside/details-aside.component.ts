@@ -15,7 +15,6 @@ export class DetailsAsideComponent implements OnInit{
 
   category = input.required<{id : number , category : string}>()
   categoryData = signal<CategoriesType[]>([])
-  isPlaying = input.required<boolean>()
   constructor(
   private categoriesService : CategoriesService
   ){
@@ -26,6 +25,8 @@ export class DetailsAsideComponent implements OnInit{
   }
 
   private getCategory() : void {
+    console.log(this.category().category);
+    
     this.categoriesService.getCategories(this.category().category)
     .subscribe({
     next : (value) => {

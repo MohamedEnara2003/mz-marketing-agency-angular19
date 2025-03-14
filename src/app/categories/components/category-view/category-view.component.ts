@@ -6,6 +6,7 @@ import { SharedModule } from '../../../shared/modules/shared.module';
   selector: 'app-category-view',
   imports: [SharedModule],
   template : `
+
   @switch (type()) {
   @case ("video") {
     <video 
@@ -28,10 +29,11 @@ import { SharedModule } from '../../../shared/modules/shared.module';
   >
   }
   }
+
   `
 })
 export class CategoryViewComponent {
-  src = input.required<string | SafeResourceUrl>();
+  src = input.required<string | SafeResourceUrl >();
   type = input.required<string>();
   categoryClass = input<string>();
   controls = input<boolean>();

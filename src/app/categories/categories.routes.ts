@@ -5,7 +5,7 @@ import { CategoryDetailsComponent } from "./components/category-details/category
 
 export const categoriesRoutes: Routes = [
     {path : 'category/:category' , component : CategoryComponent},
-    {path : 'watch/:category' , component : CategoryDetailsComponent},
+    {path : 'watch/:category'  , component : CategoryDetailsComponent},
     {path : '' , redirectTo : '/categories/category/motion' , pathMatch :'full'}
 
 ]

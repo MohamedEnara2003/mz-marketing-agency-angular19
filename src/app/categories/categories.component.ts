@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CategoryHeaderComponent } from "./components/category-header/category-header.component";
-import { CategoryNavsideComponent } from "./components/category-navside/category-navside.component";
+;
+import { HeaderComponent } from "../shared/components/header/header.component";
 
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterOutlet, CategoryHeaderComponent, CategoryNavsideComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })

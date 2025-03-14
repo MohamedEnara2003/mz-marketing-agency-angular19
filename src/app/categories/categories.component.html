@@ -1,11 +1,11 @@
-<section class="relative w-full flex justify-between items-start bg-space">
+<section class="w-full  flex flex-col gap-16 justify-between items-center bg-space">
 
-    <app-category-navside />
-    
-    <div class="w-full flex flex-col gap-2 ">
-    <app-category-header />
-    <router-outlet  />
 
-    </div>
+    <header class="relative w-full ">
+    <app-header />
+    </header>
+
+    <router-outlet  class="w-full"/>
+   
 
 </section>

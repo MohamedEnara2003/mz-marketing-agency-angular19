@@ -1,9 +1,0 @@
-
-.ngx-slider .ngx-slider-pointer {
-    opacity: 0 !important;
-    transition: 0.1s !important;
-}
-
-.ngx-slider:hover.ngx-slider .ngx-slider-pointer {
-    opacity: 1 !important;
-}
