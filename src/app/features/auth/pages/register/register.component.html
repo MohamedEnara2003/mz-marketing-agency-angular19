@@ -4,7 +4,7 @@
 
         <div class="w-full flex flex-col justify-center items-center">
             <input formControlName="userName" type="text" 
-            class="w-full" placeholder="User Name" 
+            class="w-full bg-white" placeholder="User Name" 
             [ngClass]="form.get('userName')?.errors && form.get('userName')?.touched ? 
             'input-error input' : 'input input-neutral'"/>
 

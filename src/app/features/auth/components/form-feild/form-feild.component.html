@@ -2,7 +2,7 @@
 
 <div class="w-full flex flex-col justify-center items-center ">
     <input formControlName="email" type="email"
-    class="w-full" placeholder="Email" 
+    class="w-full bg-white" placeholder="Email" 
     [ngClass]="form().get('email')?.errors && form().get('email')?.touched ? 
     'input-error input ' : 'input input-neutral'"/>
     @if(form().get('email')?.errors && form().get('email')?.touched){
@@ -18,7 +18,7 @@
     
     <div class="relative w-full flex justify-between items-center">
       <input formControlName="password" [type]="isShowPass() ? 'text' : 'password'" 
-      class="w-full" placeholder="Password" 
+      class="w-full bg-white" placeholder="Password" 
       [ngClass]="form().get('password')?.errors && form().get('email')?.touched ? 
       'input-error input ' : 'input input-neutral'"/>
 
