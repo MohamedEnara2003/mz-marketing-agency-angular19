@@ -1,34 +1,54 @@
 
-<section class="relative w-full flex flex-wrap justify-center items-start  ">
+<section class="w-full relative  flex  justify-center items-start ">
     
-    <section class="w-[95%] flex flex-wrap flex-col md:flex-row justify-between items-start
-    gap-10">
-        <div class="md:w-[65%] flex flex-col justify-center items-start gap-4">
-        <div class="rounded-2xl shadow-2xl shadow-black border-b-2 border-mz-primary"
-        [ngClass]="categoryDataById()?.category  === 'reels' ? 'w-[50%]' : ''">
+    <section *ngIf="categoryDataById()" 
+    class="w-[95%] flex flex-wrap flex-col md:flex-row justify-between items-start my-5">
+
+    <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 ">
+        <div class="rounded-2xl shadow-2xl shadow-black border-1 border-mz-primary 
+        flex justify-center items-center w-full "
+        [ngClass]="categoryDataById()?.category === 'reels' ? 'h-[90vh]' : 'h-auto'">
+        
+        <div class="h-full"
+        [ngClass]="categoryDataById()?.category === 'reels' ? 'w-[50%]' : 'w-full'">
+
+        @defer (on viewport) {
         <app-category-view 
-        [src]="videoUrl()"
-        [type]="categoryDataById()?.type!"
-        [autoplay]="true"
-        [controls]="true"
-        [muted]="true"
-        categoryClass="w-full h-full object-cover rounded-2xl"
+        #categoryView
+        [options]="{
+        src : categoryDataById()?.url!,
+        type : categoryDataById()?.type! ,
+        poster : categoryDataById()?.poster ,
+        class : 'w-full h-full object-cover rounded-2xl',
+        controls : true ,
+        }"
         />
+    }@placeholder {
+    <div class="w-full h-full bg-black flex justify-center items-center">
+        <span class="loading loading-bars loading-xl  text-mz-primary "></span>
+    </div>
+    }
         </div>
+        </div>
+
         <app-video-interaction class="w-full"
         [title]="categoryDataById()?.title!"
-        [views]="categoryDataById()?.video_views!"
+        [views]="this.videoViews()"
         [created_at]="categoryDataById()?.created_at!"
         />
+        <app-details-aside class="lg:hidden w-full "
+        [category]="{id : queryId() , category : catagoryParameter()}"
+        />
+        <app-comments class="w-full" />
         </div>
     
-        <app-details-aside class="w-full md:w-[30%]"
+        <app-details-aside class="hidden lg:inline-block md:w-[30%]"
         [category]="{id : queryId() , category : catagoryParameter()}"
         />
 
-        <app-comments class="w-full md:w-[65%]" />
     </section>
-
+    
+    <app-loading *ngIf="!categoryDataById()"/>
 
 
 

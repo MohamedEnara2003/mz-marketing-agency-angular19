@@ -28,6 +28,8 @@ export class CommentsComponent {
   UserData = signal<UserData | null>(null)
   countComments = signal<number>(0);
 
+  isSortLoad = signal<boolean>(false);
+  sortType = signal<string>('TOP');
   constructor(
   private authService  : AuthenticationService ,
   private commentsService : CommentsService ,
@@ -41,6 +43,7 @@ export class CommentsComponent {
   
   this.initSubscription();
   this.getCountComments();
+  this.initCommentsRealTime();
   }
   
   private initSubscription() : void {
@@ -51,7 +54,7 @@ export class CommentsComponent {
     this.commentsService.getCountComments(id).subscribe((value) => {
     this.commentsService.initCountComment(value)
     })
-    return this.commentsService.getCommentsByCategoryId(id , this.UserData()?.user_id!);
+    return this.commentsService.getCommentsByCategoryId(id);
     }),
     takeUntilDestroyed()
     ).subscribe({
@@ -64,6 +67,27 @@ export class CommentsComponent {
       complete : () =>{}
     })
     }
+
+  private initCommentsRealTime() : void {
+    this.commentsService.listenToCommentsUpdates()
+    .pipe(takeUntilDestroyed())
+    .subscribe((update) => {
+      if (update.eventType === 'INSERT'  ) {
+        this.commentsData.update((prev) => [...prev, update.new]);
+        this.commentsService.incrementCommentCount();
+      }
+      else if(update.eventType === 'UPDATE'){
+      this.commentsData.update((prev) => 
+      prev.map(comment => comment.id === update.new.id ? update.new : comment));
+      }else if(update.eventType === 'DELETE'){
+        this.commentsData.update((prev) =>
+        prev.filter((comment) => comment.id !== update.old.id)
+        );
+      this.commentsService.decrementCommentCount();
+      }
+      this.commentsData().sort((a , _) => a.user_id === this.authService.CurrentUser()?.user_id ? -1 : 0);
+    });
+  }
 
   private getCountComments() : void {
     this.commentsService.countComment$.pipe(takeUntilDestroyed()).subscribe((value) => {
@@ -81,10 +105,7 @@ export class CommentsComponent {
       picture : this.authService.CurrentUser()?.picture!,
       comment : this.commentValue(),
       }
-      this.commentsService.postComment(Comments).subscribe((data) => {
-      this.commentsData().push(data);
-      this.commentsService.incrementCommentCount();
-      });
+      this.commentsService.postComment(Comments).subscribe();
       this.initComment();
       }else{
       this.router.navigate([{outlets : {loginIn: 'loginIn' , register : null}}]);
@@ -93,19 +114,13 @@ export class CommentsComponent {
     
       initRemoveComment(id : number) : void {
       if(id){
-      this.commentsService.deleteComment(id).subscribe(() => {
-      this.commentsData.set(this.commentsData().filter((comment) => comment.id !== id));
-      this.commentsService.decrementCommentCount()
-      })
+      this.commentsService.deleteComment(id).subscribe()
       }
       }
       
       initEditComment(updatedComment: Comments) : void {
       if(updatedComment){
-      const index =  this.commentsData().findIndex((currentData) => currentData.id === updatedComment.id)
-      this.commentsService.updateComment(updatedComment.id! , updatedComment).subscribe(() => {
-      this.commentsData()[index] = updatedComment ;
-      })
+      this.commentsService.updateComment(updatedComment.id! , updatedComment).subscribe()
       }
       }
 
@@ -124,4 +139,12 @@ export class CommentsComponent {
   this.commentValue.set(value)
   }
   
+  openSort() : void {
+  this.isSortLoad.set(!this.isSortLoad());
+  }
+  initSort(sort : string) : void {
+  this.sortType.set(sort);
+  this.commentsService.sortBy(sort);
+  this.openSort();
+  }
 }

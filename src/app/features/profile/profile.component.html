@@ -28,7 +28,7 @@ class="absolute top-20 left-0 w-full h-[70vh] flex justify-end items-center"
     </a>
 </li>
 <li class="w-full"> 
-    <a routerLink="/" class="flex justify-start items-center text-black capitalize font-bold gap-5
+    <a [routerLink]="['/',{outlets : {'booking-outlet': 'booking' , profile : null}}]" class="flex justify-start items-center text-black capitalize font-bold gap-5
     cursor-pointer">
     <i class="fa-solid fa-book-open icons"></i> booking
     </a>

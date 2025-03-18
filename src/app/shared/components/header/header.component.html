@@ -1,8 +1,8 @@
-
-
-<section *ngIf="hidelayout() !== false" class="w-full flex justify-center ">
-
-<header class="w-full absolute top-0 left-0  flex justify-center items-center z-10">
+<header class="w-full  flex justify-center items-center z-10"
+[ngClass]="{
+    'absolute top-0 left-0' : !hidelayout() ,
+    'relative' : hidelayout() ,
+}">
     <nav class="w-[95%] flex justify-between items-center  ">
 
     <app-logo logoClass="w-36 sm:w-40 "/>
@@ -16,11 +16,16 @@
     styleActiveClass="bg-mz-primary rounded-3xl "
     />
     
-    <app-user />
+<div class="flex justify-center items-center gap-2">
+        <div *ngIf="hidelayout()" class="flex justify-center items-center text-gray-50 gap-2">
+            <label for="isToggle"><i *ngIf="!toggleRef.checked" class="fa-solid fa-moon"></i></label>
+            <input #toggleRef (change)="onChanheToggle()"   type="checkbox" checked="true" id="isToggle"
+            class="toggle text-mz-primary border-mz-primary bg-white checked:bg-mz-primary checked:text-white checked:border-mz-secound " />
+            <label for="isToggle"><i *ngIf="toggleRef.checked" class="fa-solid fa-star"></i></label>
+        </div>
+        <app-user />
+</div>
 
-    </nav>
+</nav>
 </header>
-
 <app-nav-bar class="w-full"/>
-
-</section>

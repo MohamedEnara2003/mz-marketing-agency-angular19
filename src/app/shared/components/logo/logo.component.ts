@@ -10,6 +10,6 @@ import { SharedModule } from '../../modules/shared.module';
   `,
 })
 export class LogoComponent {
-  readonly logoSrc = "https://kzzljjlggloknteiirlr.supabase.co/storage/v1/object/sign/assets/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvbG9nby5wbmciLCJpYXQiOjE3NDExMTA3ODYsImV4cCI6MTc3MjY0Njc4Nn0.7k4LITTbl9t2ZT2MwPtj1fSUmz8a3y8-YqkqHDQmd68" ; 
+  readonly logoSrc : string = "https://kzzljjlggloknteiirlr.supabase.co/storage/v1/object/sign/assets/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvbG9nby5wbmciLCJpYXQiOjE3NDIwMDYzMzcsImV4cCI6MTc3MzU0MjMzN30.gx15c9_13ULdJBbqrMLuqFxhJt8y36ZTt20NAfESHRk" ; 
   logoClass = input<string>() ;
 }

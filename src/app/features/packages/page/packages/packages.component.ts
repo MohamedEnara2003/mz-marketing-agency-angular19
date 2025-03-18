@@ -3,10 +3,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PackagesService } from '../../service/packages.service';
 import { PackagesType } from '../../../../shared/interfaces/packages';
 import { SharedModule } from '../../../../shared/modules/shared.module';
+import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
 
 @Component({
   selector: 'app-packages',
-  imports: [SharedModule],
+  imports: [SharedModule, LoadingComponent],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })

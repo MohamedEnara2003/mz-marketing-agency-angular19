@@ -14,8 +14,19 @@ export class SingleTonSupabaseService {
   this.supabase = createClient(environment.supabaseUrl , environment.supabaseKey);
   }
   
-  getData<G>(tableName : string) : Observable<G[]> {
+  getData<G>(tableName : string , sortOption? : {tableName : string , sortType : string}) : Observable<G[]> {
   const promise = this.supabase.from(tableName).select('*',{count : 'exact'})
+
+  if(sortOption && sortOption.tableName === tableName) {
+  switch (sortOption.sortType) {
+  case "NEWEST": promise.order('created_at' , {ascending : false});
+  break;
+  case "OLDEST": promise.order('created_at' , {ascending : true});
+  break;
+  case "TOP":  promise ;
+  }
+  }
+
   return from(promise).pipe(map((res) => res.data!)) ;
   }
 
@@ -23,7 +34,7 @@ export class SingleTonSupabaseService {
   const promise = this.supabase.from(tableName).select('*').eq('id' , id).single()
   return from(promise).pipe(map((res) => res.data!)) ;
   }
-  
+
   postData<G>(tableName : string , data : G) : Observable<G> {
   const promise = this.supabase.from(tableName).insert(data).select('*').single()
   return from(promise).pipe(map((result) => result.data! )) ;

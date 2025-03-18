@@ -1,0 +1,25 @@
+<section  class="w-full h-full  flex justify-center items-center bg-gray-50">
+    
+    @defer (on timer(800)) {
+        <nav class="w-full flex flex-col justify-center items-center gap-8 mb-5">
+        <h1 class="capitalize text-xl font-bold text-gray-900">
+        <i class="fa-solid fa-check btn-circle bg-green-600 text-gray-50 p-1"></i> 
+        successfully booked
+        </h1>
+        <p class="capitalize text-sm md:text-lg text-gray-700 text-left md:text-center font-[500]">
+        Your order has been successfully booked! You will be contacted soon to 
+        discuss the marketing plan details for your project.
+        </p>
+            <ul class="w-[90%] flex justify-center items-center gap-5 capitalize">
+            <li class="btn btn-neutral bg-mz-primary hover:bg-mz-secound duration-200">
+            <a>order tracking</a>
+            </li>
+            <li routerLink="/" class="btn btn-outline text-gray-900">
+            <a><i class="fa-solid fa-home"></i> home page</a>
+            </li>
+            </ul>
+            </nav>
+    }@placeholder {
+    <span class="loading loading-spinner text-mz-primary w-30"></span>
+    }
+</section>

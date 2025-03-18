@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
-import { UserComponent } from "../../../shared/components/user/user.component";
-import { SearchBarComponent } from "./components/search-bar/search-bar.component";
-import { LogoComponent } from "../../../shared/components/logo/logo.component";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, input, signal } from '@angular/core';
+import { SharedModule } from '../../../shared/modules/shared.module';
+import { CategoriesService } from '../../service/categories.service';
+import {takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 
 @Component({
   selector: 'app-category-header',
-  imports: [UserComponent, SearchBarComponent, LogoComponent],
+  imports: [SharedModule],
   templateUrl: './category-header.component.html',
-  styleUrl: './category-header.component.css'
+  styleUrl: './category-header.component.css',
+  schemas : [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class CategoryHeaderComponent {
-
+  queryCategory = input.required<string | undefined>()
+  categoriesValues = input.required<string[]>();
+  
 }

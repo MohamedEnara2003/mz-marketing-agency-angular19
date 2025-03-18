@@ -1,0 +1,11 @@
+<nav *ngIf="isSelect()" class="relative w-full">
+    <ul class="w-full h-32 flex flex-col gap-1 overflow-y-scroll
+    absolute bg-gray-50 rounded shadow-sm shadow-black">
+    @for (data of getData(); track data.id) {
+    <li (click)="chooseValue(data.selectName)"
+    class="m-1 capitalize font-[500] text-sm text-gray-900 hover:text-mz-primary duration-200 cursor-pointer">
+    <a >{{data.selectName}}</a>
+    </li>
+    }
+    </ul>
+</nav>

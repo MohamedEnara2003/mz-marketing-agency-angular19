@@ -1,12 +1,33 @@
-<header class="w-full flex justify-center items-center ">
-    <nav class="w-[95%] flex justify-between items-center ">
-        <app-logo  logoClass="w-36 sm:w-40 "/>
-        <app-search-bar class="w-[45%]"/>
 
-        <div class="flex justify-center items-center gap-5">
-            <input type="checkbox" checked="checked" class="toggle text-mz-primary border-mz-primary bg-white checked:bg-mz-primary checked:text-white checked:border-mz-secound " />
-            <app-user />
-        </div>
+    
+<nav class="w-full text-gray-50 capitalize font-bold text-lg
+flex justify-evenly items-center"> 
+<button type="button" class="hover:bg-mz-secound rounded-full size-7 duration-200">
+    <i class="fa-solid fa-angle-left text-2xl"></i>
+</button>
+<swiper-container
+#swiperRef
+slides-per-view="2"
+[parallax]="true"
+[speed]="200"
+loop="true"
+class="w-[80%] " 
+>
 
-    </nav>
-</header>
+@for (category of categoriesValues(); track category) {
+<swiper-slide [routerLink]="['/categories/category', category]" 
+class="rounded flex justify-center items-center">
+
+<a class="cursor-pointer hover:opacity-60 duration-200 p-1 px-2"
+[ngClass]="queryCategory() === category ? 
+'text-mz-primary bg-gray-300 rounded shadow-md shadow-black'
+: ''"
+>{{category}}
+</a>
+</swiper-slide>
+}
+</swiper-container>
+<button type="button" class="hover:bg-mz-secound rounded-full size-7 duration-200">
+    <i class="fa-solid fa-angle-right text-2xl"></i>
+</button>
+</nav>

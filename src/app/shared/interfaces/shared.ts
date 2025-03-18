@@ -6,3 +6,7 @@ export interface NavLinks {
     isSelect? : boolean ;
     dataSelect? : string[];
 }
+export interface Selection {
+    id : number ;
+    selectName : string ;
+}

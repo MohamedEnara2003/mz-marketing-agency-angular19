@@ -1,19 +1,25 @@
-<section class="relative w-full  flex justify-center items-center">
+<section class="w-full flex flex-col  justify-center items-center gap-10 my-10">
 
-<ul class="w-[90%] flex flex-wrap  justify-center items-center">
+    <app-category-header class="w-[80%] lg:w-[50%]"
+    [queryCategory]="queryCategory()"
+    [categoriesValues]="categoriesValues()"
+    />
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 @for (data of categoryData(); track data.id) {
-  
     <div [routerLink]="['/categories/watch',data.category]" [queryParams]="{id : data.id}"
-    class="rounded-2xl outline-4 outline-mz-secound cursor-pointer
-    flex justify-center items-center m-[2%]"
-    [ngClass]="data.category === 'reels' ? 'w-[220px] h-[320px]' : 'h-[180px] w-[280px]'">
+    class=" rounded-2xl  cursor-pointer flex justify-center items-center  border-1 border-mz-primary">
 @defer (on viewport) {
     <app-category-view 
-    class="w-full h-full object-cover rounded-2xl"
-    [src]="data.url"
-    [type]="data.type"
-    categoryClass="w-full h-full object-cover rounded-2xl"
-    [muted]="true"
+    [options]="{
+    src : data.url,
+    type : data.type,
+    poster : data.poster ,
+    class : data.category === 'reels' ? 
+    'w-[220px] h-[320px] object-cover rounded-2xl' :
+    'h-[200px] w-[300px] object-cover rounded-2xl',
+    muted : true,
+    }"
+    
     />
 }@placeholder {
 <div class="w-full h-full object-cover rounded-2xl bg-zinc-500 animate-pulse"></div>
@@ -22,7 +28,8 @@
     <i class="fa-solid fa-play text-mz-secound text-lg"></i>
     </button>
     </div>
-
+}@empty {
+    <app-loading />
 }
 </ul>
 

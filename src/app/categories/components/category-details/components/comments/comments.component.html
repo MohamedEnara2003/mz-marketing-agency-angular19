@@ -1,10 +1,31 @@
 <section class="w-full flex flex-col justify-center items-start gap-5 text-gray-50  my-5 ">
+
     <div class="flex justify-center items-center capitalize gap-7">
     <h1 class="text-xl font-bold">{{countComments()}} comments</h1>
-    <button type="button" class="cursor-pointer capitalize text-sm hover:opacity-50 duration-200"> 
-    <i class="fa-solid fa-bars-staggered"></i>
-    sort by
-    </button>
+
+    <div class="w-30 relative flex flex-col justify-start items-start gap-2 ">
+        <button (click)="openSort()" type="button" class="cursor-pointer capitalize  hover:opacity-50 duration-200"> 
+        <i class="fa-solid fa-bars-staggered"></i>
+        sort by
+        </button>
+        <nav>
+            <ul *ngIf="isSortLoad()" class="absolute bg-white  text-gray-900 z-10 flex flex-col justify-between items-start
+            shadow-md shadow-black">
+            <li (click)="initSort('TOP')" class="w-full cursor-pointer   p-1"
+            [ngClass]="sortType() === 'TOP' ? 'bg-gray-400' : ''">
+            <a>Top comments</a>
+            </li>
+            <li (click)="initSort('NEWEST')" class="w-full cursor-pointer p-1"
+            [ngClass]="sortType() === 'NEWEST' ? 'bg-gray-400' : ''">
+            <a>Newest first</a>
+            </li>
+            <li (click)="initSort('OLDEST')" class="w-full cursor-pointer p-1"
+            [ngClass]="sortType() === 'OLDEST' ? 'bg-gray-400' : ''">
+            <a>Oldest first</a>
+            </li>
+            </ul>
+        </nav>
+    </div>
     </div>
     
     <div class="w-full flex flex-col justify-center items-start gap-5">
@@ -28,7 +49,7 @@
 
     <input #inputRef type="text" name="input comment" id="comments" [(ngModel)]="commentValue" (ngModelChange)="changeValue($event)"
     class="w-full focus-within:border-b-gray-50 outline-none text-gray-50
-    border-b-1 border-gray-500 py-2">
+    border-b-1 border-gray-500 ">
 
     <div class="w-full flex justify-end items-center gap-5 font-semibold">
     <button type="button" (click)="initComment()"

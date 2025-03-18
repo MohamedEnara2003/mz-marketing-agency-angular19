@@ -1,19 +1,22 @@
-<section class="w-full  flex flex-col justify-start items-start gap-5 ">
+<section class="w-full  flex flex-col justify-center items-start gap-5 my-2">
 
     @for (data of  categoryRelated(); track data.id ; let i = $index) {
     <div [routerLink]="['/categories/watch', data.category]" [queryParams]="{id : data.id}"
-    class="w-full flex  justify-between items-start text-gray-50 border-b-[1px] border-b-zinc-500
-    gap-2 py-1  text-xs capitalize font-semibold"
+    class="w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
+    gap-2 py-2  text-xs capitalize font-semibold bg-black"
     [ngClass]="categoryRelatedData().id === data.id ? 'bg-[#282828]' : ''">
 
-    <div class="flex justify-center items-start gap-2">
+    <div class="flex justify-start items-start gap-2">
 
-        <div class="relative cursor-pointer">
+        <div class="w-[100px] h-[60px] relative cursor-pointer">
             <app-category-view
-            [src]="data.url"
-            [type]="data.type"
-            [categoryClass]="'w-[120px] h-[80px] object-cover rounded-md'"
-            [muted]="true"
+            [options]="{
+            src : data.url,
+            type : data.type ,
+            poster : data.poster ,
+            class : 'w-full h-full object-cover rounded-md',
+            muted : true
+            }"
             />
         <small class="absolute right-1 bottom-1 bg-[#333] p-1">
         {{videosDurations()[i] | number : '1.2-2'}}
@@ -21,7 +24,7 @@
         </div>
     
         <div class="flex flex-col justify-center items-start gap-5">
-            <h3 class="">{{data.title}}</h3>
+            <h3 class="text-xs font-[400]">{{data.title}}</h3>
             <div class="flex justify-center items-center gap-2 lowercase">
             <span>0 view</span>
             <span>{{formatTime(data.created_at)}}</span>

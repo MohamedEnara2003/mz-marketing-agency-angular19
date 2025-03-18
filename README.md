@@ -7,6 +7,7 @@
 #4- npm i ngx-translate-messageformat-compiler
 #5- npm install dayjs
 #6- npm i @angular-slider/ngx-slider
+#7- npm i swiper
 ## Back End 
 #- npm install @supabase/supabase-js
 #- npm i @supabase/gotrue-js@2.61.0

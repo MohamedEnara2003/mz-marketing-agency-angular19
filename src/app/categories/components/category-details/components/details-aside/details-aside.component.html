@@ -1,5 +1,10 @@
-<aside class="w-full  h-[70vh] flex-col justify-start items-center  gap-10">
-    <app-header-details-side class="w-full"/>
+<aside class="w-full">
+
+    <app-category-header class="w-full"
+    [queryCategory]="undefined"
+    [categoriesValues]="categoriesValues()"
+    />
+
     <app-related class="w-full"
     [categoryRelated]="categoryData()"
     [categoryRelatedData]="category()"

@@ -1,6 +1,7 @@
-import { Component, effect, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, signal} from '@angular/core';
 import { SharedModule } from '../../modules/shared.module';
+import { FooterService } from './service/footer.service';
+import { FooterLinks, SocialMedia } from '../../../core/models/footer.model';
 
 @Component({
   selector: 'app-footer',
@@ -8,23 +9,19 @@ import { SharedModule } from '../../modules/shared.module';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent  implements OnInit{
-  changeBg = signal<boolean>(false) ;
-  hidelayout = signal<boolean>(true) ;
-  
+export class FooterComponent implements OnInit{
+  links = signal<FooterLinks[]>([])
+  socialMedia = signal<SocialMedia[]>([])
   constructor(
-  private router : Router ,
-  private route : ActivatedRoute ,
+  private footerService : FooterService
   ){}
 
   ngOnInit(): void {
-  this.getRouteChildData();
+  this.getLinks()
   }
-
-  getRouteChildData() : void {
-    this.router.events.subscribe(event => {
-    this.changeBg.set(this.route.snapshot.firstChild?.data['changeBg'] || false) ;
-    this.hidelayout.set(this.route.snapshot.firstChild?.data['hidelayout']) ;
-    });
+  
+  private getLinks () : void {
+  this.links.set(this.footerService.footerLinks());
+  this.socialMedia.set(this.footerService.footerSocialMedia())
   }
 }

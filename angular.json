@@ -16,15 +16,13 @@
             "outputPath": "dist/mz-marketing-agency",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "allowedCommonJsDependencies": [
-              "@messageformat/core",
-              "dayjs",
-              "dayjs/plugin/relativeTime",
-              "ws",
-              "zone.js"
-            ],
             "polyfills": [
               "zone.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "@messageformat/core",
+              "ws",
+              "dayjs"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -44,13 +42,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "750kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1mb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "150kb"
                 }
               ],
               "outputHashing": "all"
