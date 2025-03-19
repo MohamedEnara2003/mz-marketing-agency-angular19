@@ -21,7 +21,9 @@ export class NavBarComponent implements OnInit{
   fromEvent(window , 'scroll').pipe(
   map(() => window.scrollY),
   pairwise()
-  ).subscribe(([a , b]) =>  this.isScroll.set(a > b ? true : false))
+  ).subscribe(([a , b]) =>  {
+  this.isScroll.set(a > b || a < 50 && b < 50 ? true : false);
+  })
 
   
   }

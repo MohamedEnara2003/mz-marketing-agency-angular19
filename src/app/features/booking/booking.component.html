@@ -22,7 +22,7 @@
     />
     
     <div class="w-full flex flex-col  items-start gap-1">
-    <button (click)="addCategory()" type="button" class="capitalize btn btn-outline text-gray-950">
+    <button (click)="addCategory()" type="button" class="capitalize btn btn-outline text-gray-950 bg-gray-50">
     <i class="fa-solid fa-plus"></i>
     add category
     </button>
@@ -51,7 +51,7 @@
     type="text" name="Full Name" id="Full Name"  placeholder="Enter A Category" autocomplete="off" 
     formControlName="category"
     class="w-full input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
-    border-2 placeholder:font-bold placeholder:text-gray-400 bg-white cursor-pointer">
+    border-2 placeholder:font-bold placeholder:text-gray-400  cursor-pointer bg-gray-50 text-gray-900">
     <i class="fa-solid text-sm text-gray-950 absolute right-3 bg-white z-5 cursor-pointer"
     [ngClass]="selectIndex() === i ? 'fa-angle-down' : 'fa-angle-up'">
     </i>
@@ -83,15 +83,13 @@
     <textarea type="text" placeholder="Enter Your Details" id="details"
     formControlName="categoryDetails"
     class="w-full textarea textarea-neutral textarea-md focus:outline-mz-primary border-gray-300 focus:border-transparent
-    border-2 placeholder:font-bold placeholder:text-gray-400">
+    border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50 text-gray-900">
     </textarea>
     </div>
 
 </section>
 }
-
 </div>
-
 </div>
 </fieldset>
 

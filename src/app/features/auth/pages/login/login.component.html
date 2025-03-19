@@ -5,13 +5,15 @@
       <app-form-feild [form]="form" class="w-full"/>
       
       <button type="submit"  
-          class="w-full  btn  btn-outline bg-gray-600 hover:bg-gray-800
-          duration-200 text-white ">
+          class="w-full  btn btn-neutral  bg-mz-primary hover:bg-mz-secound
+          duration-200 text-gray-50 ">
           Log In
       </button>
       </form>
 
-      <p class="text-center mt-3 text-[14px]">Don&#x27;t have an account? 
-        <a  class="text-gray-600">Create one</a>
+      <p class="text-center mt-3 text-[14px] text-gray-900">Don&#x27;t have an account? 
+      <a  [routerLink]="['/' ,{outlets : { loginIn: null  , register : 'register' }}]"
+        class="text-gray-600 link">Create one
+      </a>
       </p>
     </app-auth-model>

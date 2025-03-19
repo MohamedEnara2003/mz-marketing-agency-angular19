@@ -4,10 +4,10 @@
 
         <div class="w-full flex flex-col justify-center items-center">
             <input formControlName="userName" type="text" 
-            class="w-full bg-white" placeholder="User Name" 
-            [ngClass]="form.get('userName')?.errors && form.get('userName')?.touched ? 
-            'input-error input' : 'input input-neutral'"/>
-
+            class="w-full  text-gray-900 placeholder:text-gray-500
+            input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
+            border-2 bg-gray-50" 
+            placeholder="User Name" />
     @if(form.get('userName')?.errors && form.get('userName')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
@@ -19,13 +19,15 @@
         <app-form-feild [form]="form" class="w-full"/>
         
             <button type="submit"  
-            class="w-full  btn  btn-outline bg-gray-600 hover:bg-gray-800
-            duration-200 text-white ">
+            class="w-full  btn  btn-neutral  bg-mz-primary hover:bg-mz-secound
+            duration-200 text-gray-50 ">
             Register
             </button>
             </form>
         
-            <p class="text-center mt-3 text-[14px]">Don&#x27;t have an account? 
-            <a class="text-gray-600">Create one</a>
+            <p class="text-center mt-3 text-[14px] text-gray-900">you already have an account?
+            <a [routerLink]="['/' ,{outlets : { loginIn: 'loginIn'  , register : null }}]"
+            class="text-gray-600 link">log in
+            </a>
             </p>
 </app-auth-model>

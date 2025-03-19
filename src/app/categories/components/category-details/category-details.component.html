@@ -6,11 +6,10 @@
 
     <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 ">
         <div class="rounded-2xl shadow-2xl shadow-black border-1 border-mz-primary 
-        flex justify-center items-center w-full "
-        [ngClass]="categoryDataById()?.category === 'reels' ? 'h-[90vh]' : 'h-auto'">
+        flex justify-center items-center  "
+        [ngClass]="categoryDataById()?.category === 'reels' ? 'w-auto h-[70vh] sm:w-full sm:h-[90vh]' : 'w-full h-auto'">
         
-        <div class="h-full"
-        [ngClass]="categoryDataById()?.category === 'reels' ? 'w-[50%]' : 'w-full'">
+        <div class="h-full">
 
         @defer (on viewport) {
         <app-category-view 

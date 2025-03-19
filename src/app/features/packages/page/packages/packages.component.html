@@ -3,7 +3,7 @@
     <ul class="w-full h-full flex flex-wrap justify-evenly items-center bg-transparent  my-5">
     @for (package of packages(); track package.id) {
     @defer (on viewport) {
-    <li class="w-100  bg-white mb-12 mt-2 rounded-2xl shadow-xl shadow-mz-secound
+    <li class="w-[90%] sm:w-100  bg-white mb-12 mt-2 rounded-2xl shadow-xl shadow-mz-secound
     hover:shadow-sm duration-200 flex flex-col justify-start items-center ">
 
     <div class="m-2 flex flex-col justify-center items-start w-[90%] gap-4">
@@ -31,10 +31,10 @@
     <ul class="w-full  h-[35vh] overflow-y-scroll">
     @for (value of package.package; track $index) {
     <li class="w-full flex justify-between items-center my-1">
-    <div>
+    <a class="text-gray-900 capitalize">
     <i class="fa-solid " [ngClass]="value.isSupport ? 'fa-check text-success' : 'fa-close text-error'"></i>
     {{value.item}}
-    </div>
+    </a>
     <i class="fa-solid fa-circle-info text-gray-800"></i>
     </li>
     }

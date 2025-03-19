@@ -6,7 +6,9 @@
     <router-outlet name="profile"/>
     <router-outlet name="booking-outlet"/>
     <router-outlet />
-    <app-footer />
+    @defer (on immediate) {
+        <app-footer />
+    }
 
 
 </section>

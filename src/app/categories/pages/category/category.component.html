@@ -1,5 +1,6 @@
-<section class="w-full flex flex-col  justify-center items-center gap-10 my-10">
+<section class="w-full flex flex-col  justify-center items-center gap-10 my-8">
 
+    @if(categoryData()){ 
     <app-category-header class="w-[80%] lg:w-[50%]"
     [queryCategory]="queryCategory()"
     [categoriesValues]="categoriesValues()"
@@ -22,16 +23,23 @@
     
     />
 }@placeholder {
-<div class="w-full h-full object-cover rounded-2xl bg-zinc-500 animate-pulse"></div>
+<div class="rounded-2xl bg-zinc-500 animate-pulse"
+[ngClass]="data.category === 'reels' ? 
+'w-[220px] h-[320px] object-cover rounded-2xl' :
+'h-[200px] w-[300px] object-cover rounded-2xl'
+">
+
+</div>
 }
     <button class="absolute size-8 cursor-pointer rounded-full bg-gray-50">
     <i class="fa-solid fa-play text-mz-secound text-lg"></i>
     </button>
     </div>
-}@empty {
-    <app-loading />
 }
 </ul>
+}@else {
+    <app-loading />
+}
 
 </section>
 

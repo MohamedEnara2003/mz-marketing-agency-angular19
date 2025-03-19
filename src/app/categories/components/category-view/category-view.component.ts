@@ -30,6 +30,7 @@ import { SharedModule } from '../../../shared/modules/shared.module';
   [src]="options().src" 
   [class]="options().class"
   alt="image design"
+  loading="lazy"
   >
   }
   }

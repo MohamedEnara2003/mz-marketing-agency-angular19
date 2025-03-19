@@ -5,23 +5,21 @@
 }">
     <nav class="w-[95%] flex justify-between items-center  ">
 
-    <app-logo logoClass="w-36 sm:w-40 "/>
+    <app-logo logoClass="w-32 sm:w-40 "/>
 
-    <app-links class="hidden md:inline-block "
-    linksClass="flex justify-center items-center gap-0.5 text-white
+    <app-links class="hidden lg:inline-block"
+    linksClass="flex justify-center items-center gap-1 text-white
     xs:w-15 sm:w-22 hover:bg-mz-primary hover:rounded-t-md  md:hover:rounded-3xl py-1 
-    cursor-pointer hover:text-gray-50"
+    cursor-pointer hover:text-gray-50 mx-1"
     [showIcon]="false"
     iconClass="text-mz-primary"
     styleActiveClass="bg-mz-primary rounded-3xl "
     />
     
-<div class="flex justify-center items-center gap-2">
+<div class="flex justify-center items-center gap-2 sm:gap-4">
         <div *ngIf="hidelayout()" class="flex justify-center items-center text-gray-50 gap-2">
-            <label for="isToggle"><i *ngIf="!toggleRef.checked" class="fa-solid fa-moon"></i></label>
             <input #toggleRef (change)="onChanheToggle()"   type="checkbox" checked="true" id="isToggle"
-            class="toggle text-mz-primary border-mz-primary bg-white checked:bg-mz-primary checked:text-white checked:border-mz-secound " />
-            <label for="isToggle"><i *ngIf="toggleRef.checked" class="fa-solid fa-star"></i></label>
+            class="toggle toggle-sm text-mz-primary border-mz-primary bg-white checked:bg-mz-primary checked:text-white checked:border-mz-secound " />
         </div>
         <app-user />
 </div>

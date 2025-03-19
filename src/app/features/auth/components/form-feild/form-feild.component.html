@@ -2,9 +2,11 @@
 
 <div class="w-full flex flex-col justify-center items-center ">
     <input formControlName="email" type="email"
-    class="w-full bg-white" placeholder="Email" 
-    [ngClass]="form().get('email')?.errors && form().get('email')?.touched ? 
-    'input-error input ' : 'input input-neutral'"/>
+    class="w-full  text-gray-900 placeholder:text-gray-500
+    input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
+    border-2 bg-gray-50" 
+    placeholder="Email Address" 
+    />
     @if(form().get('email')?.errors && form().get('email')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
@@ -18,11 +20,13 @@
     
     <div class="relative w-full flex justify-between items-center">
       <input formControlName="password" [type]="isShowPass() ? 'text' : 'password'" 
-      class="w-full bg-white" placeholder="Password" 
-      [ngClass]="form().get('password')?.errors && form().get('email')?.touched ? 
-      'input-error input ' : 'input input-neutral'"/>
+      class="w-full  text-gray-900 placeholder:text-gray-500
+      input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
+      border-2 bg-gray-50" 
+      placeholder="Password" 
+      />
 
-    <i (click)="initShowPassword()" class="fa-solid icons absolute right-2 z-10 bg-white" 
+    <i (click)="initShowPassword()" class="fa-solid icons absolute right-2 z-10 bg-white text-mz-secound" 
     [ngClass]="isShowPass() ? 'fa-eye' : 'fa-eye-slash'">
     </i>
     </div>

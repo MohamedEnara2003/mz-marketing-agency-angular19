@@ -18,9 +18,9 @@
   .links {
   @apply  text-xs sm:text-sm font-semibold capitalize;
   }
+ 
   .bg-space {
   @apply bg-[url('https://res.cloudinary.com/mohamedenara/image/upload/v1741027606/bg-space_px2q4e.jpg')]
   bg-cover bg-no-repeat
   }
-
 }
