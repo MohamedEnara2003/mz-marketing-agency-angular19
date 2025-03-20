@@ -7,7 +7,7 @@ flex justify-evenly items-center">
 </button>
 <swiper-container
 #swiperRef
-slides-per-view="2"
+slides-per-view="3"
 [parallax]="true"
 [speed]="200"
 loop="true"
@@ -22,7 +22,7 @@ class="rounded flex justify-center items-center">
 [ngClass]="queryCategory() === category ? 
 'text-mz-primary bg-gray-300 rounded shadow-md shadow-black'
 : ''"
->{{category}}
+>{{`categories.${category}` | translate}}
 </a>
 </swiper-slide>
 }

@@ -6,7 +6,7 @@
     <div class="relative lg:w-[60%] after:absolute after:w-full after:h-0.5  z-5 
     after:bg-gray-50 after:bottom-0 py-5">
       <p class="mt-4 text-center text-gray-900  text-xl font-extrabold capitalize">
-        We would love to have you join our marketing agency. Our goal is to take the project to the highest levels
+       {{'footer.title' | translate}}
       </p>
     </div>
 
@@ -27,11 +27,13 @@
       @for (footer of  links(); track footer.id) {
             <div>
             <strong class="font-bold text-gray-900 uppercase
-            "> {{footer.title}} </strong>
+            "> {{`footer.${footer.title}` | translate}} 
+          </strong>
   
             <ul class="mt-2 space-y-1">
               <li *ngFor="let link of footer.links">
-                <a class="text-gray-50 capitalize font-[500]">{{link}}</a>
+                <a class="text-gray-50 capitalize font-[500]">
+                {{`footer.${link}` | translate}}</a>
               </li>
             </ul>
           </div>

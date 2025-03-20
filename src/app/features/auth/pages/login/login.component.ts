@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import { SharedModule } from '../../../../shared/modules/shared.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +15,7 @@ import { AuthModelComponent } from "../../components/auth-model/auth-model.compo
 export class LoginComponent implements OnInit{
 
   form : FormGroup ;
-
+  logInErrorMsg = signal<string>('');
   constructor(
   private authService : AuthenticationService ,
   private fb : FormBuilder
@@ -35,8 +35,13 @@ export class LoginComponent implements OnInit{
   login(form : FormGroup) : void {
   const vlaue = form.getRawValue() ;
   if(form.valid){
-  this.authService.login(vlaue.email , vlaue.password).subscribe()
+  this.authService.login(vlaue.email , vlaue.password).subscribe({
+    next : ({_ , error}) => {
+    if(error){
+    this.logInErrorMsg.set("Invalid login credentials")
+    }
+    }
+  });
   }
-  }
-  
+}
 }

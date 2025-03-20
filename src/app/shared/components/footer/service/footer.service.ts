@@ -8,20 +8,20 @@ export class FooterService {
 
   footerLinks = signal<FooterLinks[]>([
     {
-      id : 1 , title : 'about us' ,  
+      id : 1 , title : 'about' ,  
       links : [
       'Company History',
       'Meet the Team',
       'Employee Handbook',
-      'Package',
+      'Packages',
     ]},
     {
       id : 2 , title : 'our services' ,  
       links : [
       'reels videos',
-      'design website',
       'motion graphics',
       'designs',
+      'ux ui',
       'web application',
       'mobile application',
       'word press'

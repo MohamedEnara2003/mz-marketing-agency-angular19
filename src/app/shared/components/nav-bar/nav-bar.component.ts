@@ -11,10 +11,10 @@ import { SharedModule } from '../../modules/shared.module';
 })
 export class NavBarComponent implements OnInit{
   
-  isScroll = signal<boolean>(true)
+  isScroll = signal<boolean>(true);
 
   ngOnInit(): void {
-    this.initNavLoading()
+  this.initNavLoading()
   }
 
   private initNavLoading() : void {

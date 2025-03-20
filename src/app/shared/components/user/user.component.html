@@ -9,11 +9,11 @@
     <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]"
 
     class="text-white links bg-mz-primary rounded-3xl p-1.5 hover:bg-mz-secound duration-200">
-    register
+    {{'auth.register' | translate}}
     </a>
     <a [routerLink]="[{outlets : {loginIn: 'loginIn' , register : null}}]"
     class="text-white links hover:bg-mz-primary rounded-3xl p-1.5 duration-200">
-    log in
+    {{'auth.logIn' | translate}}
     </a>
     </div>
     }@else {

@@ -12,6 +12,7 @@ const Imports = [
   TranslateModule,
   ReactiveFormsModule,
   FormsModule,
+  
 ]
 const Declarations : any[] = [
   

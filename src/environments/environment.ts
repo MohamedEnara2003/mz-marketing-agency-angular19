@@ -7,7 +7,7 @@ export const environment = {
 }
 
 export  const authClient : GoTrueClient = new GoTrueClient({
-    url: `${environment.supabaseUrl}/auth/v1`,
+    url: `${environment.supabaseUrl}/auth/v1/token`,
     headers: {
     apiKey: environment.supabaseKey,
     }

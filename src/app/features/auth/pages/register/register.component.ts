@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SharedModule } from '../../../../shared/modules/shared.module';
 import { AuthenticationService } from '../../service/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import { AuthModelComponent } from "../../components/auth-model/auth-model.compo
 })
 export class RegisterComponent {
   form : FormGroup ;
-
+  registerErrorMsg = signal<string>('');
   constructor(
   private authService : AuthenticationService ,
   private fb : FormBuilder
@@ -38,7 +38,13 @@ export class RegisterComponent {
   register(form : FormGroup) : void {
   const vlaue = form.getRawValue() ;
   if(form.valid){
-  this.authService.register(vlaue.userName ,vlaue.email , vlaue.password).subscribe()
+  this.authService.register(vlaue.userName ,vlaue.email , vlaue.password).subscribe({
+    next : ({_ , error}) => {
+    if(error){
+    this.registerErrorMsg.set("Invalid login credentials")
+    }
+    }
+  })
   }
   }
 }

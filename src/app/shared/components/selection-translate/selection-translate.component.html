@@ -4,13 +4,13 @@
     <li class="flex flex-row justify-center items-center gap-1 hover:text-zinc-500 duration-200
     "
     (click)="initSelect()">
-    {{currentLanguage()}}  <i class="fa-solid  text-xs bg-transparent"
+    {{currentLanguage() | translate}}  <i class="fa-solid  text-xs bg-transparent"
     [ngClass]="isSelect() ? 'fa-angle-down' : 'fa-angle-up'"></i>
     </li>
 
 <ul *ngIf="isSelect()" class="absolute">
     <li class="cursor-pointer hover:text-zinc-500 duration-200 py-0.5"
-    (click)="selectLang(otherLanguage().value )">{{otherLanguage().name}}
+    (click)="selectLang(otherLanguage().value)">{{otherLanguage().name | translate}}
     </li>
     
 </ul>

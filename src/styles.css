@@ -8,6 +8,11 @@
   --breakpoint-xs: 23rem;
 }
 
+@keyframes upAndDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
 @layer components {
   .icons {
   @apply sm:text-xl   cursor-pointer ;
@@ -22,5 +27,8 @@
   .bg-space {
   @apply bg-[url('https://res.cloudinary.com/mohamedenara/image/upload/v1741027606/bg-space_px2q4e.jpg')]
   bg-cover bg-no-repeat
+  }
+  .animate-updown {
+    animation: upAndDown 2s infinite ease-in-out;
   }
 }

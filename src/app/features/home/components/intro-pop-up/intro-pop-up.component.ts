@@ -30,7 +30,5 @@ export class IntroPopUpComponent implements OnInit{
   initShowIntroPopUp() : void {
   this.localeStorgeService.setItem(this.PopUpKay() , String(!this.isIntro()))
   this.isIntro.set(!this.isIntro())
-  console.log(this.isIntroPopUp());
-  
   }
 }

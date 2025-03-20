@@ -16,7 +16,7 @@ import { SharedModule } from '../../modules/shared.module';
     class="w-full h-full rounded-full hover:opacity-70 duration-200">
     }@else {
     <a class=" text-white font-bold capitalize text-lg  ">
-    {{userData()?.userName!.slice(0,1) || authService.CurrentUser()?.userName?.slice(0,1)}}
+    {{userData()?.userName!.slice(0,1) || authService.CurrentUser()?.userName}}
     </a>
     }
  

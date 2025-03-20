@@ -1,34 +1,34 @@
     <section class="w-full flex flex-col justify-center items-start gap-2 text-gray-50 capitalize ">
 
-    <nav class="w-full flex justify-between items-center">
+    <nav class="w-full flex flex-col md:flex-row justify-between items-start gap-2">
+
     <div class="font-semibold">
     {{title()}}
     </div>
     
-    <ul class="flex justify-center items-center text-white gap-5 " >
-
+    <ul class="flex justify-center items-center text-mz-primary gap-5 capitalize font-[500]" >
     <li title="dislike" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <button type="button" class="cursor-pointer text-xs">
-    <i class="fa-regular fa-thumbs-down text-xl"></i>  {{0}}
-    </button>
+    <a  class="cursor-pointer text-xs">
+    <i class="fa-regular fa-thumbs-down text-xl"></i> {{0}}
+    </a>
     </li>
 
     <li title="like" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <button type="button" class="cursor-pointer text-xs">
+    <a  class="cursor-pointer text-xs">
     <i class="fa-regular fa-thumbs-up text-xl"></i> {{0}}
-    </button>
+    </a>
     </li>
 
     <li title="share" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <button type="button" class="cursor-pointer ">
-    <i class="fa-solid fa-share"></i> share
-    </button>
+    <a  class="cursor-pointer ">
+    <i class="fa-solid fa-bookmark"></i> {{'categories.save' | translate}}
+    </a>
     </li>
     </ul>
     </nav>
     
     <ul class="text-xs  font-[500] flex justify-center items-center gap-5">
-    <li >{{views()}} views</li>
+    <li >{{views()}} {{'categories.views' | translate}}</li>
     <li >{{created_at() | date : 'short'}}</li>
     </ul>
     </section>

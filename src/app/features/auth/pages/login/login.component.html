@@ -3,7 +3,9 @@
       class="w-[90%] flex flex-col justify-center items-center gap-5">
 
       <app-form-feild [form]="form" class="w-full"/>
-      
+      <div class="w-full">
+        <p class="text-error capitalize text-sm text-left">{{logInErrorMsg()}}</p>
+      </div>
       <button type="submit"  
           class="w-full  btn btn-neutral  bg-mz-primary hover:bg-mz-secound
           duration-200 text-gray-50 ">

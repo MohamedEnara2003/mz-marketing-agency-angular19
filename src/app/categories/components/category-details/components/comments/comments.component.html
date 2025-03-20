@@ -1,27 +1,27 @@
 <section class="w-full flex flex-col justify-center items-start gap-5 text-gray-50  my-5 ">
 
     <div class="flex justify-center items-center capitalize gap-7">
-    <h1 class="text-xl font-bold">{{countComments()}} comments</h1>
+    <h1 class="text-xl font-bold">{{countComments()}} {{'categories.comments.comments' | translate}}</h1>
 
     <div class="w-30 relative flex flex-col justify-start items-start gap-2 ">
         <button (click)="openSort()" type="button" class="cursor-pointer capitalize  hover:opacity-50 duration-200"> 
         <i class="fa-solid fa-bars-staggered"></i>
-        sort by
+        {{'categories.comments.sortBy' | translate}}
         </button>
         <nav>
             <ul *ngIf="isSortLoad()" class="absolute bg-white  text-gray-900 z-10 flex flex-col justify-between items-start
             shadow-md shadow-black">
             <li (click)="initSort('TOP')" class="w-full cursor-pointer   p-1"
             [ngClass]="sortType() === 'TOP' ? 'bg-gray-400' : ''">
-            <a>Top comments</a>
+            <a>{{'categories.comments.TopComments' | translate}}</a>
             </li>
             <li (click)="initSort('NEWEST')" class="w-full cursor-pointer p-1"
             [ngClass]="sortType() === 'NEWEST' ? 'bg-gray-400' : ''">
-            <a>Newest first</a>
+            <a>{{'categories.comments.NewestFirst' | translate}}</a>
             </li>
             <li (click)="initSort('OLDEST')" class="w-full cursor-pointer p-1"
             [ngClass]="sortType() === 'OLDEST' ? 'bg-gray-400' : ''">
-            <a>Oldest first</a>
+            <a>{{'categories.comments.OldestFirst' | translate}}</a>
             </li>
             </ul>
         </nav>
@@ -36,7 +36,7 @@
 
     <h2  (click)="initComment()" *ngIf="!isFocus()"
     class="font-[400] cursor-auto text-gray-400 p-1">
-    Add a comment...
+    {{'categories.comments.AddAComment' | translate}}
     </h2>
     
     <div *ngIf="isFocus()" class=" flex flex-col justify-center items-start">
@@ -54,14 +54,14 @@
     <div class="w-full flex justify-end items-center gap-5 font-semibold">
     <button type="button" (click)="initComment()"
     class="cursor-pointer capitalize text-sm hover:opacity-50 duration-200 text-gray-50">
-    cancel
+    {{'categories.comments.cancel' | translate}}
     </button>
 
     <button [disabled]="!commentValue()"  type="submit" 
     class="capitalize text-sm  rounded-xl   text-gray-50 p-1"
     [ngClass]="!commentValue() ? 'cursor-default opacity-50' 
     : 'bg-mz-secound cursor-pointer hover:bg-mz-primary duration-200'">
-    add comment
+    {{'categories.comments.AddComment' | translate}}
     </button>
 
     </div>

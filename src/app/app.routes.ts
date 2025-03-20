@@ -16,11 +16,11 @@ export const routes: Routes = [
     {path : 'categories' , component : CategoriesComponent , data : {headerHide : true} ,
     loadChildren : () => import('./categories/categories.routes').then((r) => r.categoriesRoutes)
     },
-    {path : 'about', component : AboutComponent ,  },
+    {path : 'about', component : AboutComponent ,  data : {headerHide : true}  },
     {path : 'contact', component : ContactComponent ,},
     {path : 'register', component : RegisterComponent , outlet : "register"},
-    {path : 'loginIn' , component : LoginComponent    , outlet : "loginIn"},
-    {path : 'profile' , component : ProfileComponent  , outlet : "profile"},
+    {path : 'loginIn' , component : LoginComponent    , outlet : "loginIn" },
+    {path : 'profile' , component : ProfileComponent  , outlet : "profile" },
     {path : 'booking' , component : BookingComponent , outlet : "booking-outlet" },
     {path : '' , redirectTo : 'home' , pathMatch : 'full'},
     {path : '**' , redirectTo : 'home' , pathMatch : 'full'}
