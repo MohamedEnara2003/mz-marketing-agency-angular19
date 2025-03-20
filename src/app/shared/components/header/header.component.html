@@ -4,11 +4,7 @@
     'relative' : hidelayout() ,
 }">
     <nav class="w-[95%] flex flex-wrap justify-between items-center  ">
-
-
-    <app-logo logoClass="w-32 sm:w-40 "/>
-
-
+    <app-logo logoClass="w-32 xs:w-36 sm:w-40 "/>
     <app-links class="hidden lg:inline-block"
     linksClass="flex justify-center items-center gap-1 text-white
     xs:w-15 sm:w-22 hover:bg-mz-primary hover:rounded-t-md  md:hover:rounded-3xl py-1 
@@ -17,9 +13,6 @@
     iconClass="text-mz-primary"
     styleActiveClass="bg-mz-primary rounded-3xl "
     />
-  
-    
-
 <div class="flex justify-center items-center gap-2 sm:gap-4">
         <div *ngIf="hidelayout()" class="flex justify-center items-center text-gray-50 gap-2">
             <input #toggleRef (change)="onChanheToggle()"   type="checkbox" checked="true" id="isToggle"

@@ -1,5 +1,10 @@
-<section class="w-full flex flex-col justify-center items-center">
+<section class="w-full flex flex-col justify-center items-center gap-2">
 
+    <h1 class="text-lg md:text-xl text-left capitalize text-gray-50 font-bold mt-5">
+    <span class="font-extrabold text-mz-primary text-2xl md:text-3xl">Our Packages</span>
+    Tailored Solutions for Your Business Success
+    </h1>
+    
     <ul class="w-full h-full flex flex-wrap justify-evenly items-center bg-transparent  my-5">
     @for (package of packages(); track package.id) {
     @defer (on viewport){

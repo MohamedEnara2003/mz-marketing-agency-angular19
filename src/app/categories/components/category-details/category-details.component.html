@@ -6,8 +6,8 @@
 
     <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 ">
         <div class="rounded-2xl shadow-2xl shadow-black border-1 border-mz-primary 
-        flex justify-center items-center  "
-        [ngClass]="categoryDataById()?.category === 'reels' ? 'w-auto h-[70vh] sm:w-full sm:h-[90vh]' : 'w-full h-auto'">
+        flex justify-center items-center w-full "
+        [ngClass]="">
         
         <div class="h-full">
 
@@ -18,8 +18,9 @@
         src : categoryDataById()?.url!,
         type : categoryDataById()?.type! ,
         poster : categoryDataById()?.poster ,
-        class : 'w-full h-full object-cover rounded-2xl',
         controls : true ,
+        class : categoryDataById()?.category === 'reels' ? 'w-auto h-[70vh] sm:w-full sm:h-[90vh]' 
+        : 'w-full h-auto rounded-2xl'
         }"
         />
     }@placeholder {

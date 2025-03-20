@@ -18,26 +18,26 @@ class="absolute top-20 left-0 w-full h-[70vh] flex justify-end items-center "
     <a (click)="authService.signOut()"
     class="flex justify-start items-center  capitalize font-bold gap-5
     cursor-pointer">
-    <i class="fa-solid fa-sign-out icons "></i>  {{'profile.signOut'}}
+    <i class="fa-solid fa-sign-out icons "></i>  {{'profile.signOut' | translate}}
     </a>
 </li>
 <li class="w-full"> 
     <a class="flex justify-start items-center  capitalize font-bold gap-5
     cursor-pointer">
-    <i class="fa-solid fa-clock-rotate-left icons"></i> {{'profile.history'}}
+    <i class="fa-solid fa-clock-rotate-left icons"></i> {{'profile.history' | translate}}
     </a>
 </li>
 <li class="w-full"> 
     <a [routerLink]="['/',{outlets : {'booking-outlet': 'booking' , profile : null}}]" 
     class="flex justify-start items-center  capitalize font-bold gap-5
     cursor-pointer">
-    <i class="fa-solid fa-book-open icons"></i> {{'profile.booking'}}
+    <i class="fa-solid fa-book-open icons"></i> {{'profile.booking' | translate}}
     </a>
 </li>
 <li class="w-full"> 
     <a routerLink="/" class="flex justify-start items-center  capitalize font-bold gap-5
     cursor-pointer">
-    <i class="fa-solid fa-home icons"></i>{{'profile.home'}}
+    <i class="fa-solid fa-home icons"></i>{{'profile.home' | translate}}
     </a>
 </li>
 
