@@ -1,24 +1,27 @@
-<ul class="flex justify-center items-center gap-2 md:gap-4">
+<ul class="flex justify-center items-center gap-1  xs:gap-3 ">
     <li>
         <app-selection-translate />
     </li>
-<li>
-    @if(authService.CurrentUser() === null ){
 
-    <div class="flex justify-center items-center gap-1">
+    @if(authService.CurrentUser() === null ){
+<li>
     <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]"
 
-    class="text-white links bg-mz-primary rounded-3xl p-1.5 hover:bg-mz-secound duration-200">
+    class="text-xs xs:text-sm text-white links bg-mz-primary rounded-3xl p-1 hover:bg-mz-secound duration-200">
     {{'auth.register' | translate}}
     </a>
+</li>
+<li>
     <a [routerLink]="[{outlets : {loginIn: 'loginIn' , register : null}}]"
-    class="text-white links hover:bg-mz-primary rounded-3xl p-1.5 duration-200">
+    class="text-xs xs:text-sm text-white links hover:bg-mz-primary rounded-3xl p-1 duration-200">
     {{'auth.logIn' | translate}}
     </a>
-    </div>
-    }@else {
-    <app-user-image (click)="initModleUserData()" imageClass="size-7 cursor-pointer"/>
-    }
 </li>
+    }@else {
+    <li>
+        <app-user-image (click)="initModleUserData()" imageClass="size-7 cursor-pointer"/>
+    </li>
+    }
+
 
 </ul>
