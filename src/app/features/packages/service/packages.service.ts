@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SingleTonSupabaseService } from '../../../core/services/single-ton-supabase.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PackagesType } from '../../../shared/interfaces/packages';

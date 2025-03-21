@@ -5,7 +5,8 @@
     <i class="fa-solid  text-[4.5rem] scale-x-75 scale-y-200 text-white hover:opacity-70 duration-200"
     [ngClass]="isIntro() ? 'fa-caret-right' : 'fa-caret-left'"></i>
     </button>
-
+    
+    @defer (when isIntro()) {
     <section  
     class="bg-white fixed top-[50%] translate-y-[-50%]   z-20  w-[90%] md:w-auto duration-700 "
     [ngClass]="isIntro() ? 'left-[50%] translate-x-[-50%]' : 'translate-x-[-300%]'">
@@ -48,4 +49,5 @@
         </div>
 </section>
 <section *ngIf="isIntro()" (click)="initShowIntroPopUp()"  class="fixed top-0 left-0 w-full h-screen"></section>
+}
 </section>

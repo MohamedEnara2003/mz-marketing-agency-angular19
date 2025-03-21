@@ -1,3 +1,4 @@
-<div class="w-full flex justify-center items-center h-[80vh]">
+<div class="w-full flex justify-center items-center "
+    [ngClass]="loadingClass() ? loadingClass() : 'h-[80vh]'">
 <span class="loading loading-spinner  w-24 text-mz-primary"></span>
 </div>

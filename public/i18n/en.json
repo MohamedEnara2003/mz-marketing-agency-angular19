@@ -1,91 +1,122 @@
 {
-    "english" : "english" ,
-    "arabic" : "arabic" ,
-
-    "link" : {
-    "home" : "home",
-    "packages": "packages",
-    "categories": "categories",
-    "aboutUs": "about us",
-    "contactUs": "contact us"
+    "english": "english",
+    "arabic": "arabic",
+    "link": {
+        "home": "Home",
+        "packages": "Packages",
+        "categories": "Categories",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us"
     },
-    
-    "auth" : {
-    "register" : "register",
-    "logIn" : "log in"
+    "auth": {
+        "register": "Register",
+        "logIn": "Log In",
+        "userNameRequired": "This username is required!",
+        "userNameValid": "Write a valid username!",
+        "emailRequired": "This email is required!",
+        "emailValid": "Write a valid email!",
+        "passwordRequired": "This password is required!",
+        "passwordValid": "Write a valid password!",
+        "signGoogle": "Continue with Google",
+        "or": "Or",
+        "invalidLoginCredentials": "Invalid login credentials",
+        "noAccount": "Don't have an account?",
+        "yesAccount": "Already have an account?",
+        "createOne": "Create One"
     },
-
-    "profile" : {
-    "signOut" : "sign out" ,
-    "history" : "history" ,
-    "booking" : "booking" ,
-    "home" : "home page" 
-    },
-
-    "categories" : {
-    "reels" : "reels" ,
-    "motion": "motion" ,
-    "designs":"designs",
-    "views" : "views",
-    "save" : "save",
-    "comments" : {
-    "comments" : "comments",
-    "sortBy" : "sort by",
-    "TopComments" : "Top comments",
-    "NewestFirst" : "Newest first",
-    "OldestFirst" : "Oldest first",
-    "AddAComment" : "Add a comment...",
-    "cancel" : "cancel" ,
-    "AddComment" : "Add Comment"
-    }
+    "profile": {
+        "signOut": "Sign Out",
+        "history": "History",
+        "booking": "Booking",
+        "home": "Home Page"
     },
 
-    "package" : {
-    "level" : {
-    "basic" : "basic" ,
-    "primary" : "primary",
-    "secondray" : "primary",
-    "advanced" : "advanced"
+    "categories": {
+        "reels": "Reels",
+        "motion": "Motion",
+        "designs": "Designs",
+        "views": "Views",
+        "save": "Save",
+        "comments": {
+            "comments": "Comments",
+            "sortBy": "Sort By",
+            "topComments": "Top Comments",
+            "newestFirst": "Newest First",
+            "oldestFirst": "Oldest First",
+            "addAComment": "Add a comment...",
+            "cancel": "Cancel",
+            "addComment": "Add Comment",
+            "editComment" : "edit comment",
+            "Edit" : "Edit" ,
+            "Remove" : "Remove" 
+        }
     },
-    "getPackage" : "get package" ,
-    "whatsIncluded" : "whats included :",
-    "reels videos" : "reels videos",
-    "motion graphics video 2d" : "motion graphics video 2d" ,
-    "designs" : "designs"  ,
-    "design logo" : "design logo"  ,
-    "ux ui design" : "ux ui design" ,
-    "mobile application" : "mobile application"  ,
-    "web application" :  "web application"
+    "package": {
+        "level": {
+            "basic": "Basic",
+            "primary": "Primary",
+            "secondray": "Secondary",
+            "advanced": "Advanced"
+        },
+        "ourPackages": "Our Packages",
+        "title": "Tailored Solutions for Your Business Success",
+        "getPackage": "Get Package",
+        "whatsIncluded": "What's included:",
+        "reels videos": "Reels Videos",
+        "motion graphics video 2d": "Motion Graphics Video 2D",
+        "designs": "Designs",
+        "design logo": "Design Logo",
+        "ux ui design": "UX/UI Design",
+        "mobile application": "Mobile Application",
+        "web application": "Web Application"
     },
-    "about" : {
-
+    "about": {
+        "ourAbout": "About Us",
+        "ourServices": "Our Services",
+        "mz": "M&Z Marketing Agency",
+        "paragraph": "At M&Z Marketing Agency, we are passionate about crafting innovative digital experiences that elevate brands and drive success. With a team of creative experts and tech professionals, we provide a full spectrum of services tailored to meet your business needs.",
+        "titleReels": "🎬 Reels & Motion Graphics",
+        "titleUxUi": "🎨 UX/UI Design",
+        "titleDesign": "🖌 Branding & Graphic Design",
+        "titleWebMobileApp": "💻 Web & Mobile Applications",
+        "list": {
+            "reelsOne": "Engaging Reels that capture attention and boost social media presence.",
+            "reelsTwo": "Dynamic Motion Graphics that enhance storytelling and visual appeal.",
+            "reelsThree": "Professional Video Editing that ensures smooth, high-impact visuals.",
+            "uxUiOne": "Intuitive User Interface (UI) Design that enhances usability and aesthetics.",
+            "uxUiTwo": "In-depth User Experience (UX) Research to create customer-focused designs.",
+            "uxUiThree": "Interactive Prototyping and Wireframing for a smooth development process.",
+            "designOne": "Unique Brand Identity Design that reflects your vision.",
+            "designTwo": "Creative Logo & Visual Design for a lasting impression.",
+            "designThree": "Marketing materials, Social Media Graphics, and Print Designs that stand out.",
+            "webMobileAppOne": "Custom Website Development with modern UI/UX and optimized performance.",
+            "webMobileAppTwo": "Responsive E-Commerce Platforms that enhance online sales.",
+            "webMobileAppThree": "Feature-rich Mobile Applications for iOS & Android."
+        }
     },
-    "footer" : {
-    "title" : " We would love to have you join our marketing agency. Our goal is to take the project to the highest levels" ,
-    "about": "about us",
-    "Company History" :  "Company History",
-    "Meet the Team" :  "Meet the Team",
-    "Employee Handbook" :  "Employee Handbook",
-    "Packages" :  "Packages",
-    "our services" :  "our services",
-    "reels videos" :  "reels videos",
-    "motion graphics" :  "motion graphics",
-    "designs" :  "designs",
-    "ux ui" :  "ux ui",
-    "web application" :  "web application",
-    "mobile application" :  "mobile application",
-    "word press" :  "word press",
-    "Tools used" :  "Tools used",
-    "Adobe Premiere" :  "Adobe Premiere",
-    "photo shop" :  "photo shop",
-    "angular" :  "angular",
-    "react js" :  "react js",
-    "Helpful Links" :  "Helpful Links" ,
-    "FAQs" :  "FAQs" ,
-    "Support" :  "Support" ,
-    "Complaints" :  "Complaints" 
+    "footer": {
+        "title": "We would love to have you join our marketing agency. Our goal is to take the project to the highest levels.",
+        "about": "About Us",
+        "companyHistory": "Company History",
+        "meetTheTeam": "Meet the Team",
+        "employeeHandbook": "Employee Handbook",
+        "packages": "Packages",
+        "ourServices": "Our Services",
+        "reelsVideos": "Reels Videos",
+        "motionGraphics": "Motion Graphics",
+        "designs": "Designs",
+        "uxUi": "UX/UI",
+        "webApplication": "Web Application",
+        "mobileApplication": "Mobile Application",
+        "wordpress": "WordPress",
+        "toolsUsed": "Tools Used",
+        "adobePremiere": "Adobe Premiere",
+        "photoshop": "Photo shop",
+        "angular": "Angular",
+        "reactJs": "React JS",
+        "helpfulLinks": "Helpful Links",
+        "faqs": "FAQs",
+        "support": "Support",
+        "complaints": "Complaints"
     }
 }
-
-
-    

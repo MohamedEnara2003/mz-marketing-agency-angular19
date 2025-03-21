@@ -5,11 +5,12 @@ import { OurServicesComponent } from "../components/our-services/our-services.co
 import { AboutService } from '../service/about.service';
 import { OurServiceData } from '../interface/about';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 
 
 @Component({
   selector: 'app-about',
-  imports: [SharedModule, AstronautImageComponent, OurServicesComponent ],
+  imports: [SharedModule, AstronautImageComponent, OurServicesComponent, LoadingComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
   animations : [

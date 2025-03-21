@@ -44,7 +44,7 @@ export class HeaderComponent {
     onChanheToggle() : void {
     const checkbox = this.toggleRef()?.nativeElement!;
     const bodyClass =  this.document.body.classList ;
-    bodyClass.add(checkbox.checked ?'bg-space' : 'bg-black')
+    bodyClass.add(checkbox.checked ?'bg-space' : 'bg-[#121210]')
     bodyClass.remove(checkbox.checked ?'bg-black' : 'bg-space')
     }
 }

@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { SharedModule } from '../../../../shared/modules/shared.module';
+import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
+
 
 @Component({
   selector: 'app-astronaut-image',
-  imports: [SharedModule],
+  imports: [SharedModule, LoadingComponent],
   templateUrl: './astronaut-image.component.html',
   styleUrl: './astronaut-image.component.css'
 })

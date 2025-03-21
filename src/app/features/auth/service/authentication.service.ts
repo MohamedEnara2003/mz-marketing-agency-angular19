@@ -12,6 +12,7 @@ export class AuthenticationService {
 
 
   CurrentUser = signal<UserData | null >(null)
+  
   signInWithGoogle() : Observable<any> {
   const promise = authClient.signInWithOAuth({
   provider : "google" ,

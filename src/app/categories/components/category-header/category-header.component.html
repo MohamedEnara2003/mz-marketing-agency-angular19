@@ -17,13 +17,16 @@ class="w-[80%] "
 @for (category of categoriesValues(); track category) {
 <swiper-slide [routerLink]="['/categories/category', category]" 
 class="rounded flex justify-center items-center">
-
+@defer (on viewport) {
 <a class="cursor-pointer hover:opacity-60 duration-200 p-1 px-2"
 [ngClass]="queryCategory() === category ? 
 'text-mz-primary bg-gray-300 rounded shadow-md shadow-black'
 : ''"
 >{{`categories.${category}` | translate}}
 </a>
+}@placeholder {
+    <a class="w-24 h-8 rounded bg-zinc-400 animate-pulse"></a>
+}
 </swiper-slide>
 }
 </swiper-container>

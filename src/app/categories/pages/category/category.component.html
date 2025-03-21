@@ -1,11 +1,11 @@
 <section class="w-full flex flex-col  justify-center items-center gap-10 my-8">
 
-    @if(categoryData()){ 
     <app-category-header class="w-[80%] lg:w-[50%]"
     [queryCategory]="queryCategory()"
     [categoriesValues]="categoriesValues()"
     />
-<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+    
+<ul [ngClass]="categoryData().length > 0 ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10' : ''">
 @for (data of categoryData(); track data.id) {
     <div [routerLink]="['/categories/watch',data.category]" [queryParams]="{id : data.id}"
     class=" rounded-2xl  cursor-pointer flex justify-center items-center  border-1 border-mz-primary">
@@ -35,11 +35,11 @@
     <i class="fa-solid fa-play text-mz-secound text-lg"></i>
     </button>
     </div>
-}
-</ul>
-}@else {
+}@empty {
     <app-loading />
 }
+</ul>
+
 
 </section>
 

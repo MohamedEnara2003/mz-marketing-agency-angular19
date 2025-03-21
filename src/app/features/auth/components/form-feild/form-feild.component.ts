@@ -1,6 +1,7 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SharedModule } from '../../../../shared/modules/shared.module';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-form-feild',
@@ -9,10 +10,8 @@ import { SharedModule } from '../../../../shared/modules/shared.module';
   styleUrl: './form-feild.component.css'
 })
 export class FormFeildComponent {
+  languageServices = inject(LanguageService)
   form = input.required<FormGroup>()
   isShowPass = signal<boolean>(false) ;
 
-  initShowPassword () : void {
-  this.isShowPass.set(!this.isShowPass());
-  }
 }

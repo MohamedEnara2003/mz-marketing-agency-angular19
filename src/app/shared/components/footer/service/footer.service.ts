@@ -10,33 +10,33 @@ export class FooterService {
     {
       id : 1 , title : 'about' ,  
       links : [
-      'Company History',
-      'Meet the Team',
-      'Employee Handbook',
-      'Packages',
+      'companyHistory',
+      'meetTheTeam',
+      'employeeHandbook',
+      'packages',
     ]},
     {
-      id : 2 , title : 'our services' ,  
+      id : 2 , title : 'ourServices' ,  
       links : [
-      'reels videos',
-      'motion graphics',
+      'reelsVideos',
+      'motionGraphics',
       'designs',
-      'ux ui',
-      'web application',
-      'mobile application',
-      'word press'
+      'uxUi',
+      'webApplication',
+      'mobileApplication',
+      'wordPress'
     ]},
       {
-      id : 3 , title : 'Tools used' ,  
+      id : 3 , title : 'toolsUsed' ,  
       links : [
-      'Adobe Premiere',
-      'photo shop',
+      'adobePremiere',
+      'photoshop',
       'angular',
-      'react js',
+      'reactJs',
     ]},
       {
-      id : 4 , title : 'Helpful Links' ,  
-      links : ['FAQs','Support','Complaints',]
+      id : 4 , title : 'helpfulLinks' ,  
+      links : ['faqs','support','complaints',]
     }
   ]).asReadonly();
 

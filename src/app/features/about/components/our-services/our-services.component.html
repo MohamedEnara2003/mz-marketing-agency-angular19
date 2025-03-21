@@ -1,12 +1,14 @@
 <section class="relative w-full flex flex-col justify-center items-start gap-4 my-4
 after:w-1/2 after:h-0.5 after:absolute after:bg-gray-500 py-5 after:bottom-0">
 
-    <h1 class="text-xl text-center capitalize text-mz-primary font-bold">{{serviceTitle()}}</h1>
-    <p class="text-gray-300  capitalize font-[400]">{{serviceParagraph()}}</p>
+    <h1 class="text-xl text-center capitalize text-mz-primary font-bold">
+    {{`about.${serviceTitle()}` | translate}}
+    </h1>
+    <p class="text-gray-300  capitalize font-[400]">{{`about.${serviceParagraph()}` | translate}}</p>
 
     <ul class="list gap-3">
     @for (list of listOurService(); track list) {
-    <li class="text-sm text-gray-50  capitalize font-medium">{{list}}</li>
+    <li class="text-sm text-gray-50  capitalize font-medium">{{`about.list.${list}`| translate}}</li>
     }
     </ul>
 </section>

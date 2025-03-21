@@ -1,21 +1,24 @@
-<app-auth-model authTilte="log in"> 
+<app-auth-model authTilte="logIn"> 
       <form [formGroup]="form" (ngSubmit)="login(form)"
-      class="w-[90%] flex flex-col justify-center items-center gap-5">
+      class="w-[90%] flex flex-col justify-center items-center gap-2">
 
       <app-form-feild [form]="form" class="w-full"/>
-      <div class="w-full">
-        <p class="text-error capitalize text-sm text-left">{{logInErrorMsg()}}</p>
+      <div *ngIf="logInErrorMsg()" class="w-full">
+      <p class="text-error capitalize text-sm text-left">
+      {{ `auth.${logInErrorMsg()}` | translate}}
+      </p>
       </div>
+
       <button type="submit"  
           class="w-full  btn btn-neutral  bg-mz-primary hover:bg-mz-secound
-          duration-200 text-gray-50 ">
-          Log In
+          duration-200 text-gray-50 capitalize">
+          {{'auth.logIn' | translate}}
       </button>
       </form>
 
-      <p class="text-center mt-3 text-[14px] text-gray-900">Don&#x27;t have an account? 
+      <p class="text-center mt-3 text-[14px] text-gray-900">{{'auth.noAccount' | translate}}
       <a  [routerLink]="['/' ,{outlets : { loginIn: null  , register : 'register' }}]"
-        class="text-gray-600 link">Create one
+        class="text-gray-600 link">{{'auth.createOne' | translate}}
       </a>
       </p>
     </app-auth-model>

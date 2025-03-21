@@ -1,4 +1,4 @@
-<div [formGroup]="form()" class="w-full flex flex-col justify-center items-center gap-5">
+<div [formGroup]="form()" class="w-full flex flex-col justify-center items-center gap-4">
 
 <div class="w-full flex flex-col justify-center items-center ">
     <input formControlName="email" type="email"
@@ -10,8 +10,8 @@
     @if(form().get('email')?.errors && form().get('email')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
-    <p *ngIf="form().get('email')?.getError('required')">this email is required!</p>
-    <p *ngIf="form().get('email')?.getError('email')">write a valid email!</p>
+    <p *ngIf="form().get('email')?.getError('required')">{{'auth.emailRequired' | translate}}</p>
+    <p *ngIf="form().get('email')?.getError('email')"> {{'auth.emailValid' | translate}}</p>
     </div>
     }
     </div>
@@ -26,19 +26,28 @@
       placeholder="Password" 
       />
 
-    <i (click)="initShowPassword()" class="fa-solid icons absolute right-2 z-10 bg-white text-mz-secound" 
-    [ngClass]="isShowPass() ? 'fa-eye' : 'fa-eye-slash'">
+    <i (click)="isShowPass.set(!isShowPass())" 
+    class="fa-solid icons absolute  z-10 bg-white text-mz-secound" 
+    [ngClass]="
+    {
+    'fa-eye' : !isShowPass() ,
+    'fa-eye-slash' : isShowPass() ,
+    'right-2' : languageServices.currentLanguage() === 'en' ,
+    'left-2' : languageServices.currentLanguage() === 'ar' 
+    }
+    ">
     </i>
     </div>
 
     @if(form().get('password')?.errors && form().get('password')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
-      <p *ngIf="form().get('password')?.getError('required')">this password is required!</p>
-      <p *ngIf="form().get('password')?.getError('minlength')">write a valid password!</p>
-      <p *ngIf="form().get('password')?.getError('maxlength')">write a valid password!</p>
+      <p *ngIf="form().get('password')?.getError('required')"> {{'auth.passwordRequired' | translate}}</p>
+      <p *ngIf="form().get('password')?.getError('minlength')">{{'auth.passwordValid' | translate}}</p>
+      <p *ngIf="form().get('password')?.getError('maxlength')">{{'auth.passwordValid' | translate}}</p>
     </div>
     
     }
+    
     </div>
 </div>
