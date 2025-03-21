@@ -1,6 +1,12 @@
 {
     "english": "english",
     "arabic": "arabic",
+    "WELCOME_TO_MZ_MARKETING_AGENCY" :"Welcome to mz marketing agency" ,
+    "MZ_MARKETING_DESCRIPTION_1" :"At MZ, we specialize in delivering innovative and results-driven marketing solutions tailored to elevate your brand. From strategic digital campaigns to creative branding and social media management, we help businesses grow and thrive in a competitive market. Our team of experts combines creativity with data-driven strategies to ensure maximum impact and engagement. Whether you're a startup looking to establish your presence or an established brand aiming for expansion, MZ is your trusted partner in success." ,
+    "MZ_MARKETING_DESCRIPTION_2" :"Let&apos;s take your brand to the next leve " ,
+    "SHOW_CATEGORIES" :"show categories " ,
+    "PACKAGES" :"packages " ,
+
     "link": {
         "home": "Home",
         "packages": "Packages",

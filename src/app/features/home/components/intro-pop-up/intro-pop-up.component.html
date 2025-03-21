@@ -13,7 +13,7 @@
         <div class="relative bg-white  shadow-sm">
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t  border-gray-200">
                 <h3 class="text-xl font-semibold text-gray-900  capitalize">
-                Welcome to mz marketing agency
+                {{ 'WELCOME_TO_MZ_MARKETING_AGENCY' | translate }}
                 </h3>
                 <button (click)="initShowIntroPopUp()" 
                 type="button" class="cursor-pointer text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" >
@@ -23,11 +23,10 @@
 
             <div class="p-4 md:p-5 space-y-4">
             <p class="text-base leading-relaxed text-gray-500 ">
-            At MZ, we specialize in delivering innovative and results-driven marketing solutions tailored to elevate your brand. From strategic digital campaigns to creative branding and social media management, we help businesses grow and thrive in a competitive market.
-            Our team of experts combines creativity with data-driven strategies to ensure maximum impact and engagement. Whether you're a startup looking to establish your presence or an established brand aiming for expansion, MZ is your trusted partner in success.
+            {{ 'MZ_MARKETING_DESCRIPTION_1' | translate }}
             </p>
             <p class="text-base leading-relaxed text-gray-500 ">
-            Let&apos;s take your brand to the next leve
+            {{ 'MZ_MARKETING_DESCRIPTION_2' | translate }}
             </p>
             </div>
 
@@ -35,14 +34,14 @@
             <li routerLink="/categories/motion">
             <a class="cursor-pointer text-white bg-mz-primary hover:bg-mz-secound 
             font-medium rounded-lg text-sm px-5 py-2.5 text-center capitalize ">
-            show categories
+            {{ 'SHOW_CATEGORIES' | translate }}
             </a>
             </li>
 
             <li routerLink="/packages">
             <a class="btn btn-outline cursor-pointer text-mz-secound border border-zinc-300 capitalize
             font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            packages
+            {{ 'PACKAGES' | translate }}
             </a>
             </li>
         </ul>
