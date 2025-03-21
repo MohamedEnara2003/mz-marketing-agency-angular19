@@ -5,13 +5,13 @@
     class="w-full  text-gray-900 placeholder:text-gray-500
     input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
     border-2 bg-gray-50" 
-    placeholder="Email Address" 
+    [placeholder]="'auth.placeHolder.email'| translate" 
     />
     @if(form().get('email')?.errors && form().get('email')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
-    <p *ngIf="form().get('email')?.getError('required')">{{'auth.emailRequired' | translate}}</p>
-    <p *ngIf="form().get('email')?.getError('email')"> {{'auth.emailValid' | translate}}</p>
+    <p *ngIf="form().get('email')?.getError('required')">{{'auth.validators.emailRequired' | translate}}</p>
+    <p *ngIf="form().get('email')?.getError('email')"> {{'auth.validators.emailValid' | translate}}</p>
     </div>
     }
     </div>
@@ -23,7 +23,7 @@
       class="w-full  text-gray-900 placeholder:text-gray-500
       input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
       border-2 bg-gray-50" 
-      placeholder="Password" 
+      [placeholder]="'auth.placeHolder.password'| translate" 
       />
 
     <i (click)="isShowPass.set(!isShowPass())" 
@@ -42,9 +42,9 @@
     @if(form().get('password')?.errors && form().get('password')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1.5 text-sm text-error 
     capitalize gap-1">
-      <p *ngIf="form().get('password')?.getError('required')"> {{'auth.passwordRequired' | translate}}</p>
-      <p *ngIf="form().get('password')?.getError('minlength')">{{'auth.passwordValid' | translate}}</p>
-      <p *ngIf="form().get('password')?.getError('maxlength')">{{'auth.passwordValid' | translate}}</p>
+      <p *ngIf="form().get('password')?.getError('required')"> {{'auth.validators.passwordRequired' | translate}}</p>
+      <p *ngIf="form().get('password')?.getError('minlength')">{{'auth.validators.passwordValid' | translate}}</p>
+      <p *ngIf="form().get('password')?.getError('maxlength')">{{'auth.validators.passwordValid' | translate}}</p>
     </div>
     
     }

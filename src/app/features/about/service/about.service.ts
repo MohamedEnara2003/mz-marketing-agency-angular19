@@ -11,41 +11,41 @@ export class AboutService {
   {
   id : 1 , 
   title : "titleReels",
-  paragraph : "p-Reels",
+  paragraph : "p-reels",
   list : [
   "reelsOne",
   "reelsTwo",
-  "reelsthree",
+  "reelsThree",
   ]
   },
   {
   id : 2 , 
   title : "titleUxUi",
-  paragraph : "p-UxUi",
+  paragraph : "p-uxUi",
   list : [
-  "UxUiOne",
-  "UxUiTwo",
-  "UxUithree",
+  "uxUiOne",
+  "uxUiTwo",
+  "uxUiThree",
   ]
   },
   {
   id : 3 , 
   title : "titleDesign",
-  paragraph : "p-Design",
+  paragraph : "p-design",
   list : [
-  "DesignOne",
-  "DesignTwo",
-  "Designthree",
+  "designOne",
+  "designTwo",
+  "designThree",
   ]
   },
   {
   id : 4 , 
   title : "titleWebMobileApp",
-  paragraph : "p-WebMobileApp",
+  paragraph : "p-webMobileApp",
   list : [
-  "WebMobileAppOne",
-  "WebMobileAppTwo",
-  "WebMobileAppthree",
+  "webMobileAppOne",
+  "webMobileAppTwo",
+  "webMobileAppThree",
   ]
   },
   ])

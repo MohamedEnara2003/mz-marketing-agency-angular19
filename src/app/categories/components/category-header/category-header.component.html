@@ -1,28 +1,29 @@
+<nav class="relative w-full text-gray-50 capitalize font-bold text-lg shadow 
+flex justify-center items-center"> 
 
-    
-<nav class="w-full text-gray-50 capitalize font-bold text-lg
-flex justify-evenly items-center"> 
-<button type="button" class="hover:bg-mz-secound rounded-full size-7 duration-200">
-    <i class="fa-solid fa-angle-left text-2xl"></i>
+
+<button (click)="sliderPrevious()" 
+type="button" class="hover:bg-mz-secound rounded  duration-200  absolute left-0">
+<i class="fa-solid fa-angle-left text-2xl"></i>
 </button>
+
+
 <swiper-container
 #swiperRef
-slides-per-view="3"
+slides-per-view="2"
 [parallax]="true"
 [speed]="200"
-loop="true"
-class="w-[80%] " 
->
+class="w-[80%]" >
 
 @for (category of categoriesValues(); track category) {
 <swiper-slide [routerLink]="['/categories/category', category]" 
-class="rounded flex justify-center items-center">
-@defer (on viewport) {
-<a class="cursor-pointer hover:opacity-60 duration-200 p-1 px-2"
+class="rounded flex justify-center items-center"
 [ngClass]="queryCategory() === category ? 
 'text-mz-primary bg-gray-300 rounded shadow-md shadow-black'
-: ''"
->{{`categories.${category}` | translate}}
+: ''">
+@defer (on viewport) {
+<a class="cursor-pointer hover:opacity-60 duration-200 p-1 px-2">
+{{`categories.${category}` | translate}}
 </a>
 }@placeholder {
     <a class="w-24 h-8 rounded bg-zinc-400 animate-pulse"></a>
@@ -30,7 +31,12 @@ class="rounded flex justify-center items-center">
 </swiper-slide>
 }
 </swiper-container>
-<button type="button" class="hover:bg-mz-secound rounded-full size-7 duration-200">
+
+
+<button (click)="sliderNext()"
+type="button" class="hover:bg-mz-secound rounded duration-200  absolute right-0 ">
     <i class="fa-solid fa-angle-right text-2xl"></i>
 </button>
+
+
 </nav>

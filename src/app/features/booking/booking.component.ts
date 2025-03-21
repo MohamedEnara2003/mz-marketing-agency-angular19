@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SharedModule } from '../../shared/modules/shared.module';
 import { FormBookingFeildComponent } from "./components/form-booking-feild/form-booking-feild.component";
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { BookingType, CategoryBookedType } from '../../shared/interfaces/booking
 import { AuthenticationService } from '../auth/service/authentication.service';
 import { BookingsService } from './service/bookings.service';
 import { BookingSuccessComponent } from "./components/booking-success/booking-success.component";
+import { LanguageService } from '../../core/services/language.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { BookingSuccessComponent } from "./components/booking-success/booking-su
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements OnInit{
+languageService = inject(LanguageService) ;
 form : FormGroup ;
 selectCategory = signal<Selection[]>([]);
 isSelect = signal<boolean>(false);
@@ -128,7 +130,6 @@ onSubmit () : void {
   this.isBookingSuccess.set(true);
   }else{
   this.iscategoryValid.set(true)
-
   }
 }
 }

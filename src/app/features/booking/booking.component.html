@@ -4,19 +4,19 @@
     flex flex-col justify-center items-center gap-5">
 
     <header class="w-[90%] flex justify-between items-center ">
-    <h1 class="card-title uppercase text-xl font-bold text-mz-primary">booking</h1>
+    <h1 class="card-title uppercase text-xl font-bold text-mz-primary">
+    {{'booking.title' | translate}}
+    </h1>
     <a [routerLink]="['/',{outlets : {'booking-outlet':null}}]"> 
     <i class="fa-solid fa-close text-2xl text-gray-900"></i>
     </a>
     </header>
 
-    <form *ngIf="isBookingSuccess() !== true" [formGroup]="form" class="w-[90%]  h-[80%] flex flex-col justify-center items-center gap-5 "
+    <form *ngIf="isBookingSuccess() !== true" [formGroup]="form" 
+    class="w-[90%]  h-[80%] flex flex-col justify-center items-center gap-5 "
     (ngSubmit)="onSubmit()">
-        
     <fieldset class="w-full overflow-y-scroll"> 
-
     <div class="w-[95%] flex flex-col justify-center items-center gap-5 mx-[2.5%]">
-        
     <app-form-booking-feild class="w-full" 
     [formGroup]="form"
     />
@@ -24,11 +24,11 @@
     <div class="w-full flex flex-col  items-start gap-1">
     <button (click)="addCategory()" type="button" class="capitalize btn btn-outline text-gray-950 bg-gray-50">
     <i class="fa-solid fa-plus"></i>
-    add category
+    {{'booking.addCategory' | translate}}
     </button>
     <p *ngIf="categoriesValue.controls.length === 0 && iscategoryValid()"
     class="text-sm text-error capitalize">
-    You must enter the category type , you need for the booking.
+    {{'booking.categoryErrorMsg' | translate}}
     </p>
     </div>
     
@@ -38,31 +38,38 @@
     <section class="w-full flex  flex-col justify-center items-start gap-5 border-1 border-mz-primary p-3
     rounded" [formGroupName]="i"> 
 
-    <div class="w-full  flex  flex-col justify-center items-start gap-2 ">  
+    <div class="w-full  flex  flex-col justify-center items-start gap-3 ">  
     <div class="w-full flex justify-between items-center">
     <label for="Full Name" class="capitalize font-semibold text-gray-950">
-    *choose category : {{i + 1}}
+    {{'booking.label.category' | translate}} {{i + 1}}
     </label>
     <i (click)="removeCategory(i)" class="fa-regular fa-trash-can text-gray-900 cursor-pointer"></i>
     </div>
 
     <div class="relative w-full flex justify-center items-center ">
     <input (click)="openSelectCategory (i)" 
-    type="text" name="Full Name" id="Full Name"  placeholder="Enter A Category" autocomplete="off" 
+    type="text" name="Full Name" id="Full Name"  
+    [placeholder]="'booking.placeHolder.enterCategory' | translate" autocomplete="off" 
     formControlName="category"
-    class="w-full input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
+    class="w-full input  focus:outline-mz-primary border-gray-300 focus:border-transparent rounded
     border-2 placeholder:font-bold placeholder:text-gray-400  cursor-pointer bg-gray-50 text-gray-900">
-    <i class="fa-solid text-sm text-gray-950 absolute right-3 bg-white z-5 cursor-pointer"
-    [ngClass]="selectIndex() === i ? 'fa-angle-down' : 'fa-angle-up'">
+
+    <i class="fa-solid text-sm text-gray-950 absolute  bg-white z-5 cursor-pointer"
+    [ngClass]="{
+    'fa-angle-down' : selectIndex() === i,
+    'fa-angle-up' : selectIndex() !== i ,
+    'right-3'   : languageService.currentLanguage() === 'en' ,
+    'left-3'   : languageService.currentLanguage() === 'ar' ,
+    }">
     </i>
+    
     </div>
     @if (
-    categoriesValue.controls[i].get('category')?.invalid &&
-    categoriesValue.controls[i].get('category')?.touched
+    categoriesValue.controls[i].get('category')?.invalid && iscategoryValid()
     ){
     <div class="w-full flex flex-col gap-1 capitalize  text-sm text-error">
     <p *ngIf="categoriesValue.controls[i].get('category')?.getError('required')">
-    enter your category
+    {{'booking.validators.enterCategory' | translate}}
     </p>
     </div>
     }
@@ -78,12 +85,15 @@
     
     <div class="w-full  flex  flex-col justify-center items-start gap-2 ">
     <label for="details" class="capitalize font-semibold text-gray-950">
-    details about categories / <span class="text-gray-500">optional</span>
+    {{'booking.label.categoryDetails' | translate}} /
+    <span class="text-gray-500">
+    {{'booking.optional' | translate}}
+    </span>
     </label>
-    <textarea type="text" placeholder="Enter Your Details" id="details"
+    <textarea type="text" [placeholder]="'booking.placeHolder.enterDetails' | translate" id="details"
     formControlName="categoryDetails"
     class="w-full textarea textarea-neutral textarea-md focus:outline-mz-primary border-gray-300 focus:border-transparent
-    border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50 text-gray-900">
+    border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50 text-gray-900 rounded">
     </textarea>
     </div>
 
@@ -95,7 +105,7 @@
 
     <button type="submit"
     class="w-full btn btn-neutral capitalize bg-mz-primary hover:bg-mz-secound duration-200 my-2">
-    booking now
+    {{'booking.btnName' | translate}}
     </button>
 </form>
 <app-booking-success *ngIf="isBookingSuccess() === true"

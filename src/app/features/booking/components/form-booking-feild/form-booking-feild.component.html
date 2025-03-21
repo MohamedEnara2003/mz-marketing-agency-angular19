@@ -1,53 +1,60 @@
 <div [formGroup]="formGroup()!" class="w-full flex flex-col gap-2 ">
-    <div class="w-full  flex  flex-col justify-center items-start gap-1">
-        <label for="Full Name" class="capitalize font-semibold text-gray-950">*full Name</label>
-        <input type="text" name="Full Name" id="Full Name" placeholder="Full Name"
+    <div class="w-full  flex  flex-col justify-center items-start gap-3">
+        <label for="Full Name" class="capitalize font-semibold text-gray-950">
+        {{'auth.placeHolder.fullName' | translate}}
+        </label>
+        <input type="text" name="Full Name" id="Full Name" 
+        [placeholder]="'auth.placeHolder.fullName' | translate"
         formControlName="fullName"
         class="w-full input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
-        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50 text-gray-900">
+        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50 text-gray-900 rounded">
 
         @if (formGroup().get('fullName')?.invalid && formGroup().get('fullName')?.touched) {
         <div class="w-full flex flex-col gap-1 capitalize  text-sm text-error">
         <p *ngIf="formGroup().get('fullName')?.getError('required')">
-        enter your full name
+        {{'auth.validators.fullNameRequired' | translate}}
         </p>
         </div>
         }
     </div>
     
-    <div class="w-full  flex  flex-col justify-center items-start gap-1">
-        <label for="Phone Number" class="capitalize font-semibold text-gray-950">*phone number</label>
-        <input type="text" name="Phone Number" id="Phone Number" placeholder="Enter Your Phone Number"
+    <div class="w-full  flex  flex-col justify-center items-start gap-3">
+        <label for="Phone Number" class="capitalize font-semibold text-gray-950">
+        {{'auth.label.phone' | translate}}
+        </label>
+        <input type="text" name="Phone Number" id="Phone Number" 
+        [placeholder]="'auth.placeHolder.phone' | translate"
         formControlName="phone"
         class="w-full input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
-        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50  text-gray-900" >
+        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50  text-gray-900 rounded" >
 
         @if (formGroup().get('phone')?.invalid && formGroup().get('phone')?.touched) {
             <div class="w-full flex flex-col gap-1 capitalize  text-sm text-error">
             <p *ngIf="formGroup().get('phone')?.getError('required')">
-            enter your phone number
+            {{'auth.validators.phoneRequired' | translate}}
             </p>
             <p *ngIf="formGroup().get('phone')?.getError('pattern')">
-            write a valid phone number
+            {{'auth.validators.phoneValid' | translate}}
             </p>
             </div>
         }
-
     </div>
-    
-    <div class="w-full flex  flex-col justify-center items-start gap-2">
-        <label for="email address" class="capitalize font-semibold text-gray-950">*email address</label>
-        <input type="email" name="email address" id="email address" placeholder="Enter Your Email"
+    <div class="w-full flex  flex-col justify-center items-start gap-3">
+        <label for="email address" class="capitalize font-semibold text-gray-950">
+        {{'auth.placeHolder.email' | translate}}
+        </label>
+        <input type="email" name="email address" id="email address" 
+        [placeholder]="'auth.placeHolder.enterEmail' | translate"
         formControlName="email"
         class="w-full input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
-        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50  text-gray-900">
+        border-2 placeholder:font-bold placeholder:text-gray-400 bg-gray-50  text-gray-900 rounded">
         @if (formGroup().get('email')?.invalid && formGroup().get('email')?.touched) {
             <div class="w-full flex flex-col gap-1 capitalize  text-sm text-error">
             <p *ngIf="formGroup().get('email')?.getError('required')">
-            enter your phone number
+            {{'auth.validators.emailRequired' | translate}}
             </p>
             <p *ngIf="formGroup().get('email')?.getError('email')">
-            write a valid email address
+            {{'auth.validators.emailValid' | translate}}
             </p>
             </div>
         }

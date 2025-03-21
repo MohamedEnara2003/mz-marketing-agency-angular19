@@ -13,15 +13,15 @@
             shadow-md shadow-black">
             <li (click)="initSort('TOP')" class="w-full cursor-pointer   p-1"
             [ngClass]="sortType() === 'TOP' ? 'bg-gray-400' : ''">
-            <a>{{'categories.comments.TopComments' | translate}}</a>
+            <a>{{'categories.comments.topComments' | translate}}</a>
             </li>
             <li (click)="initSort('NEWEST')" class="w-full cursor-pointer p-1"
             [ngClass]="sortType() === 'NEWEST' ? 'bg-gray-400' : ''">
-            <a>{{'categories.comments.NewestFirst' | translate}}</a>
+            <a>{{'categories.comments.newestFirst' | translate}}</a>
             </li>
             <li (click)="initSort('OLDEST')" class="w-full cursor-pointer p-1"
             [ngClass]="sortType() === 'OLDEST' ? 'bg-gray-400' : ''">
-            <a>{{'categories.comments.OldestFirst' | translate}}</a>
+            <a>{{'categories.comments.oldestFirst' | translate}}</a>
             </li>
             </ul>
         </nav>

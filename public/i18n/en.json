@@ -11,24 +11,61 @@
     "auth": {
         "register": "Register",
         "logIn": "Log In",
+        "validators" : {
         "userNameRequired": "This username is required!",
         "userNameValid": "Write a valid username!",
         "emailRequired": "This email is required!",
         "emailValid": "Write a valid email!",
         "passwordRequired": "This password is required!",
         "passwordValid": "Write a valid password!",
+        "fullNameRequired":"enter your full name",
+        "phoneRequired":"enter your phone number",
+        "phoneValid":"write a valid phone number"
+    },
         "signGoogle": "Continue with Google",
         "or": "Or",
         "invalidLoginCredentials": "Invalid login credentials",
         "noAccount": "Don't have an account?",
         "yesAccount": "Already have an account?",
-        "createOne": "Create One"
+        "createOne": "Create One",
+        "placeHolder" : {
+        "userName" : "UserName",
+        "password" : "Password",
+        "email" : "Email Address",
+        "enterEmail" : "Enter a your Email",
+        "fullName" : "Full Name" ,
+        "phone" : "Enter Your Phone Number"
+        },
+        "label" : {
+        "phone" : "phone number"
+        }
     },
+
     "profile": {
         "signOut": "Sign Out",
         "history": "History",
         "booking": "Booking",
+        "orders" : "orders",
         "home": "Home Page"
+    },
+
+    "booking" : {
+    "title" : "booking",
+    "addCategory" : "add category" ,
+    "categoryErrorMsg":"You must enter the category type , you need for the booking.",
+    "optional" : "optional",
+    "validators" : {
+    "enterCategory" : "enter your category"
+    },
+    "placeHolder" : {
+    "enterCategory" : "Enter A Category" ,
+    "enterDetails" : "Enter Your Details"
+    },
+    "label" : {
+    "category" : "choose category:",
+    "categoryDetails" : "details about categories"
+    },
+    "btnName" : "booking now"
     },
 
     "categories": {
@@ -79,6 +116,10 @@
         "titleUxUi": "🎨 UX/UI Design",
         "titleDesign": "🖌 Branding & Graphic Design",
         "titleWebMobileApp": "💻 Web & Mobile Applications",
+        "p-reels" : "We bring your brand to life with stunning, high-quality video content. Our team creates:",
+        "p-uxUi" : "A seamless user experience is key to customer satisfaction. We provide:",
+        "p-design" : "We build strong, recognizable brands through:",
+        "p-webMobileApp" : "We develop robust, scalable, and user-friendly digital solutions, including:",
         "list": {
             "reelsOne": "Engaging Reels that capture attention and boost social media presence.",
             "reelsTwo": "Dynamic Motion Graphics that enhance storytelling and visual appeal.",

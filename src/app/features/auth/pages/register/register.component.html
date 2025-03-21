@@ -8,13 +8,13 @@
         class="w-full  text-gray-900 placeholder:text-gray-500
         input input-neutral focus:outline-mz-primary border-gray-300 focus:border-transparent
         border-2 bg-gray-50" 
-        placeholder="User Name" />
+        [placeholder]="'auth.placeHolder.userName' | translate" />
 
     @if(form.get('userName')?.errors && form.get('userName')?.touched){
     <div class="w-full flex flex-col justify-center items-start my-1 text-sm text-error 
     capitalize gap-1">
-      <p *ngIf="form.get('userName')?.getError('required')">{{'auth.userNameRequired' | translate}}</p>
-      <p *ngIf="form.get('userName')?.getError('maxlength')">{{'auth.userNameValid' | translate}}</p>
+      <p *ngIf="form.get('userName')?.getError('required')"> {{'auth.validators.userNameRequired' | translate}}</p>
+      <p *ngIf="form.get('userName')?.getError('maxlength')">{{'auth.validators.userNameValid' | translate}}</p>
     </div>
     }
     </div>

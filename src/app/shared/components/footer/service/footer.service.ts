@@ -24,7 +24,7 @@ export class FooterService {
       'uxUi',
       'webApplication',
       'mobileApplication',
-      'wordPress'
+      'wordpress'
     ]},
       {
       id : 3 , title : 'toolsUsed' ,  
