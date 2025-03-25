@@ -77,13 +77,16 @@ private getCategoriesValues() : void {
   }
   
   setPackageItemsInCategory() : void {
-    this.packageItems.forEach(item => {
-      this.categoriesValue.push(this.fb.group({
-        category: [item, Validators.required],
-        categoryDetails: [null]
-      }));
-    });
+    if(this.packageItemskay in localStorage){
+      this.packageItems.forEach(item => {
+        this.categoriesValue.push(this.fb.group({
+          category: [item, Validators.required],
+          categoryDetails: [null]
+        }));
+      });
+    }
   }
+
   getSelectValues (value : string) : void {
   this.categoriesValue.controls[this.selectIndex()!].get('category')?.setValue(value);
   this.openSelectCategory(null);
