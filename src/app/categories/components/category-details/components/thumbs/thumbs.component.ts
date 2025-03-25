@@ -2,7 +2,7 @@ import { Component, computed,  input, signal } from '@angular/core';
 import { ThumbsService } from './thumbs.service';
 import { AuthenticationService } from '../../../../../features/auth/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, EMPTY,  switchMap } from 'rxjs';
 import { SharedModule } from '../../../../../shared/modules/shared.module';
 import { CategoryLikeDislike } from '../../../../../shared/interfaces/thumbs';
@@ -60,7 +60,8 @@ export class ThumbsComponent {
   constructor(
   private thumbsService : ThumbsService,
   private authService : AuthenticationService,
-  private activatedRoute : ActivatedRoute
+  private activatedRoute : ActivatedRoute ,
+  private router : Router,
   ){
   this.initSubscription();
   this.initReactionsRealTime ();
@@ -88,9 +89,9 @@ export class ThumbsComponent {
   }
 
   toggleReaction(actionType : 'LIKE' | 'DISLIKE') : void {
-  this.userReaction.set(actionType === this.userReaction() ? null : actionType);
   const user_id = this.authService.CurrentUser()?.user_id ;
   if(user_id){
+    this.userReaction.set(actionType === this.userReaction() ? null : actionType);
     if(this.userReaction()){
       this.thumbsService.upsertReaction(this.categoryId(), user_id,actionType)
       .subscribe();
@@ -98,6 +99,8 @@ export class ThumbsComponent {
       this.thumbsService.removeReaction(this.categoryId(), user_id,)
       .subscribe()
     }
+  }else{
+    this.router.navigate([{outlets : {loginIn: 'loginIn' , register : null}}])
   }
 }
 
