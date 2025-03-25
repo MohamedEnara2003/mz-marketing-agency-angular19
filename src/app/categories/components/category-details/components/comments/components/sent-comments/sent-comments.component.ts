@@ -1,4 +1,4 @@
-import { Component,  effect,  ElementRef,  input, output, signal, viewChild, viewChildren} from '@angular/core';
+import { Component, input, output, signal} from '@angular/core';
 import { Comments } from '../../../../../../../shared/interfaces/categories';
 import { UserImageComponent } from "../../../../../../../shared/components/user-image/user-image.component";
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';

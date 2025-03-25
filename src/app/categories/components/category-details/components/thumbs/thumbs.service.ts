@@ -8,11 +8,11 @@ import { CategoryLikeDislike } from '../../../../../shared/interfaces/thumbs';
   providedIn: 'root'
 })
 export class ThumbsService {
-  TableName = signal<string>('');
+  private readonly TableName =  "category_like_dislike" ;
   private singleTonSupaBaseService = inject(SingleTonSupabaseService);
 
   upsertReaction(category_id: number, userId: string, reactionType: 'LIKE' | 'DISLIKE'): Observable<any> {
-  const promise = this.singleTonSupaBaseService.supabase.from(this.TableName())
+  const promise = this.singleTonSupaBaseService.supabase.from(this.TableName)
   .upsert(
     [{ category_id: category_id, user_id: userId, type: reactionType }],
     { onConflict: ['category_id','user_id'].toString() }
@@ -22,7 +22,7 @@ export class ThumbsService {
 
   getReactions(category_id : number)
   : Observable<CategoryLikeDislike[]> {
-  const promise = this.singleTonSupaBaseService.supabase.from(this.TableName())
+  const promise = this.singleTonSupaBaseService.supabase.from(this.TableName)
   .select('*')
   .eq('category_id', category_id);
   return from(promise).pipe(map((res ) => res.data!));
@@ -30,7 +30,7 @@ export class ThumbsService {
   
   getUserReaction(category_id : number , user_id: string)
   : Observable<{type : 'LIKE' | 'DISLIKE' } > {
-    const promise = this.singleTonSupaBaseService.supabase.from(this.TableName())
+    const promise = this.singleTonSupaBaseService.supabase.from(this.TableName)
         .select('type')
         .eq('category_id', category_id)
         .eq('user_id', user_id)
@@ -40,7 +40,7 @@ export class ThumbsService {
 
   removeReaction(categoryId : number , userId: string): Observable<void> {
     const promise = this.singleTonSupaBaseService.supabase
-    .from(this.TableName())
+    .from(this.TableName)
     .delete()
     .match({category_id : categoryId, user_id: userId })
     return from(promise).pipe(map(() => {}))
@@ -50,10 +50,10 @@ export class ThumbsService {
   listenToReactionsUpdate(): Observable<any> {
     return new Observable((observer) => {
       const subscription = this.singleTonSupaBaseService.supabase
-        .channel(`public:${this.TableName()}`)
+        .channel(`public:${this.TableName}`)
         .on(
           'postgres_changes',
-          { event: '*', schema: 'public', table: this.TableName() },
+          { event: '*', schema: 'public', table: this.TableName },
           (payload) => observer.next(payload)
         )
         .subscribe();

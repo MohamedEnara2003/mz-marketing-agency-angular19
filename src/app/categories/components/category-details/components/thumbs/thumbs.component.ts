@@ -1,9 +1,9 @@
-import { Component, computed, input, OnInit, signal } from '@angular/core';
+import { Component, computed,  input, signal } from '@angular/core';
 import { ThumbsService } from './thumbs.service';
 import { AuthenticationService } from '../../../../../features/auth/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, EMPTY, single, switchMap } from 'rxjs';
+import { combineLatest, EMPTY,  switchMap } from 'rxjs';
 import { SharedModule } from '../../../../../shared/modules/shared.module';
 import { CategoryLikeDislike } from '../../../../../shared/interfaces/thumbs';
 
@@ -46,11 +46,11 @@ import { CategoryLikeDislike } from '../../../../../shared/interfaces/thumbs';
   </li>
   `
 })
-export class ThumbsComponent implements OnInit{
-  reactionTableName = input.required<string>() ;
+export class ThumbsComponent {
 
   userId = signal<string>('') ;
   categoryId = signal<number>(0) ;
+
   userReaction = signal<'LIKE' | 'DISLIKE' | null>(null) ;
   reactions = signal<CategoryLikeDislike[]>([]);
 
@@ -64,10 +64,6 @@ export class ThumbsComponent implements OnInit{
   ){
   this.initSubscription();
   this.initReactionsRealTime ();
-  }
-
-  ngOnInit(): void {
-  this.thumbsService.TableName.set(this.reactionTableName())
   }
   
   private initSubscription() : void {
@@ -86,7 +82,7 @@ export class ThumbsComponent implements OnInit{
   }),
   takeUntilDestroyed()
   ).subscribe(([reactions , userReaction]) => {
-  this.reactions.set(reactions)
+  this.reactions.set(reactions);
   this.userReaction.set(userReaction?.type!);
   })
   }
