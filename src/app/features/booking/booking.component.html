@@ -4,10 +4,12 @@
     flex flex-col justify-center items-center gap-5">
 
     <header class="w-[90%] flex justify-between items-center ">
+
     <h1 class="card-title uppercase text-xl font-bold text-mz-primary">
     {{'booking.title' | translate}}
     </h1>
-    <a [routerLink]="['/',{outlets : {'booking-outlet':null}}]"> 
+
+    <a (click)="closeBookingModle()"> 
     <i class="fa-solid fa-close text-2xl text-gray-900"></i>
     </a>
     </header>

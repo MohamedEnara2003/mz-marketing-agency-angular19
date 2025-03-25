@@ -30,7 +30,7 @@
     <li class="text-mz-secound font-semibold line-through">{{package.price | currency : 'EGP'}}</li>
     </ul>
     
-    <button class="w-[100%] btn  bg-mz-secound border-mz-primary border-2 duration-200
+    <button (click)="getPackage(package)" class="w-[100%] btn  bg-mz-secound border-mz-primary border-2 duration-200
     hover:bg-transparent hover:text-mz-secound capitalize font-semibold text-gray-50  ">
     {{'package.getPackage' | translate}}
     </button>

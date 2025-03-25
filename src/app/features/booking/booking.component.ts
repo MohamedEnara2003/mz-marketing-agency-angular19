@@ -12,6 +12,8 @@ import { AuthenticationService } from '../auth/service/authentication.service';
 import { BookingsService } from './service/bookings.service';
 import { BookingSuccessComponent } from "./components/booking-success/booking-success.component";
 import { LanguageService } from '../../core/services/language.service';
+import { LocaleStorgeService } from '../../core/services/locale-storge.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +23,9 @@ import { LanguageService } from '../../core/services/language.service';
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements OnInit{
-languageService = inject(LanguageService) ;
+  private readonly packageItemskay = "PackageItemskay" ;
+  languageService = inject(LanguageService) ;
+
 form : FormGroup ;
 selectCategory = signal<Selection[]>([]);
 isSelect = signal<boolean>(false);
@@ -29,20 +33,34 @@ selectIndex = signal<number | null>(null);
 iscategoryValid = signal<boolean>(false);
 isBookingSuccess = signal<boolean>(false);
 
+
+get packageItems() : string[]{
+  return JSON.parse(this.localeStorgeService.getItem(this.packageItemskay)!)
+}
+
 get categoriesValue() : FormArray{
   return this.form.get('categories') as FormArray
 }
+
 constructor(
 private fb : FormBuilder ,
 private bookingsService: BookingsService ,
 private packageService : PackagesService ,
-private authService : AuthenticationService
+private authService : AuthenticationService,
+private localeStorgeService : LocaleStorgeService,
+private router : Router
 ){
   this.getCategoriesValues();
 }
 
 ngOnInit(): void {
   this.initFormGroup ();
+  this.setPackageItemsInCategory();
+}
+
+closeBookingModle () : void{
+  this.router.navigate(['/',{outlets : {'booking-outlet':null}}])
+  this.localeStorgeService.removeItem(this.packageItemskay)
 }
 
 private getCategoriesValues() : void {
@@ -58,9 +76,21 @@ private getCategoriesValues() : void {
   this.selectIndex.set(this.selectIndex() !== i ? i : null);
   }
   
+  setPackageItemsInCategory() : void {
+    this.packageItems.forEach(item => {
+      this.categoriesValue.push(this.fb.group({
+        category: [item, Validators.required],
+        categoryDetails: [null]
+      }));
+    });
+  }
   getSelectValues (value : string) : void {
   this.categoriesValue.controls[this.selectIndex()!].get('category')?.setValue(value);
   this.openSelectCategory(null);
+  }
+
+  removeCategory (index : number) : void {
+    this.categoriesValue.removeAt(index) ;
   }
 
   addCategory() : void {
@@ -69,10 +99,6 @@ private getCategoriesValues() : void {
     categoryDetails : [null] ,
     })
     this.categoriesValue.push(categories)
-  }
-
-  removeCategory (index : number) : void {
-  this.categoriesValue.removeAt(index) ;
   }
 
 private initFormGroup () : void {

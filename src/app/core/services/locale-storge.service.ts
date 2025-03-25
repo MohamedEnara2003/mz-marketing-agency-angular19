@@ -12,4 +12,7 @@ export class LocaleStorgeService {
   setItem(kay : string , value : string) : void {
   localStorage.setItem(kay , value);
   }
+  removeItem(kay : string) : void {
+  localStorage.removeItem(kay);
+  }
 }
