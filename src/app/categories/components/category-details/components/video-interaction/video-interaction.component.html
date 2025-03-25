@@ -1,27 +1,20 @@
-    <section class="w-full flex flex-col justify-center items-start gap-2 text-gray-50 capitalize ">
+    <section class="w-full flex flex-col justify-center items-start gap-5  sm:gap-4 text-gray-50 capitalize ">
 
-    <nav class="w-full flex flex-col md:flex-row justify-between items-start gap-2">
+    <nav class="w-full flex flex-col md:flex-row justify-between items-start gap-4 sm:gap-2">
 
     <div class="font-semibold">
     {{title()}}
     </div>
     
-    <ul class="flex justify-center items-center text-mz-primary gap-5 capitalize font-[500]" >
-    <li title="dislike" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <a  class="cursor-pointer text-xs">
-    <i class="fa-regular fa-thumbs-down text-xl"></i> {{0}}
-    </a>
-    </li>
-
-    <li title="like" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <a  class="cursor-pointer text-xs">
-    <i class="fa-regular fa-thumbs-up text-xl"></i> {{0}}
-    </a>
-    </li>
-
-    <li title="share" class="hover:bg-zinc-300 hover:text-black rounded duration-200 p-1">
-    <a  class="cursor-pointer ">
-    <i class="fa-solid fa-bookmark"></i> {{'categories.save' | translate}}
+    <ul class="flex justify-center items-center text-gray-100 gap-5 capitalize font-[500]" >
+    <app-thumbs  
+    class="flex justify-center items-center gap-5"
+    reactionTableName="category_like_dislike"
+    />
+    <li title="share" class="">
+    <a class="cursor-pointer ">
+    <i class="fa-regular fa-bookmark"></i> 
+    {{'categories.save' | translate}}
     </a>
     </li>
     </ul>

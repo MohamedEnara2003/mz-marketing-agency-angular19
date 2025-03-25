@@ -1,14 +1,13 @@
-import { Component,  ElementRef,  input, output, signal, viewChildren} from '@angular/core';
+import { Component,  effect,  ElementRef,  input, output, signal, viewChild, viewChildren} from '@angular/core';
 import { Comments } from '../../../../../../../shared/interfaces/categories';
 import { UserImageComponent } from "../../../../../../../shared/components/user-image/user-image.component";
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { UserData } from '../../../../../../../core/models/user.model';
 import { DayJsService } from '../../../../../../service/day-js.service';
 
-
 @Component({
   selector: 'app-sent-comments',
-  imports: [UserImageComponent , SharedModule],
+  imports: [UserImageComponent, SharedModule],
   templateUrl: './sent-comments.component.html',
   styleUrl: './sent-comments.component.css'
 })
@@ -26,10 +25,7 @@ export class SentCommentsComponent {
   updatedComment = output<Comments>() ;
   isEdit_id = signal<number | null>(null);
   
-  inputRef = viewChildren<ElementRef<HTMLInputElement>>('inputRef');
-
-  constructor(private dayJsService : DayJsService){
-  }
+  constructor(private dayJsService : DayJsService){}
 
   formatTime(timestamp: string): string {
   return this.dayJsService.formatTime(timestamp)
@@ -54,7 +50,7 @@ export class SentCommentsComponent {
   this.editCommentValue.set(newComment);
   }
   
-  initEditComment(id : number , comment : string ) : void {
+  initEditComment(id : number , comment : string) : void {
   this.closeModleEditActive();
   this.isEdit_id.set(id);
   this.editCommentValue.set(comment);

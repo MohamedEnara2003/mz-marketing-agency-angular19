@@ -19,6 +19,7 @@ export class CategoriesService {
   })
   );
   }
+
   getCategoriesValue() : Observable<string[]> {
   return this.singleTonSupaBaseService.getData(this.Table).pipe(
   map((data : unknown) => {
@@ -35,4 +36,5 @@ export class CategoriesService {
   getCategoryById(id : number) : Observable<CategoriesType> {
   return this.singleTonSupaBaseService.getDataById(this.Table , id)
   }
+
 }

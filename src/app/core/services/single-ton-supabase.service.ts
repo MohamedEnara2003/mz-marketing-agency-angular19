@@ -26,14 +26,14 @@ export class SingleTonSupabaseService {
   case "TOP":  promise ;
   }
   }
-
-  return from(promise).pipe(map((res) => res.data!)) ;
+  return from(promise).pipe(map((res) => res.data!));
   }
 
   getDataById<G>(tableName : string , id : number) : Observable<G> {
   const promise = this.supabase.from(tableName).select('*').eq('id' , id).single()
   return from(promise).pipe(map((res) => res.data!)) ;
   }
+
 
   postData<G>(tableName : string , data : G) : Observable<G> {
   const promise = this.supabase.from(tableName).insert(data).select('*').single()
@@ -50,5 +50,5 @@ export class SingleTonSupabaseService {
   return from(promise).pipe(map(() =>{})) ;
   }
 
-
+ 
 }

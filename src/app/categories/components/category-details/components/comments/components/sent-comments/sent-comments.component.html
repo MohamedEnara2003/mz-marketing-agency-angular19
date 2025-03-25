@@ -24,7 +24,8 @@
         <input #inputRef type="text" [ngModel]="isEdit_id() === data.id ? editCommentValue() : null"
         (ngModelChange)="changeCommentValue($event)"
         [placeholder]="data.comment" [disabled]="isEdit_id() === data.id ? false : true"
-        class="w-full outline-none  placeholder:text-gray-50 text-sm py-2"
+        class="w-full outline-none  placeholder:text-gray-50 text-sm py-2 placeholder:font-[400] 
+        font-[400]  text-gray-100 "
         
         />
     </div>
@@ -62,21 +63,18 @@
 
 
     <ul *ngIf="isEdit_id() === data.id"
-    class="w-full flex justify-end items-center gap-5 capitalize">
-        <li (click)="cancelComment()"   ><a>{{'categories.comments.cancel' | translate}}</a></li>
-        <li (click)="editComment(data)" ><a>{{'categories.comments.editComment' | translate}}</a></li>
+    class="w-full flex justify-end items-center gap-5 capitalize text-sm ">
+    <li class="hover:opacity-70 duration-200" (click)="cancelComment()"  >
+        <a>{{'categories.comments.cancel' | translate}}</a>
+    </li>
+    <li class="hover:opacity-70 duration-200" (click)="editComment(data)">
+        <a>{{'categories.comments.editComment' | translate}}</a>
+    </li>
     </ul>
 
     <ul *ngIf="!isEdit_id()"
     class="w-[95%] flex justify-start items-center gap-5 capitalize mx-[5%] m-1">
-    <li title="dislike" class=" flex justify-center items-center gap-4">
-        <button type="button" class=" text-xs">
-        <i class="fa-regular fa-thumbs-down text-xl"></i>  {{0}}
-        </button>
-        <button type="button" class=" text-xs">
-            <i class="fa-regular fa-thumbs-up text-xl"></i> {{0}}
-        </button>
-    </li>
+
     </ul>
 
     </div>

@@ -7,10 +7,20 @@
   --color-mz-secound: #434F62;
   --breakpoint-xs: 23rem;
 }
-
+ *{
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+}
 @keyframes upAndDown {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
 }
 
 @layer components {
@@ -30,5 +40,8 @@
   }
   .animate-updown {
     animation: upAndDown 2s infinite ease-in-out;
+  }
+  .animate-shake {
+    animation: shake 0.3s  ease-in-out;
   }
 }
