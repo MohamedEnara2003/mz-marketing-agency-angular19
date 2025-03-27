@@ -6,7 +6,7 @@ import { SharedModule } from '../../modules/shared.module';
   imports: [SharedModule],
   template : `
   <img routerLink="'/'" [src]="logoSrc" alt="logo" [ngClass]="logoClass()"
-  class="cursor-pointer">
+  class="animate-up cursor-pointer hover:opacity-70 duration-200">
   `,
 })
 export class LogoComponent {

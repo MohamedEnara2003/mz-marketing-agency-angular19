@@ -10,6 +10,7 @@
 #7- npm i swiper 
 #8- npm i lottie-web
 #8- npm install @lordicon/element
+#9- npm install gsap
 ## Back End 
 #- npm install @supabase/supabase-js
 #- npm i @supabase/gotrue-js@2.61.0

@@ -1,7 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, input, signal, viewChild } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA,   ElementRef,  input ,  viewChild } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
-import { CategoriesService } from '../../service/categories.service';
-import {takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SwiperContainer } from 'swiper/element';
 
 
@@ -14,15 +12,10 @@ import { SwiperContainer } from 'swiper/element';
 
 })
 export class CategoryHeaderComponent {
-  queryCategory = input.required<string | undefined>()
+  queryCategory = input.required<string | undefined>();
   categoriesValues = input.required<string[]>();
-  swiperRef = viewChild<ElementRef<SwiperContainer>>('swiperRef');
 
-  sliderNext() :void{
-  this.swiperRef()?.nativeElement.swiper.slideNext();
-  }
-  
-  sliderPrevious() :void{
-    this.swiperRef()?.nativeElement.swiper.slidePrev();
-  }
+  sortedCategoryValues = computed(() => 
+  this.categoriesValues().sort((a , b) => a === this.queryCategory() ? -1 : 0)) ;
+  swiperRef = viewChild<ElementRef<SwiperContainer>>('swiperRef');
 }

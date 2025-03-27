@@ -8,7 +8,7 @@
 <ul [ngClass]="categoryData().length > 0 ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10' : ''">
 @for (data of categoryData(); track data.id) {
     <div [routerLink]="['/categories/watch',data.category]" [queryParams]="{id : data.id}"
-    class=" rounded-2xl  cursor-pointer flex justify-center items-center  border-1 border-mz-primary">
+    class="rounded-2xl  cursor-pointer flex justify-center items-center  border-1 border-mz-primary">
 @defer (on viewport) {
     <app-category-view 
     [options]="{
@@ -16,8 +16,8 @@
     type : data.type,
     poster : data.poster ,
     class : data.category === 'reels' ? 
-    'w-[220px] h-[320px] object-cover rounded-2xl' :
-    'h-[200px] w-[300px] object-cover rounded-2xl',
+    'w-[220px] h-[320px] object-cover rounded-2xl animate-down' :
+    'h-[200px] w-[300px] object-cover rounded-2xl animate-down',
     muted : true,
     }"
     

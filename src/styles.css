@@ -5,11 +5,11 @@
 @theme {
   --color-mz-primary: #4C6793;
   --color-mz-secound: #434F62;
-  --breakpoint-xs: 23rem;
+  --breakpoint-xs: 22.5rem;
 }
  *{
   font-family: "Fira Sans", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 @keyframes upAndDown {
   0%, 100% { transform: translateY(0); }
@@ -21,6 +21,20 @@
   25% { transform: translateX(-2px); }
   50% { transform: translateX(2px); }
   75% { transform: translateX(-2px); }
+}
+
+@keyframes sideLeft {
+  0%,100% { transform: translateX(-400px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1;}
+}
+
+@keyframes down {
+  0%,100% { transform: translateY(-10px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1;}
+}
+@keyframes up {
+  0%,100% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0px); opacity: 1;}
 }
 
 @layer components {
@@ -43,5 +57,14 @@
   }
   .animate-shake {
     animation: shake 0.3s  ease-in-out;
+  }
+  .animate-sideLeft {
+    animation: sideLeft 0.8s  ease-in-out;
+  }
+  .animate-down {
+    animation:  down 0.7s  ease-in-out;
+  }
+  .animate-up {
+    animation:  up 0.7s  ease-in-out;
   }
 }

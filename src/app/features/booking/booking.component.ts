@@ -7,7 +7,7 @@ import { Selection } from '../../shared/interfaces/shared';
 import { of, switchMap, } from 'rxjs';
 import { SelectComponent } from "../../shared/components/select/select.component";
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BookingType, CategoryBookedType } from '../../shared/interfaces/bookings';
+import { BookingType} from '../../shared/interfaces/bookings';
 import { AuthenticationService } from '../auth/service/authentication.service';
 import { BookingsService } from './service/bookings.service';
 import { BookingSuccessComponent } from "./components/booking-success/booking-success.component";
@@ -30,7 +30,8 @@ form : FormGroup ;
 selectCategory = signal<Selection[]>([]);
 isSelect = signal<boolean>(false);
 selectIndex = signal<number | null>(null);
-iscategoryValid = signal<boolean>(false);
+isCategoryValid = signal<boolean>(false);
+
 isBookingSuccess = signal<boolean>(false);
 
 
@@ -158,7 +159,7 @@ onSubmit () : void {
   this.setupExistingUserData();
   this.isBookingSuccess.set(true);
   }else{
-  this.iscategoryValid.set(true)
+  this.isCategoryValid.set(true)
   }
 }
 }

@@ -1,21 +1,18 @@
-<nav class="relative w-full text-gray-50 capitalize font-bold text-lg shadow 
-flex justify-center items-center"> 
-
-
-<button (click)="sliderPrevious()" 
-type="button" class="hover:bg-mz-secound rounded  duration-200  absolute left-0">
-<i class="fa-solid fa-angle-left text-2xl"></i>
-</button>
+<header class="animate-up relative w-full  text-gray-50 capitalize font-bold text-lg shadow 
+flex justify-center items-center rounded"> 
 
 
 <swiper-container
 #swiperRef
-slides-per-view="2"
+slides-per-view="3"
 [parallax]="true"
 [speed]="200"
-class="w-[80%]" >
+[observer]="true"
+[observeParents]="true"
+class="w-full bg-mz-secound rounded" 
+>
 
-@for (category of categoriesValues(); track category) {
+@for (category of sortedCategoryValues(); track category) {
 <swiper-slide [routerLink]="['/categories/category', category]" 
 class="rounded flex justify-center items-center"
 [ngClass]="queryCategory() === category ? 
@@ -32,11 +29,4 @@ class="rounded flex justify-center items-center"
 }
 </swiper-container>
 
-
-<button (click)="sliderNext()"
-type="button" class="hover:bg-mz-secound rounded duration-200  absolute right-0 ">
-    <i class="fa-solid fa-angle-right text-2xl"></i>
-</button>
-
-
-</nav>
+</header>

@@ -22,7 +22,7 @@ export const routes: Routes = [
     {path : 'about' ,  data : {headerHide : true} , 
     loadComponent : () => import('./features/about/page/about.component').then((c => c.AboutComponent))
     },
-    {path : 'contact',
+    {path : 'contact', data : {headerHide : true} , 
     loadComponent : () => import('./features/contact/page/contact.component').then((c => c.ContactComponent))
     },
     {path : 'register', component : RegisterComponent,outlet : "register"},

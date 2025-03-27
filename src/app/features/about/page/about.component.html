@@ -1,10 +1,10 @@
-<section class="w-full flex flex-col justify-center items-center">
+<section class="w-full flex flex-col justify-center items-center overflow-hidden">
 
 <div class="w-[95%] flex flex-col justify-center items-center gap-5 mt-5">
 
-
-<div class="w-full flex flex-col md:flex-row flex-wrap justify-evenly items-center ">
-<div class="w-full md:w-1/2 flex flex-col justify-center items-start gap-4 ">
+<div class="w-full flex  md:flex-row flex-col-reverse flex-wrap justify-evenly items-center ">
+    
+<div  class="animate-sideLeft w-full md:w-1/2 flex flex-col  justify-center items-center md:items-start gap-4 ">
     <h1 class="text-xl md:text-2xl text-left capitalize text-gray-50 font-semibold">
     {{'about.ourAbout' | translate}} 
     <span class="font-extrabold text-mz-primary text-2xl md:text-3xl">{{'about.mz' | translate}}</span>
@@ -14,20 +14,20 @@
     {{'about.paragraph' | translate}}
     </p>
 </div>
-<app-astronaut-image class="w-full md:w-1/2"/>
+<app-astronaut-image  class="astronaut-component w-full md:w-1/2" />
 </div>
 
-    <div class="w-full text-3xl text-center capitalize text-gray-100 font-semibold">
+    <div class="animate-down  w-full text-3xl text-center capitalize text-gray-100 font-semibold">
     {{'about.ourServices' | translate}} 
     </div>
 
     @for (service of ourServicesData(); track service.id) {
     @defer (on viewport) {
-    <app-our-services class="w-full" 
-    [serviceTitle]="service.title"
-    [serviceParagraph]="service.paragraph"
-    [listOurService]="service.list"
-    />
+        <app-our-services  class="w-full animate-sideLeft" [ngClass]="service.id.toString()"
+        [serviceTitle]="service.title"
+        [serviceParagraph]="service.paragraph"
+        [listOurService]="service.list"
+        />
     }@placeholder {
     <app-loading loadingClass="h-[40vh]"/>
     }

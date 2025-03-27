@@ -29,6 +29,7 @@
     "daisyui": "^5.0.0",
     "dayjs": "^1.11.13",
     "dayjs-esm": "^0.0.1",
+    "gsap": "^3.12.7",
     "isomorphic-ws": "^5.0.0",
     "lottie-web": "^5.12.2",
     "ngx-translate-messageformat-compiler": "^7.1.0",

@@ -3,7 +3,8 @@
       class="w-[90%] flex flex-col justify-center items-center gap-2">
 
       <app-form-feild [form]="form" class="w-full"/>
-      <div *ngIf="logInErrorMsg()" class="w-full">
+
+      <div *ngIf="logInErrorMsg()" class="w-full flex justify-start items-center">
       <p class="text-error capitalize text-sm text-left">
       {{ `auth.${logInErrorMsg()}` | translate}}
       </p>

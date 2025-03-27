@@ -4,6 +4,7 @@
     'relative' : hidelayout() ,
 }">
     <nav class="w-[97%] flex flex-wrap justify-between items-center  ">
+
     <app-logo [logoClass]="hidelayout() ? 'w-28 sm:w-40' : 'w-34 sm:w-40' "/>
 
     <app-links class="hidden lg:inline-block"
@@ -14,6 +15,7 @@
     iconClass="text-mz-primary"
     styleActiveClass="bg-mz-primary rounded-3xl "
     />
+
 
 <div class="flex justify-center items-center gap-2 sm:gap-4">
         <div *ngIf="hidelayout()">

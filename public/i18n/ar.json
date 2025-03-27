@@ -30,7 +30,7 @@
     },
         "signGoogle": "المتابعة باستخدام Google",
         "or": "أو",
-        "invalidLoginCredentials": "بيانات تسجيل الدخول غير صحيحة",
+        "Invalid login credentials": "بيانات تسجيل الدخول غير صحيحة",
         "noAccount": "ليس لديك حساب؟",
         "yesAccount": "هل لديك حساب بالفعل؟",
         "createOne": "إنشاء حساب",

@@ -22,8 +22,6 @@ export class SingleTonSupabaseService {
   case "NEWEST": promise.order('created_at' , {ascending : false});
   break;
   case "OLDEST": promise.order('created_at' , {ascending : true});
-  break;
-  case "TOP":  promise ;
   }
   }
   return from(promise).pipe(map((res) => res.data!));

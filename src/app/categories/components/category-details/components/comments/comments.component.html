@@ -4,17 +4,20 @@
     <h1 class="text-xl font-bold">{{countComments()}} {{'categories.comments.comments' | translate}}</h1>
 
     <div class="w-30 relative flex flex-col justify-start items-start gap-2 ">
-        <button (click)="openSort()" type="button" class="cursor-pointer capitalize  hover:opacity-50 duration-200"> 
-        <i class="fa-solid fa-bars-staggered"></i>
+
+        <button (click)="openSort()" type="button" 
+        class="cursor-pointer capitalize  hover:opacity-50 duration-200 flex justify-center items-center gap-1"> 
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
+        class="size-6 text-gray-50">
+                <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm8.25 5.25a.75.75 0 0 1 .75-.75h8.25a.75.75 0 0 1 0 1.5H12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+        </svg>
         {{'categories.comments.sortBy' | translate}}
         </button>
+        
         <nav>
-            <ul *ngIf="isSortLoad()" class="absolute bg-white  text-gray-900 z-10 flex flex-col justify-between items-start
+            <ul *ngIf="isSortLoad()" class="absolute bg-white  text-gray-700 z-10 
+            flex flex-col justify-between items-start 
             shadow-md shadow-black">
-            <li (click)="initSort('TOP')" class="w-full cursor-pointer   p-1"
-            [ngClass]="sortType() === 'TOP' ? 'bg-gray-400' : ''">
-            <a>{{'categories.comments.topComments' | translate}}</a>
-            </li>
             <li (click)="initSort('NEWEST')" class="w-full cursor-pointer p-1"
             [ngClass]="sortType() === 'NEWEST' ? 'bg-gray-400' : ''">
             <a>{{'categories.comments.newestFirst' | translate}}</a>
@@ -47,11 +50,11 @@
     
     <form *ngIf="isFocus()" class="w-full flex flex-col gap-2" (ngSubmit)="addComment()">
 
-    <input #inputRef type="text" name="input comment" id="comments" [(ngModel)]="commentValue" (ngModelChange)="changeValue($event)"
-    class="w-full focus-within:border-b-gray-50 outline-none text-gray-50
+    <input  #inputRef type="text" name="input comment" id="comments" [(ngModel)]="commentValue" (ngModelChange)="changeValue($event)"
+    class="animate-down w-full focus-within:border-b-gray-50 outline-none text-gray-50
     border-b-1 border-gray-500 ">
 
-    <div class="w-full flex justify-end items-center gap-5 font-semibold">
+    <div class="animate-up w-full flex justify-end items-center gap-5 font-semibold">
     <button type="button" (click)="initComment()"
     class="cursor-pointer capitalize text-sm hover:opacity-50 duration-200 text-gray-50">
     {{'categories.comments.cancel' | translate}}

@@ -4,13 +4,17 @@
     <section *ngIf="categoryDataById()" 
     class="w-[95%] flex flex-wrap flex-col md:flex-row justify-between items-start my-5">
 
-    <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 ">
-        <div class="rounded-box shadow-2xl shadow-black border-1 border-mz-primary 
-        flex justify-center items-center w-full "
-        [ngClass]="categoryDataById()?.category === 'reels' ? 'w-auto h-[70vh] sm:w-full sm:h-[90vh]' 
-        : 'w-full h-auto'">
+    <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 mt-3 ">
         
-        <div class="h-full">
+        <div class="relative animate-down rounded-box shadow-2xl shadow-black border-1 border-mz-primary 
+        flex items-center md:w-full justify-center"
+        [ngClass]="categoryDataById()?.category === 'reels' ? 
+        '' :
+        ''">
+
+        <img *ngIf="categoryDataById()?.poster" [src]="categoryDataById()?.poster" 
+        alt="poster-video-shadow"
+        class="hidden md:inline-block  w-full h-[75vh] object-cover opacity-8  absolute left-0 top-0 ">
 
         @defer (on viewport) {
         <app-category-view 
@@ -21,8 +25,8 @@
         poster : categoryDataById()?.poster ,
         controls : true ,
         class : categoryDataById()?.category === 'reels' ? 
-        'w-full h-full object-cover' 
-        : 'w-full h-full rounded-box object-cover'
+        'w-[320px] h-[75vh] object-cover z-20 rounded-box' :
+        'w-full  rounded-box object-cover'
         }"
         />
     }@placeholder {
@@ -30,12 +34,11 @@
         <span class="loading loading-bars loading-xl  text-mz-primary "></span>
     </div>
     }
-        </div>
+     
         </div>
 
         <app-video-interaction class="w-full"
         [title]="categoryDataById()?.title!"
-        [views]="this.videoViews()"
         [created_at]="categoryDataById()?.created_at!"
         />
         <app-details-aside class="lg:hidden w-full "

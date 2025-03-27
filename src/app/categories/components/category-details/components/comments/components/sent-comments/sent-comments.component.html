@@ -1,7 +1,7 @@
 <section class="w-full flex flex-col justify-center items-start gap-5">
     @for (data of comments(); track data.id ; let index = $index) {
     @defer (on viewport) {
-    <div class="w-full flex-col justify-between items-center bg-mz-secound p-2 rounded
+    <div class="animate-down w-full flex-col justify-between items-center bg-mz-secound p-2 rounded
     shadow-md shadow-black"
     [ngClass]="isEdit_id() !== data.id && isEdit_id() !== null ? 'opacity-25' : ''">
     <div class="w-full flex justify-between items-start gap-2 ">

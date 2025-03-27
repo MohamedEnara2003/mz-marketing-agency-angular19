@@ -30,7 +30,7 @@
     },
         "signGoogle": "Continue with Google",
         "or": "Or",
-        "invalidLoginCredentials": "Invalid login credentials",
+        "Invalid login credentials": "Invalid login credentials",
         "noAccount": "Don't have an account?",
         "yesAccount": "Already have an account?",
         "createOne": "Create One",

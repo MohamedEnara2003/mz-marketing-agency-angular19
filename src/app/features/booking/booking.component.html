@@ -1,7 +1,7 @@
-<section class="w-full fixed left-0 top-0 h-screen flex justify-center items-center z-10">
+<section class="animate-down w-full fixed left-0 top-0 h-screen flex justify-center items-center z-10">
 
     <nav class="w-[95%] sm:w-160 h-120  bg-gray-50 rounded shadow-md shadow-black z-30
-    flex flex-col justify-center items-center gap-5">
+    flex flex-col justify-center items-center gap-2">
 
     <header class="w-[90%] flex justify-between items-center ">
 
@@ -15,7 +15,7 @@
     </header>
 
     <form *ngIf="isBookingSuccess() !== true" [formGroup]="form" 
-    class="w-[90%]  h-[80%] flex flex-col justify-center items-center gap-5 "
+    class="w-[90%]  h-[80%] flex flex-col justify-center items-center  "
     (ngSubmit)="onSubmit()">
     <fieldset class="w-full overflow-y-scroll"> 
     <div class="w-[95%] flex flex-col justify-center items-center gap-5 mx-[2.5%]">
@@ -28,7 +28,7 @@
     <i class="fa-solid fa-plus"></i>
     {{'booking.addCategory' | translate}}
     </button>
-    <p *ngIf="categoriesValue.controls.length === 0 && iscategoryValid()"
+    <p *ngIf="categoriesValue.controls.length === 0 && isCategoryValid()"
     class="text-sm text-error capitalize">
     {{'booking.categoryErrorMsg' | translate}}
     </p>
@@ -40,7 +40,7 @@
     <section class="w-full flex  flex-col justify-center items-start gap-5 border-1 border-mz-primary p-3
     rounded" [formGroupName]="i"> 
 
-    <div class="w-full  flex  flex-col justify-center items-start gap-3 ">  
+    <div class="w-full  flex  flex-col justify-center items-start gap-2 ">  
     <div class="w-full flex justify-between items-center">
     <label for="Full Name" class="capitalize font-semibold text-gray-950">
     {{'booking.label.category' | translate}} {{i + 1}}
@@ -67,7 +67,7 @@
     
     </div>
     @if (
-    categoriesValue.controls[i].get('category')?.invalid && iscategoryValid()
+    categoriesValue.controls[i].get('category')?.invalid && isCategoryValid()
     ){
     <div class="w-full flex flex-col gap-1 capitalize  text-sm text-error">
     <p *ngIf="categoriesValue.controls[i].get('category')?.getError('required')">
