@@ -6,6 +6,7 @@ import { LanguageService } from './core/services/language.service';
 import { AuthenticationService } from './features/auth/service/authentication.service';
 import { authClient } from '../environments/environment';
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],

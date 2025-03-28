@@ -49,12 +49,9 @@ export class CategoryViewComponent {
   poster? : string ,
   }>()
 
-
-
   videoElement  = viewChild<ElementRef<HTMLVideoElement>>('videoElement') ;
   duration = signal<number>(0);
   currentTime = signal<number>(0);
-
   
   get videoRef() : HTMLVideoElement {
     return this.videoElement()?.nativeElement! 

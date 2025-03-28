@@ -1,7 +1,7 @@
-import { Component, ElementRef,  signal, viewChildren} from '@angular/core';
+import { Component, effect, ElementRef,  OnInit,  signal, viewChildren} from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest,  EMPTY,  switchMap } from 'rxjs';
+import {  EMPTY,  switchMap } from 'rxjs';
 import { CategoriesService } from '../../service/categories.service';
 import { CategoriesType } from '../../../shared/interfaces/categories';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,6 +11,7 @@ import { CommentsComponent } from "./components/comments/comments.component";
 import { DetailsAsideComponent } from "./components/details-aside/details-aside.component";
 import { CategoryViewComponent } from "../category-view/category-view.component";
 import { LoadingComponent } from "../../../shared/components/loading/loading.component";
+import { LocaleStorgeService } from '../../../core/services/locale-storge.service';
 
 
 @Component({
@@ -23,10 +24,10 @@ import { LoadingComponent } from "../../../shared/components/loading/loading.com
   templateUrl: './category-details.component.html',
   styleUrl: './category-details.component.css'
 })
-export class CategoryDetailsComponent {
+export class CategoryDetailsComponent{
 
   categoryDataById = signal<CategoriesType | null>(null);
-  catagoryParameter = signal<string>('');
+  queryCategory  = signal<string>('');
   queryId = signal<number>(0);
   videoUrl = signal<SafeResourceUrl>('');
 
@@ -37,16 +38,22 @@ export class CategoryDetailsComponent {
   private router : Router ,
   private categoriesService : CategoriesService,
   private sanitizer : DomSanitizer,
+  private localeStorgeService : LocaleStorgeService
   ){
-  this.initSubscription ();
+  effect(() => {
+  this.continionVideoDetails();
+  })
+  this.initSubscription();
   }
 
+  
+  
   private initSubscription () : void {
-  combineLatest([ this.activtedRoute.paramMap, this.activtedRoute.queryParamMap]).pipe(
-  switchMap(([paramMap ,queryParamsMap]) => {
-  const category = paramMap.get('category')!;
-  const id = +queryParamsMap.get('id')!;
-  this.catagoryParameter.set(category);
+  this.activtedRoute.queryParamMap.pipe(
+  switchMap((queryParamMap) => {
+  const category = queryParamMap.get('category')!;
+  const id = +queryParamMap.get('id')!;
+  this.queryCategory.set(category);
   if(!id){
   this.router.navigate(['/categories/watch/', category], {queryParams : {id : 2}});
   return EMPTY;
@@ -68,6 +75,8 @@ export class CategoryDetailsComponent {
   })
   }
   
-
+  private continionVideoDetails() : void {
+  this.localeStorgeService.setItem('VideoDetailsKay', this.queryId().toString())
+  }
 }
 

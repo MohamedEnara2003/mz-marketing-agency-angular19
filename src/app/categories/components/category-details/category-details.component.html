@@ -34,22 +34,17 @@
         <span class="loading loading-bars loading-xl  text-mz-primary "></span>
     </div>
     }
-     
-        </div>
+    </div>
 
         <app-video-interaction class="w-full"
         [title]="categoryDataById()?.title!"
         [created_at]="categoryDataById()?.created_at!"
         />
-        <app-details-aside class="lg:hidden w-full "
-        [category]="{id : queryId() , category : catagoryParameter()}"
-        />
+        <app-details-aside class="lg:hidden w-full "/>
         <app-comments class="w-full" />
         </div>
     
-        <app-details-aside class="hidden lg:inline-block md:w-[30%]"
-        [category]="{id : queryId() , category : catagoryParameter()}"
-        />
+        <app-details-aside class="hidden lg:inline-block md:w-[30%]"/>
 
     </section>
     

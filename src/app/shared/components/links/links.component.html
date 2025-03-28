@@ -1,7 +1,9 @@
 <ul  [ngClass]="ulClass() ? ulClass() : 'w-full h-full flex justify-evenly items-center  m-1'">
     @for (link of links(); track $index) {
 
-    <li [routerLink]="link.path"  [ngClass]="linksClass()"
+    <li [routerLink]="link.path"  
+    [queryParamsHandling]="link.id !== 3 ? '' :'merge'" 
+    [ngClass]="linksClass()"
 
     [routerLinkActive]="styleActiveClass()">
 

@@ -1,12 +1,12 @@
 <aside class="w-full flex flex-col  gap-1">
 
     <app-category-header class="w-full"
-    [queryCategory]="category().category"
+    [queryCategory]="queryParams()?.category"
     [categoriesValues]="categoriesValues()"
     />
 
     <app-related class="w-full"
     [categoryRelated]="categoryData()"
-    [categoryRelatedData]="category()"
+    [categoryRelatedData]="queryParams()!"
     />
 </aside>

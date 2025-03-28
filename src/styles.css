@@ -37,6 +37,11 @@
   100% { transform: translateY(0px); opacity: 1;}
 }
 
+@keyframes moveZ {
+  0%,100% {transform: translateX(-300px); transform: translateY(-50px)  ; scale: 2}
+  100% { transform: translateX(0px) ; transform: translateY(0px) ; scale: 1}
+}
+
 @layer components {
   .icons {
   @apply sm:text-xl   cursor-pointer ;
@@ -66,5 +71,8 @@
   }
   .animate-up {
     animation:  up 0.7s  ease-in-out;
+  }
+  .animate-moveZ {
+    animation:  moveZ 0.7s alternate  ease-in-out;
   }
 }

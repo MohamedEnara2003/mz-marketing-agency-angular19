@@ -1,4 +1,4 @@
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA,   ElementRef,  input ,  viewChild } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA,   ElementRef,  input ,  signal,  viewChild } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { SwiperContainer } from 'swiper/element';
 
@@ -14,7 +14,7 @@ import { SwiperContainer } from 'swiper/element';
 export class CategoryHeaderComponent {
   queryCategory = input.required<string | undefined>();
   categoriesValues = input.required<string[]>();
-
+  pathname = signal<string>(window.location.pathname) ;
   sortedCategoryValues = computed(() => 
   this.categoriesValues().sort((a , b) => a === this.queryCategory() ? -1 : 0)) ;
   swiperRef = viewChild<ElementRef<SwiperContainer>>('swiperRef');

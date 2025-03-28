@@ -1,7 +1,8 @@
 <section class="w-full  flex flex-col justify-center items-start gap-5 my-2">
 
     @for (data of  categoryRelated(); track data.id ; let i = $index) {
-    <div [routerLink]="['/categories/watch', data.category]" [queryParams]="{id : data.id}"
+    <div [routerLink]="['/categories/watch']" 
+    [queryParams]="{id : data.id}" queryParamsHandling="merge"
     class="w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
     gap-2 py-2  text-xs capitalize font-semibold bg-black"
     [ngClass]="categoryRelatedData().id === data.id ? 'bg-[#282828]' : ''">
