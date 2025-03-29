@@ -4,8 +4,13 @@ import { SharedModule } from '../../modules/shared.module';
 @Component({
   selector: 'app-loading',
   imports: [SharedModule],
-  templateUrl: './loading.component.html',
-  styleUrl: './loading.component.css'
+  template : `
+  <div class="w-full flex justify-center items-center "
+  [ngClass]="loadingClass() ? loadingClass() : 'h-[80vh]'">
+  <span class="loading loading-spinner  w-24 text-mz-primary"></span>
+  </div>
+  `
+
 })
 export class LoadingComponent {
   loadingClass = input<string>()

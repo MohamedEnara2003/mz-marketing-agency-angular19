@@ -1,12 +1,13 @@
-<section class="w-full  flex flex-col justify-center items-start gap-5 my-2">
+<section class="w-full  flex flex-col justify-center items-center gap-5 my-2">
 
     @for (data of  categoryRelated(); track data.id ; let i = $index) {
+    @defer (on viewport) {
     <div [routerLink]="['/categories/watch']" 
     [queryParams]="{id : data.id}" queryParamsHandling="merge"
-    class="w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
+    class="animate-up w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
     gap-2 py-2  text-xs capitalize font-semibold bg-black"
-    [ngClass]="categoryRelatedData().id === data.id ? 'bg-[#282828]' : ''">
-
+    [ngClass]="categoryRelatedData().id === data.id ? 'bg-zinc-800' : ''">
+    
     <div class="flex justify-start items-start gap-2">
 
         <div class="w-[100px] h-[60px] relative cursor-pointer">
@@ -33,7 +34,12 @@
     </div>
 
 </div>
-    }
+}@placeholder {
+    <div class="w-full h-18 bg-gray-400 rounded-box animate-pulse"></div>
+}
+}@empty {
+    <app-loading />
+}
 
     
 

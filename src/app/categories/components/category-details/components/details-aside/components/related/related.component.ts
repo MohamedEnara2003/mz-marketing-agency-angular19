@@ -3,10 +3,11 @@ import { CategoriesType } from '../../../../../../../shared/interfaces/categorie
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { CategoryViewComponent } from "../../../../../category-view/category-view.component";
 import { DayJsService } from '../../../../../../service/day-js.service';
+import { LoadingComponent } from "../../../../../../../shared/components/loading/loading.component";
 
 @Component({
   selector: 'app-related',
-  imports: [SharedModule, CategoryViewComponent],
+  imports: [SharedModule, CategoryViewComponent, LoadingComponent],
   templateUrl: './related.component.html',
   styleUrl: './related.component.css'
 })
@@ -27,9 +28,9 @@ export class RelatedComponent {
   formatTime(timestamp: string): string {
     return this.dayJsService.formatTime(timestamp)
   }
+  
   private initVideosRef () : void {
   const durations : number[] = [] ; 
-
   this.categoryViewComponent().map((categoryView , index) => {
   durations[index] = categoryView.duration() ;
   this.videosDurations.set([...durations])

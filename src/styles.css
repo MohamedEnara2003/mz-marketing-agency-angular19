@@ -67,10 +67,10 @@
     animation: sideLeft 0.8s  ease-in-out;
   }
   .animate-down {
-    animation:  down 0.7s  ease-in-out;
+    animation:  down 0.5s  ease-in-out;
   }
   .animate-up {
-    animation:  up 0.7s  ease-in-out;
+    animation:  up 0.5s  ease-in-out;
   }
   .animate-moveZ {
     animation:  moveZ 0.7s alternate  ease-in-out;

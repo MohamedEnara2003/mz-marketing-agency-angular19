@@ -1,0 +1,66 @@
+<section class="w-full flex justify-center items-center">
+
+    <div class="w-[95%] sm:w-[90%] flex flex-col justify-start items-center my-10 gap-5">
+    <h1 class="text-gray-50 font-bold capitalize text-3xl">history</h1>
+
+    <ul class="w-full flex flex-col justify-center items-center gap-2  ">
+    @for (history of categoriesHistory(); track history.id ; let i = $index) {
+    @defer (on viewport) {
+    <li 
+    (mouseenter)="hoverCategoriesHistory(history.id)"
+    (mouseleave)="hoverCategoriesHistory(null)"
+    class="animate-up w-full flex  justify-between items-start sm:items-center text-gray-50
+    hover:bg-zinc-900 duration-200  p-2 py-4 shadow-md shadow-black "> 
+
+    <div 
+    [routerLink]="['/categories/watch']" 
+    [queryParams]="{category : history.category , id : history.id}" 
+    class="flex flex-wrap justify-start items-center gap-5">
+        <app-category-view
+        [options]="{
+        src : history.url ,
+        type : history.type,
+        muted : true ,
+        autoplay : false,
+        class : 'w-20 h-12 object-cover rounded-box' ,
+        }"
+        />
+    <span class="capitalize text-xs sm:text-sm line-clamp-1">{{history.title}}</span>
+    </div>
+
+    <ul  class="w-50 flex justify-end items-center gap-5 text-sm ">
+    <app-thumbs *ngIf="category_id() === history.id" class="flex justify-center items-center gap-5"/>
+
+    <li class="flex-col flex justify-center items-center gap-1"> 
+
+    <button type="button" (click)="isLoadList.set(isLoadList() === history.id ? 0 : history.id)">
+    <i class="fa-solid fa-ellipsis-vertical text-lg cursor-pointer"></i>
+    </button>
+
+    <nav *ngIf="isLoadList() === history.id" class="relative">
+    <ul class="animate-up rounded w-40 absolute right-0 top-2  bg-gray-50 text-gray-800 capitalize text-xs  z-20">
+    <li class="p-2  cursor-pointer hover:bg-gray-300 ">
+    <a (click)="removeHistoryItem(history.id)">
+    <i class="fa-regular fa-trash-can"></i> remove from history
+    </a>
+    </li>
+    </ul>
+    </nav>
+
+    </li>
+
+    <li [ngClass]="history.type === 'video' ? '' : 'invisible'">
+    {{videosDurations()[i] | number : '1.2-2'}}
+    </li>
+    </ul>
+    
+    </li>
+}@placeholder {
+    <div class="w-full h-18 bg-gray-400 rounded-box animate-pulse my-2"></div>
+}
+}@empty {
+    <app-loading loadingClass="h-[70vh]"/>
+}
+    </ul>
+    </div>
+</section>

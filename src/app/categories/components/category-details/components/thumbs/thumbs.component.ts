@@ -1,4 +1,4 @@
-import { Component, computed,  input, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { ThumbsService } from './thumbs.service';
 import { AuthenticationService } from '../../../../../features/auth/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -73,10 +73,12 @@ export class ThumbsComponent {
   this.categoryId.set(category_id);
   const user_id = this.authService.CurrentUser()?.user_id ;
   if(user_id){
-  return combineLatest([
-  this.thumbsService.getReactions(category_id) ,
-  this.thumbsService.getUserReaction(category_id , user_id) ,
-  ])
+  if(category_id){
+    return combineLatest([
+    this.thumbsService.getReactions(category_id) ,
+    this.thumbsService.getUserReaction(category_id , user_id) ,
+    ])
+  }
   }
   return EMPTY
   }),

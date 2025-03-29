@@ -18,9 +18,12 @@
     </a>
 </li>
     }@else {
-    <li>
-        <app-user-image (click)="initModleUserData()" imageClass="size-7 cursor-pointer"/>
-    </li>
+<li>
+<app-user-image 
+[routerLink]="[{outlets : {profile: this.showUserData() ?  'profile' : null  }}]"
+queryParamsHandling="merge"
+(click)="initModleUserData()" imageClass="size-7 cursor-pointer"/>
+</li>
     }
 
 

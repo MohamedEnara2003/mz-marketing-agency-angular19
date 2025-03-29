@@ -13,23 +13,24 @@ import { LocaleStorgeService } from '../../../core/services/locale-storge.servic
     (click)="playPauseRelatedVideoDetails()"
     (mouseenter)="isShadow.set(true)" 
     (mouseleave)="isShadow.set(false)"
-    class="fixed animate-moveZ  right-5 bottom-10 rounded-2xl  z-20 shadow-md shadow-black
-    flex justify-center items-center  border-1 border-mz-primary rounded-box">
+    class="fixed animate-moveZ right-2  lg:right-7 bottom-14 lg:bottom-10 rounded-2xl  z-20 shadow-md shadow-black
+    flex justify-center items-center  border-1 border-mz-primary rounded-box"
+    >
 
     <ul  *ngIf="isShadow()"
-    class="absolute w-[95%] h-[90%] flex justify-end gap-4 items-start  z-30 ">
+    class="absolute w-[90%] h-[85%] flex justify-between gap-4 items-start  z-30 ">
+
+    <li (click)="closeModle()" 
+        routerLink="/categories" [queryParams]="{id : null}" queryParamsHandling="merge">
+        <a> <i class="cursor-pointer fa-solid fa-close text-white text-xl"></i></a>
+        </li>
+
         <li routerLink="/categories/watch"  queryParamsHandling="merge">
         <a> <i class="cursor-pointer fa-solid fa-up-right-from-square text-white text-xl"></i></a>
         </li>
 
-        <li (click)="closeModle()" 
-        routerLink="/categories" [queryParams]="{id : null}" queryParamsHandling="merge">
-        <a> <i class="cursor-pointer fa-regular fa-rectangle-xmark text-white text-xl"></i></a>
-        </li>
-
-        <li 
-        (click)="fullScreenRelatedVideoDetails()" class="absolute right-0 bottom-0">
-        <a><i class="cursor-pointer fa-solid fa-expand text-white text-xl"></i>  </a>
+        <li (click)="fullScreenRelatedVideoDetails()" class="absolute right-0 bottom-0 z-10">
+        <a><i class="cursor-pointer fa-solid fa-expand text-white text-xl"></i> </a>
         </li>
     </ul>
 
@@ -45,8 +46,8 @@ import { LocaleStorgeService } from '../../../core/services/locale-storge.servic
         type : categoryById()?.type!,
         poster : categoryById()?.poster ,
         class : categoryById()?.category === 'reels' ? 
-        'w-[240px] h-[340px] object-cover rounded-box animate-down' :
-        'h-[220px] w-[350px] object-cover rounded-box animate-down',
+        'w-[240px] h-[350px] object-cover rounded-box animate-down' :
+        'h-[220px] w-[320px] sm:w-[350px] object-cover rounded-box animate-down',
         autoplay : true
         }" />
     
@@ -87,9 +88,10 @@ export class RelatedVideoDetailsComponent {
   this.isPlay.set(videoElement.paused);
   }
   }
+
   private initIsPlay() : void {
-    if(this.isPlay() || !this.isPlay()){
-    timer(300).subscribe(() => this.isPlay.set(null))
-    }
+  if(this.isPlay() || !this.isPlay()){
+  timer(300).subscribe(() => this.isPlay.set(null))
+  }
   }
 }

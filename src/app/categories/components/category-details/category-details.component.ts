@@ -42,6 +42,7 @@ export class CategoryDetailsComponent{
   ){
   effect(() => {
   this.continionVideoDetails();
+  this.addCategoryInHistory ();
   })
   this.initSubscription();
   }
@@ -77,6 +78,22 @@ export class CategoryDetailsComponent{
   
   private continionVideoDetails() : void {
   this.localeStorgeService.setItem('VideoDetailsKay', this.queryId().toString())
+  }
+
+  private addCategoryInHistory(): void {
+    const HistoryKey = "HistoryKey";
+    const existingData = this.localeStorgeService.getItem(HistoryKey);
+    const CategoriesData: CategoriesType[] = existingData ? JSON.parse(existingData) : [];
+
+    const currentCategory = this.categoryDataById();
+    if (currentCategory) {
+      const existingIndex = CategoriesData.findIndex(category => category.id === currentCategory.id);
+      if (existingIndex !== -1) {
+      CategoriesData.splice(existingIndex, 1);
+      }
+      CategoriesData.unshift(currentCategory);
+      this.localeStorgeService.setItem(HistoryKey, JSON.stringify(CategoriesData));
+    }
   }
 }
 

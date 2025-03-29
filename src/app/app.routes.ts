@@ -25,6 +25,9 @@ export const routes: Routes = [
     {path : 'contact', data : {headerHide : true} , 
     loadComponent : () => import('./features/contact/page/contact.component').then((c => c.ContactComponent))
     },
+    {path : 'history', data : {headerHide : true} , 
+    loadComponent : () => import('./features/history/page/history.component').then((c => c.HistoryComponent))
+    },
     {path : 'register', component : RegisterComponent,outlet : "register"},
     {path : 'loginIn' , component : LoginComponent   ,outlet : "loginIn" },
     {path : 'profile' , component : ProfileComponent ,outlet : "profile" },
