@@ -1,15 +1,14 @@
-import { Component , effect, ElementRef, OnInit, signal, viewChildren } from '@angular/core';
+import { Component , effect , OnInit, signal, viewChildren } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { LocaleStorgeService } from '../../../core/services/locale-storge.service';
 import { CategoriesType } from '../../../shared/interfaces/categories';
 import { CategoryViewComponent } from "../../../categories/components/category-view/category-view.component";
 import { Router } from '@angular/router';
 import { ThumbsComponent } from "../../../categories/components/category-details/components/thumbs/thumbs.component";
-import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 
 @Component({
   selector: 'app-history',
-  imports: [SharedModule, CategoryViewComponent, ThumbsComponent, LoadingComponent],
+  imports: [SharedModule, CategoryViewComponent, ThumbsComponent],
   templateUrl: './history.component.html',
   styles: ``
 })

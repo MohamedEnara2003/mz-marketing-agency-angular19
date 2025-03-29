@@ -3,7 +3,7 @@
     <div class="w-[95%] sm:w-[90%] flex flex-col justify-start items-center my-10 gap-5">
     <h1 class="text-gray-50 font-bold capitalize text-3xl">history</h1>
 
-    <ul class="w-full flex flex-col justify-center items-center gap-2  ">
+    <ul class="w-full flex flex-col justify-center items-center gap-2 text-gray-50 ">
     @for (history of categoriesHistory(); track history.id ; let i = $index) {
     @defer (on viewport) {
     <li 
@@ -20,6 +20,7 @@
         [options]="{
         src : history.url ,
         type : history.type,
+        poster : history.poster ,
         muted : true ,
         autoplay : false,
         class : 'w-20 h-12 object-cover rounded-box' ,
@@ -59,7 +60,7 @@
     <div class="w-full h-18 bg-gray-400 rounded-box animate-pulse my-2"></div>
 }
 }@empty {
-    <app-loading loadingClass="h-[70vh]"/>
+    <li class="capitalize text-xl bg-mz-secound p-2 px-4">your history is empty!</li>
 }
     </ul>
     </div>
