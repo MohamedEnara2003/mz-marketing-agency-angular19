@@ -7,7 +7,7 @@ import { LogoComponent } from "../../../shared/components/logo/logo.component";
   imports: [LogoComponent],
   template : `
   
-  <header class="bg-mz-secound text-white py-1 px-4 flex justify-between items-center">  
+  <header class="bg-mz-secound text-white py-1 px-4 flex justify-between items-center ">  
 
 <div class="flex flex-wrap justify-center items-center ">
         <h1 class="text-lg font-semibold mb-2">

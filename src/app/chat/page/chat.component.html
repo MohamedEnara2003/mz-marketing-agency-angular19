@@ -1,11 +1,11 @@
 <section class="w-full flex flex-wrap justify-center items-start gap-5">
 
-    <nav class="w-[95%] lg:w-[60%] bg-gray-50 flex flex-col justify-center items-center gap-2 mb-10
+    <nav class="w-[95%] lg:w-[60%] bg-gray-50 flex flex-col justify-center items-center gap-2 my-10
     rounded-2xl shadow-md shadow-black">
-    <app-chat-header class="w-full"/>
+    <app-chat-header class="w-full "/>
 
     <div class="w-[95%]  flex flex-col justify-start  items-center py-2">
-        <app-chat-container class="w-full h-[60vh] overflow-y-auto" style="scrollbar-width: none;"
+        <app-chat-container class="w-full h-[50vh] md:h-[55vh] overflow-y-auto" style="scrollbar-width: none;"
         [messagesData]="messagesData()"
         />
         <app-chat-form class="w-full"
@@ -13,11 +13,5 @@
         />
     </div>
     </nav>
-    
-    <aside class="w-[25%] bg-gray-300 flex flex-col justify-start items-center h-[80vh]">
-    @for (chat of  chats(); track chat.id) {
-        <button type="button" (click)="selectChat(chat.id! , chat.user_id)" class="btn btn-info">{{chat.id}}</button>
-    }
-    </aside>
     
 </section>

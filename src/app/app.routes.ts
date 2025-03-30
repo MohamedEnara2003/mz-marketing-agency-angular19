@@ -16,6 +16,12 @@ export const routes: Routes = [
     loadChildren : () => import('./categories/categories.routes').then((r) => r.categoriesRoutes),
     loadComponent : () => import('./categories/categories.component').then((c => c.CategoriesComponent))
     },
+    
+    {path : 'dashboard' , data : {headerHide : true} ,
+    loadChildren : () => import('./dashboard/dashboard.routes').then((r) => r.dashboardRoutes),
+    loadComponent : () => import('./dashboard/dashboard.component').then((c => c.DashboardComponent))
+    },
+    
     {path : 'orders' ,  data : {headerHide : true} , 
     loadComponent : () => import('./features/orders/page/orders.component').then((c => c.OrdersComponent))
     },

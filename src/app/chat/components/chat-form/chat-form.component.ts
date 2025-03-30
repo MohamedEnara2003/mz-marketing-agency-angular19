@@ -18,7 +18,7 @@ import { SharedModule } from '../../../shared/modules/shared.module';
 
   <input  type="text"  [ngModel]="message()" (ngModelChange)="onChangeValue($event)" 
   name="massage" id="massage"
-  class="w-[90%]  text-gray-900 placeholder:text-gray-500 input input-neutral focus:outline-mz-primary
+  class="w-[80%] md:w-[90%]  text-gray-900 placeholder:text-gray-500 input input-neutral focus:outline-mz-primary
   rounded-box bg-gray-50 border-transparent outline-gray-400 outline-2 " 
   placeholder="your massage..." 
   />
