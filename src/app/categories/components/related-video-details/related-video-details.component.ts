@@ -29,9 +29,6 @@ import { LocaleStorgeService } from '../../../core/services/locale-storge.servic
         <a> <i class="cursor-pointer fa-solid fa-up-right-from-square text-white text-xl"></i></a>
         </li>
 
-        <li (click)="fullScreenRelatedVideoDetails()" class="absolute right-0 bottom-0 z-10">
-        <a><i class="cursor-pointer fa-solid fa-expand text-white text-xl"></i> </a>
-        </li>
     </ul>
 
     <button *ngIf="isPlay() !== null" (click)="playPauseRelatedVideoDetails()" type="button" 
@@ -74,12 +71,6 @@ export class RelatedVideoDetailsComponent {
   this.localeStorgeService.removeItem('VideoDetailsKay');
   }
 
-  fullScreenRelatedVideoDetails() : void {
-  const videoElement = this.categoryViewComponent()?.videoElement()?.nativeElement ;
-  if(videoElement){
-  videoElement.requestFullscreen();
-  }
-  }
 
   playPauseRelatedVideoDetails() : void {
   const videoElement = this.categoryViewComponent()?.videoElement()?.nativeElement ;

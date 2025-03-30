@@ -9,7 +9,7 @@
 }
  *{
   font-family: "Fira Sans", sans-serif;
-  font-weight: 400;
+  font-weight: 400 , 700;
 }
 @keyframes upAndDown {
   0%, 100% { transform: translateY(0); }
@@ -57,6 +57,7 @@
   @apply bg-[url('https://res.cloudinary.com/mohamedenara/image/upload/v1741027606/bg-space_px2q4e.jpg')]
   bg-cover bg-no-repeat
   }
+
   .animate-updown {
     animation: upAndDown 2s infinite ease-in-out;
   }
@@ -76,3 +77,4 @@
     animation:  moveZ 0.7s alternate  ease-in-out;
   }
 }
+

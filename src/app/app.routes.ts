@@ -25,6 +25,9 @@ export const routes: Routes = [
     {path : 'contact', data : {headerHide : true} , 
     loadComponent : () => import('./features/contact/page/contact.component').then((c => c.ContactComponent))
     },
+    {path : 'chat', data : {headerHide : true} , 
+    loadComponent : () => import('./chat/page/chat.component').then((c => c.ChatComponent))
+    },
     {path : 'history', data : {headerHide : true} , 
     loadComponent : () => import('./features/history/page/history.component').then((c => c.HistoryComponent))
     },

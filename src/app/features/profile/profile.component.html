@@ -12,59 +12,23 @@ class=" absolute top-20 left-0 w-full h-[70vh] flex justify-end items-center ">
     <a class="line-clamp-1 z-5 font-semibold text-gray-950">{{authService.CurrentUser()?.email}}</a>
     </div>
 
-    <ul class="relative w-[90%] flex flex-col  justify-start items-start gap-2 text-gray-900
+<ul class="relative w-[90%] flex flex-col  justify-start items-start gap-2 text-gray-900
     after:absolute after:w-full after:h-0.5 after:bg-mz-primary after:bottom-0 after:opacity-55 py-3">
     
+    @for (link of profileLinks(); track link) {
 <li class="w-full"> 
-    <a (click)="authService.signOut()"
+    <a [routerLink]="link.path" queryParamsHandling="merge"
+    (click)="link.linkName  === 'profile.signOut' ? authService.signOut() : null"
     class="flex justify-start items-center  capitalize font-bold gap-5
     cursor-pointer">
-    <i class="fa-solid fa-sign-out text-xl"></i>  {{'profile.signOut' | translate}}
+    <i [class]="link.iconName"></i>  {{ link.linkName| translate}}
     </a>
 </li>
-
-<li class="w-full"> 
-    <a [routerLink]="['/',{outlets : {primary :['history'], profile : null}}]" 
-    class="flex justify-start items-center  capitalize font-bold gap-5
-    cursor-pointer">
-    <i class="fa-solid fa-clock-rotate-left text-xl"></i> {{'profile.history' | translate}}
-    </a>
-</li>
-
-<li class="w-full"> 
-    <a [routerLink]="['/',{outlets : {  profile : null}}]" 
-    class="flex justify-start items-center  capitalize font-bold gap-5 
-    cursor-pointer">
-    <i class="fa-regular fa-comment-dots text-xl"></i> {{'chat m&z' | translate}}
-    </a>
-</li>
-<li class="w-full"> 
-    <a [routerLink]="['/',{outlets : {'booking-outlet': 'booking' , profile : null}}]" 
-    class="flex justify-start items-center  capitalize font-bold gap-5 
-    cursor-pointer">
-    <i class="fa-solid fa-book-open text-xl"></i> {{'profile.booking' | translate}}
-    </a>
-</li>
-<li class="w-full"> 
-    <a [routerLink]="['/',{outlets : { primary : ['orders'],  profile : null}}]" 
-    class="flex justify-start items-center  capitalize font-bold gap-5 mx-1
-    cursor-pointer">
-    <i class="fa-solid fa-bag-shopping text-xl"></i> {{'profile.orders' | translate}}
-    </a>
-</li>
-
-<li class="w-full"> 
-    <a routerLink="/" class="flex justify-start items-center  capitalize font-bold gap-5
-    cursor-pointer">
-    <i class="fa-solid fa-home text-xl "></i> {{'profile.home' | translate}}
-    </a>
-</li>
-
-
-    </ul>
-
+}
+</ul>
 </aside>
-<div [routerLink]="['/',{outlets : {  profile : null}}]"  
+
+<div [routerLink]="['/',{outlets : {  profile : null}}]" queryParamsHandling="merge"  
 class="absolute left-0 top-0 h-full w-full  z-1">
 </div>
 </section>
