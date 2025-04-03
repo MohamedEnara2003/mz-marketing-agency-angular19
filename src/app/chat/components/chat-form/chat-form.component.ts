@@ -1,11 +1,12 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, effect, output, signal, viewChild } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
+import { ChatContainerComponent } from '../chat-container/chat-container.component';
 
 @Component({
   selector: 'app-chat-form',
   imports: [SharedModule],
   template :`
-  <form class="w-full flex justify-between items-center py-2" (ngSubmit)="sendMessage()">
+  <form class="w-full flex justify-evenly items-center py-2" (ngSubmit)="sendMessage()">
   <div>
   <label for="fileKay">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" 
@@ -18,7 +19,7 @@ import { SharedModule } from '../../../shared/modules/shared.module';
 
   <input  type="text"  [ngModel]="message()" (ngModelChange)="onChangeValue($event)" 
   name="massage" id="massage"
-  class="w-[80%] md:w-[90%]  text-gray-900 placeholder:text-gray-500 input input-neutral focus:outline-mz-primary
+  class="w-[80%] md:w-[85%]  text-gray-900 placeholder:text-gray-500 input input-neutral focus:outline-mz-primary
   rounded-box bg-gray-50 border-transparent outline-gray-400 outline-2 " 
   placeholder="your massage..." 
   />
@@ -42,6 +43,7 @@ import { SharedModule } from '../../../shared/modules/shared.module';
 export class ChatFormComponent {
   message = signal<string>('');
   postMessage = output<string>()
+  chatContainer = viewChild<ChatContainerComponent>(ChatContainerComponent);
 
   onChangeValue(value : string) : void  {
   this.message.set(value);
@@ -50,5 +52,6 @@ export class ChatFormComponent {
   sendMessage () : void {
   this.postMessage.emit(this.message());
   this.message.set('');
+  
   }
 }

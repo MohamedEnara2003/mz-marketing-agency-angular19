@@ -3,6 +3,9 @@ export interface ChatType {
     created_at ? : string ,
     user_id : string ,
     admin_id : string ,
+    userName : string ,
+    email : string ,
+    avatar_url : string,
 }
 
 export interface MessageType {

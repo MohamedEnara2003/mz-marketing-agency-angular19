@@ -1,0 +1,20 @@
+<section class="w-full h-[90vh] flex justify-end items-end">
+    
+    <div class="w-full flex justify-between items-center h-full rounded-box">
+
+    <app-users-messages class="w-full md:w-[30%] h-full shadow-md shadow-black border-r-2 border-gray-300" 
+    [chats]="chats()"/>
+
+    <div class="hidden md:inline-flex w-full md:w-[70%] h-full  flex-col justify-start  items-center ">
+        
+        <app-chat-header class="w-full "/>
+        <app-chat-container #chatContainer class="w-full h-full bg-gray-50 px-2"
+        [messagesData]="messages()"/>
+        <app-chat-form class="w-full bg-gray-50"
+        (postMessage)="sendMessage($event)"
+        />
+
+    </div>
+
+    </div>
+</section>

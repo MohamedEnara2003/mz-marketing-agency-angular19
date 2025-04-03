@@ -1,11 +1,12 @@
-<header class="w-full  flex justify-center items-center z-10"
+<header *ngIf="layoutHide() !== true"
+class="w-full  flex justify-center items-center z-10"
 [ngClass]="{
-    'absolute top-0 left-0' : !hidelayout() ,
-    'relative' : hidelayout() ,
+    'absolute top-0 left-0' : !fixedHeader() ,
+    'relative' : fixedHeader() ,
 }">
     <nav class="w-[97%] flex flex-wrap justify-between items-center  ">
 
-    <app-logo [logoClass]="hidelayout() ? 'w-28 sm:w-40' : 'w-34 sm:w-40' "/>
+    <app-logo [logoClass]="fixedHeader() ? 'w-28 sm:w-40' : 'w-34 sm:w-40' "/>
 
     <app-links class="hidden lg:inline-block"
     linksClass="flex justify-center items-center gap-1 text-white
@@ -18,7 +19,7 @@
 
 
 <div class="flex justify-center items-center gap-2 sm:gap-4">
-        <div *ngIf="hidelayout()">
+        <div *ngIf="fixedHeader()">
             <input #toggleRef (change)="onChanheToggle()"   type="checkbox" checked="true" id="isToggle"
             class="toggle toggle-sm text-mz-primary border-mz-primary bg-white checked:bg-mz-primary checked:text-white checked:border-mz-secound " />
         </div>
@@ -27,4 +28,5 @@
 
 </nav>
 </header>
-<app-nav-bar class="w-full"/>
+
+<app-nav-bar *ngIf="layoutHide() !== true" class="w-full  lg:hidden"/>

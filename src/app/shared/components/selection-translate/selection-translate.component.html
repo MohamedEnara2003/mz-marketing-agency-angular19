@@ -1,8 +1,7 @@
-<ul class="capitalize font-semibold cursor-pointer selection:hidden text-sm " 
+<ul class="capitalize font-[400] cursor-pointer selection:hidden text-sm " 
 [ngClass]="selectLangClass() ? selectLangClass()  : 'text-white'">
 
-    <li class="flex flex-row justify-center items-center gap-1 hover:text-zinc-500 duration-200
-    "
+    <li class="flex flex-row justify-center items-center gap-1 hover:text-zinc-500 duration-200"
     (click)="initSelect()">
     {{currentLanguage() | translate}}  <i class="fa-solid  text-xs bg-transparent"
     [ngClass]="isSelect() ? 'fa-angle-down' : 'fa-angle-up'"></i>

@@ -22,7 +22,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HeaderComponent {
 
-    hidelayout = signal<boolean>(false) ;
+    layoutHide = signal<boolean>(false) ;
+    fixedHeader = signal<boolean>(false) ;
 
     toggleRef = viewChild<ElementRef<HTMLInputElement>>('toggleRef') ;
 
@@ -36,15 +37,20 @@ export class HeaderComponent {
     }
   
     private getRouteChildData() : void {
-    this.router.events.pipe(takeUntilDestroyed()).subscribe(event => {
-    this.hidelayout.set(this.route.snapshot.firstChild?.data['headerHide']) ;
+    this.router.events.pipe(takeUntilDestroyed()).subscribe(_ => {
+    this.fixedHeader.set(this.route.snapshot.firstChild?.data['headerHide']);
+    this.layoutHide.set(this.route.snapshot.firstChild?.data['layoutHide']);
     });
     }
     
     onChanheToggle() : void {
     const checkbox = this.toggleRef()?.nativeElement!;
     const bodyClass =  this.document.body.classList ;
-    bodyClass.add(checkbox.checked ?'bg-space' : 'bg-[#121210]')
-    bodyClass.remove(checkbox.checked ?'bg-black' : 'bg-space')
+    const bg = ['bg-gradient-to-br','from-[#131111]','to-[#080808]'];
+    bg.forEach((item) => {
+      bodyClass.add(checkbox.checked ?'bg-space' : item)
+      bodyClass.remove(checkbox.checked ? item : 'bg-space')
+    })
+  
     }
 }

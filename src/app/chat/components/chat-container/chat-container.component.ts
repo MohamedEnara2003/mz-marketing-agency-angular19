@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, effect, ElementRef, input, viewChild } from '@angular/core';
 import {  MessageType } from '../../interface/chat.interface';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { DayJsService } from '../../../categories/service/day-js.service';
@@ -7,11 +7,13 @@ import { DayJsService } from '../../../categories/service/day-js.service';
   selector: 'app-chat-container',
   imports: [SharedModule],
   template : `
-
+  <section #chatContainer 
+  class="w-full h-[50vh] md:h-[70vh] overflow-y-auto bg-gray-50" style="scrollbar-width: none;">
   @for (value of messagesData(); track value.id) {
-  <div class="chat "
+  <div class="chat"
   [ngClass]="value.isSender ? 'chat-end' : 'chat-start'">
-  <div class="chat-bubble    "
+
+  <div class="chat-bubble"
   [ngClass]="value.isSender ? 'bg-mz-secound' : 'bg-zinc-800'">
 
   <p class="text-gray-50 text-sm">
@@ -24,17 +26,17 @@ import { DayJsService } from '../../../categories/service/day-js.service';
   </div>
 
   </div>
-
   </div>
-
   }
+  </section>
   `
 })
 export class ChatContainerComponent {
   messagesData = input<MessageType[]>();
+  chatContainer = viewChild<ElementRef<HTMLElement>>('chatContainer');
+  constructor(private dayjsService : DayJsService){};
 
-  constructor(private dayjsService : DayJsService){}
-
+ 
   formatTime(timestamp : string) : string {
   return this.dayjsService.formatTime(timestamp);
   }

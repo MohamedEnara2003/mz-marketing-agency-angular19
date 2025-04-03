@@ -17,7 +17,7 @@ export const routes: Routes = [
     loadComponent : () => import('./categories/categories.component').then((c => c.CategoriesComponent))
     },
     
-    {path : 'dashboard' , data : {headerHide : true} ,
+    {path : 'dashboard' , data : {headerHide : true , layoutHide : true} ,
     loadChildren : () => import('./dashboard/dashboard.routes').then((r) => r.dashboardRoutes),
     loadComponent : () => import('./dashboard/dashboard.component').then((c => c.DashboardComponent))
     },

@@ -1,12 +1,12 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component,ElementRef,signal, viewChild } from '@angular/core';
 import { ChatHeaderComponent } from "../components/chat-header/chat-header.component";
 import { ChatContainerComponent } from "../components/chat-container/chat-container.component";
 import { ChatFormComponent } from "../components/chat-form/chat-form.component";
 import { ChatService } from '../service/chat.service';
 import { AuthenticationService } from '../../features/auth/service/authentication.service';
-import {  ChatType, MessageType } from '../interface/chat.interface';
+import {  MessageType } from '../interface/chat.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { EMPTY, switchMap } from 'rxjs';
+import { EMPTY, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -14,51 +14,32 @@ import { EMPTY, switchMap } from 'rxjs';
   templateUrl: './chat.component.html',
 })
 export class ChatComponent {
-  chats = signal<ChatType[]>([]);
-  receiver_id = signal<string>('') ;
 
   messagesData = signal<MessageType[]>([]);
   chatId = signal<number>(0);
   
+  chatContainer = viewChild<ChatContainerComponent>('chatContainer');
+
   constructor(
   private chatService : ChatService ,
   private authService : AuthenticationService ,
   ){
-  this.getChatsForAdmin ();
   this.initChat();
-  this.listenForNewMessages();
-  }
-
-  private getChatsForAdmin () : void {
-    const user_id = this.authService.CurrentUser()?.user_id ;
-    if(user_id === this.chatService.Admin_id){
-      this.chatService.getChatsForAdmin(user_id)
-      .pipe(takeUntilDestroyed())
-      .subscribe({
-      next : (value) => {
-        this.chats.set(value)
-      }
-    })
-    }
-  }
-
-  selectChat(chat_id : number ,  receiver_id : string) : void {
-  this.chatId.set(chat_id)
-  this.receiver_id.set(receiver_id)
-  this.getMessages (chat_id);
   }
 
   private initChat() : void {
-  const user_id = this.authService.CurrentUser()?.user_id ;
-  if(user_id && user_id !== this.chatService.Admin_id){
-  this.chatService.getChatId(user_id , this.chatService.Admin_id).pipe(
+  const userData = this.authService.CurrentUser() ;
+  if(userData && userData.user_id !== this.chatService.Admin_id){
+  this.chatService.getChatId(userData.user_id , this.chatService.Admin_id).pipe(
   switchMap((chat_id) => {
   if(chat_id){
   this.getMessages (chat_id);
+  this.listenForNewMessages(chat_id);
   this.chatId.set(chat_id);
   return EMPTY ;
   }else{
-  return this.chatService.createChat(user_id, this.chatService.Admin_id);
+  return this.chatService.createChat(
+  userData.user_id, this.chatService.Admin_id , userData.email , userData.userName, userData.picture);
   }
   }),
   takeUntilDestroyed()
@@ -92,29 +73,35 @@ export class ChatComponent {
       chat_id : chat_id !,
       message : message,
       }
-    this.chatService.sendMessage(chatData).subscribe()
-  }else{
-    const chatData : MessageType = {
-      sender_id : user_id,
-      receiver_id : this.receiver_id(),
-      chat_id : chat_id!,
-      message : message,
-      }
-    this.chatService.sendMessage(chatData).subscribe()
+    this.chatService.sendMessage(chatData).subscribe();
   }
   }
   }
 
-  private listenForNewMessages () : void {
-  this.chatService.listenForNewMessages(1)
-  .pipe(takeUntilDestroyed())
+
+  private listenForNewMessages (chat_id : number) : void {
+  this.chatService.listenForNewMessages(chat_id)
   .subscribe((update) => {
   if (update.eventType === 'INSERT' ){
   const updateNew : MessageType = {...update.new ,
   isSender : this.authService.CurrentUser()?.user_id === update.new.sender_id ? true : false 
   };
-  this.messagesData.update((prev) => [...prev , updateNew])
+  this.messagesData.update((prev) => [...prev , updateNew]);
+  if(updateNew){
+  this.initChatScroll();
+  }
   }
   })
   }
-}
+
+  
+  private initChatScroll(): void {
+    timer(50).subscribe(() =>{
+      const container = this.chatContainer()?.chatContainer()?.nativeElement;
+      if(container){
+        container.scrollTop = container.scrollHeight;
+      }
+    })
+  
+  }
+} 

@@ -34,8 +34,15 @@ export class ChatService {
             }))
   }
   
-  createChat(userId: string, adminId: string): Observable<ChatType> {
-  return this.singleTonSupabaseService.postData(this.TableChat , { user_id: userId, admin_id: adminId })
+  createChat(userId: string, adminId: string , email : string , userName : string , avatar_url? : string): Observable<ChatType> {
+  const Chat : ChatType = {
+    user_id: userId,
+    admin_id: adminId,
+    email: email,
+    avatar_url : avatar_url!,
+    userName:userName,
+  }
+  return this.singleTonSupabaseService.postData(this.TableChat, Chat)
   }
 
 
