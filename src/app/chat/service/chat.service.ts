@@ -9,6 +9,7 @@ import { ChatType, MessageType} from '../interface/chat.interface';
 export class ChatService {
   private readonly TableChat : string = "chats" ;
   private readonly TableMessages : string = "messages" ;
+  private readonly BucketName : string = "chatfiles" ;
   readonly Admin_id : string = "6a5c0595-c564-4050-98d9-a78316b62f5b";
 
   private singleTonSupabaseService  = inject(SingleTonSupabaseService);
@@ -19,6 +20,16 @@ export class ChatService {
       .select('*') 
       .eq('admin_id', adminId) 
       return from(promise).pipe(map((response) => response.data || []) ) 
+  }
+
+  getChatByIdForAdmin(chat_id : number, adminId: string): Observable<ChatType> {
+    const promise = this.singleTonSupabaseService.supabase
+      .from(this.TableChat)
+      .select('*') 
+      .eq('id', chat_id) 
+      .eq('admin_id', adminId)
+      .single() 
+      return from(promise).pipe(map((response) => response.data!) ) 
   }
 
   getChatId(userId: string, adminId: string): Observable<number> {
@@ -64,7 +75,11 @@ export class ChatService {
   sendMessage(messageData : MessageType) : Observable<MessageType> {
   return this.singleTonSupabaseService.postData(this.TableMessages , messageData)
   }
-  
+
+  uploadImage(file: File): Observable<string> {
+  return  this.singleTonSupabaseService.uploadImage(this.BucketName, file);
+  }
+
   listenForNewMessages(chatId: number): Observable<any> {
     return new Observable((observer) => {
       const subscription = this.singleTonSupabaseService.supabase

@@ -26,14 +26,16 @@ export class AppComponent implements OnInit{
   this.initAuthentication();
   }
   
-  initAuthentication() : void {
+  private initAuthentication() : void {
   authClient.onAuthStateChange((event , session) => {
   if(event === 'SIGNED_IN'){
+  const identity_data = session?.user.identities?.at(0)?.identity_data;
+
   this.authService.CurrentUser.set({
     user_id : session?.user.identities?.at(0)?.user_id! ,
     email : session?.user.email! ,
-    userName : session?.user.identities?.at(0)?.identity_data?.['name'],
-    picture : session?.user.identities?.at(0)?.identity_data?.['picture'],
+    userName : identity_data?.['name'] || identity_data?.['full_name'] ,
+    picture : identity_data?.['picture'] || identity_data?.['avatar_url'] ,
   })
   
   }else if (event === 'SIGNED_OUT'){

@@ -7,6 +7,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SharedModule } from '../../modules/shared.module';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { DOCUMENT } from '@angular/common';
+import { NavLinks } from '../../interfaces/shared';
+import { LinksService } from '../../../core/services/links.service';
 
 @Component({
   selector: 'app-header',
@@ -24,10 +26,11 @@ export class HeaderComponent {
 
     layoutHide = signal<boolean>(false) ;
     fixedHeader = signal<boolean>(false) ;
-
     toggleRef = viewChild<ElementRef<HTMLInputElement>>('toggleRef') ;
-
+    links = signal<NavLinks[]>([]) ;
+    
     constructor(
+    private linksServices : LinksService ,
     private router : Router ,
     private route : ActivatedRoute ,
     @Inject(DOCUMENT) private document : Document
@@ -35,7 +38,11 @@ export class HeaderComponent {
     this.getRouteChildData() ;
     this.document.body.classList.add('bg-space')
     }
-  
+
+    ngOnInit(): void {
+      this.getLinks() ;
+    }
+
     private getRouteChildData() : void {
     this.router.events.pipe(takeUntilDestroyed()).subscribe(_ => {
     this.fixedHeader.set(this.route.snapshot.firstChild?.data['headerHide']);
@@ -51,6 +58,8 @@ export class HeaderComponent {
       bodyClass.add(checkbox.checked ?'bg-space' : item)
       bodyClass.remove(checkbox.checked ? item : 'bg-space')
     })
-  
     }
+  private getLinks() : void  {
+    this.links.set(this.linksServices.navLinks);
+  }
 }

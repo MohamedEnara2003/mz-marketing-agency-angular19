@@ -48,5 +48,20 @@ export class SingleTonSupabaseService {
   return from(promise).pipe(map(() =>{})) ;
   }
 
- 
+  uploadImage(bucketName : string ,file: File): Observable<string> {
+    const filePath = `${Date.now()}_${file.name}`;
+    const promise = this.supabase.storage.from(bucketName).upload(filePath, file);
+    return from(promise).pipe(map(({ error }) => {
+      if (error) {
+      throw error;
+      }
+      const { data } = this.supabase.storage.from(bucketName).getPublicUrl(filePath)
+      return data.publicUrl;
+    }));
+  }
+
+  deleteStorgeImage(bucketName : string ,file: File): Observable<void> {
+    const promise = this.supabase.storage.from(bucketName).remove([file.name]);
+    return from(promise).pipe(map(() => {}));
+  }
 }

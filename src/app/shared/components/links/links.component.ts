@@ -10,21 +10,13 @@ import { SharedModule } from '../../modules/shared.module';
   templateUrl: './links.component.html',
   styleUrl: './links.component.css'
 })
-export class LinksComponent implements OnInit{
+export class LinksComponent {
 
   ulClass = input<string>() ;
   linksClass = input<string>() ;
   iconClass = input<string>() ;
   styleActiveClass = input.required<string>() ;
   showIcon = input.required<boolean>() ;
-  links = signal<NavLinks[]>([]);
-  private linksServices = inject(LinksService) ;
+  links = input.required<NavLinks[]>();
 
-  ngOnInit(): void {
-  this.getLinks() ;
-  }
-
-  getLinks() : void  {
-  this.links.set(this.linksServices.navLinks);
-  }
 }

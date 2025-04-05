@@ -16,5 +16,6 @@ export interface MessageType {
     receiver_id : string ,
     chat_id : number ,
     message : string ,
+    image_url? : string ,
     
 }

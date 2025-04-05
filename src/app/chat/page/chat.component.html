@@ -1,18 +1,23 @@
-<section class="w-full flex flex-wrap justify-center items-start gap-5">
+<section class="w-full h-screen flex flex-nowrap  justify-center items-center">
 
-    <nav class="w-[95%] lg:w-[60%] bg-gray-50 flex flex-col justify-center items-center gap-2 my-10
-    rounded-2xl shadow-md shadow-black">
-    <app-chat-header class="w-full" />
-
-    <div class="w-[95%]  flex flex-col justify-start  items-center py-2">
+    <nav class="relative w-full h-full md:h-auto md:w-[80%] lg:w-[70%] bg-gray-50 
+    flex flex-col justify-between items-center  
+    shadow-md shadow-black z-10">
+    
+        <app-chat-header class="w-full" />
         <app-chat-container #chatContainer
-        class="w-full"
+        class="w-full h-full py-1"
         [messagesData]="messagesData()"
+        [images]="images()"
         />
-        <app-chat-form class="w-full"
+        <app-chat-form class="w-full py-1"
         (postMessage)="sendMessage($event)"
+        (file)="uploadImage($event)"
         />
-    </div>
+        
     </nav>
     
+
+    <div class="hidden md:inline-block w-full h-full absolute top-0 left-0 bg-black z-0 opacity-60"></div>
 </section>
+

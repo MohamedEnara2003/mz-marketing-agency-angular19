@@ -12,7 +12,8 @@
         "packages": "الباقات",
         "categories": "التصنيفات",
         "aboutUs": "من نحن",
-        "contactUs": "اتصل بنا"
+        "contactUs": "اتصل بنا",
+        "usersChat": "دردشة المستخدمين"
     },
     "auth": {
         "register": "تسجيل",

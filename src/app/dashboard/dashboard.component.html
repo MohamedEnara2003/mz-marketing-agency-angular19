@@ -1,14 +1,14 @@
 <section class="w-full  bg-gradient-to-br from-[#131111] to-[#080808]  ">
 
-    <div class="w-full h-screen flex justify-between items-center gap-5">
-    <app-aside class="w-[15%] h-full hidden md:inline-block"/>
+    <div class="w-full h-screen  flex justify-center items-center ">
+    <app-aside [dashboardLinks]="dashboardLinks()" 
+    class="w-[18%] h-full hidden lg:inline-flex  "/>
 
-    <div class="relative w-full lg:w-[85%] h-full flex flex-col justify-between items-center ">
-    <app-dashboard-header class="w-full"/>
-    <div class="w-full">
-        <router-outlet />
+    <div class="w-full lg:w-[82%] h-full">
+    <router-outlet />
     </div>
+
     </div>
     
-    </div>
+    <app-nav-bar class="w-full lg:hidden " [links]="dashboardLinks()"/>
 </section>

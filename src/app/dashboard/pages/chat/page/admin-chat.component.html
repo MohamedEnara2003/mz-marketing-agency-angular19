@@ -1,20 +1,35 @@
-<section class="w-full h-[90vh] flex justify-end items-end">
+<section class="size-full flex justify-center items-center">
     
-    <div class="w-full flex justify-between items-center h-full rounded-box">
-
-    <app-users-messages class="w-full md:w-[30%] h-full shadow-md shadow-black border-r-2 border-gray-300" 
+    <nav class="size-full sm:size-[95%] flex justify-between items-center  bg-gray-50">
+    <app-users-messages *ngIf="!chatId()" class="w-full md:w-[30%] h-full shadow-md shadow-black 
+    sm:border-r-2 border-gray-300" 
     [chats]="chats()"/>
+    
 
-    <div class="hidden md:inline-flex w-full md:w-[70%] h-full  flex-col justify-start  items-center ">
-        
-        <app-chat-header class="w-full "/>
-        <app-chat-container #chatContainer class="w-full h-full bg-gray-50 px-2"
+        @if(chatId()){
+        <div class="w-full h-full flex  flex-col justify-center items-center z-50 ">
+        <app-chat-header class="w-full py-1" pathCloseChat="/dashboard/chat"
+        [userData]="chatUser()"
+        />
+        <app-chat-container #chatContainer class="w-full h-full bg-gray-50 p-1"
         [messagesData]="messages()"/>
-        <app-chat-form class="w-full bg-gray-50"
+        <app-chat-form class="w-full bg-gray-50 py-1"
         (postMessage)="sendMessage($event)"
         />
-
     </div>
+    }@else {
+        <div class="md:w-[70%] h-full bg-mz-secound hidden md:inline-flex flex-col justify-center items-center gap-5 ">
+        <app-logo logoClass="w-80" [isPath]="false"/>
+        <p class="text-gray-50 capitalize font-[500]">
+        no chats available yet, select a user to start chatting
+        </p>
+        </div>
+    }
+ 
+    </nav>
 
-    </div>
+
+    <audio  #audioRef  class="hidden">
+    <source [src]="audioSrc" type="audio/mpeg">
+    </audio>
 </section>

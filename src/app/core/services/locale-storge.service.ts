@@ -15,4 +15,5 @@ export class LocaleStorgeService {
   removeItem(kay : string) : void {
   localStorage.removeItem(kay);
   }
+ 
 }

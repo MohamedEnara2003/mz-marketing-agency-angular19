@@ -1,7 +1,29 @@
-<aside class=" w-full h-full bg-mz-secound  p-4 flex  flex-col justify-start items-start">
-    <ul>
-    <li>
-    <a [routerLink]="['/dashboard/chat']">chats</a>
-    </li>
+<aside class="w-full h-full p-2  flex-col justify-start items-center gap-5
+shadow-mz-secound shadow-xl">
+
+    <div class="relative w-full  flex justify-center items-center after-border  after:bg-gray-50 py-4">
+    <app-logo  logoClass="w-36" getPath="/dashboard"/>
+    </div>
+    
+    <ul class="w-[90%] flex flex-col justify-start items-center gap-4 text-sm capitalize text-gray-50
+    p-4">
+
+    <app-link path="/dashboard" linkName="dashboard" 
+    class="relative w-full after-border after:bg-gray-50 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" id="dashboard">
+            <path fill="none" d="M0 0h24v24H0V0z"></path>
+            <path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z" fill="#f9fafb" class="color000000 svgShape"></path>
+        </svg>
+    </app-link>
+
+    @for (link of dashboardLinks(); track link) {
+    <app-link [path]="link.path" [linkName]="link.linkName" class="w-full">
+    <i [class]="link.iconName"></i>
+    </app-link>
+    }
+   
     </ul>
+
+
 </aside>
+

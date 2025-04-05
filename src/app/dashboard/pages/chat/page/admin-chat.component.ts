@@ -1,4 +1,4 @@
-import { Component, signal, viewChild } from '@angular/core';
+import { Component,ElementRef, signal, viewChild } from '@angular/core';
 import { UsersMessagesComponent } from "../components/users-messages/users-messages.component";
 import { SharedModule } from '../../../../shared/modules/shared.module';
 import { ChatService } from '../../../../chat/service/chat.service';
@@ -10,32 +10,37 @@ import { ChatContainerComponent } from "../../../../chat/components/chat-contain
 import { ChatFormComponent } from "../../../../chat/components/chat-form/chat-form.component";
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, switchMap, timer } from 'rxjs';
+import { LogoComponent } from "../../../../shared/components/logo/logo.component";
 
 @Component({
   selector: 'app-admin-chat',
-  imports: [UsersMessagesComponent, SharedModule, ChatHeaderComponent, ChatContainerComponent, ChatFormComponent],
+  imports: [UsersMessagesComponent, SharedModule, ChatHeaderComponent, ChatContainerComponent, ChatFormComponent, LogoComponent],
   templateUrl: './admin-chat.component.html',
   styles: ``
 })
 export class AdminChatComponent {
-  
+
+  chatUser = signal<ChatType | undefined>(undefined);
   chats = signal<ChatType[]>([]);
+
   messages = signal<MessageType[]>([]);
   chatId = signal<number>(0);
   receiver_id = signal<string>('');
   chatContainer = viewChild<ChatContainerComponent>('chatContainer');
-
+  
+  readonly audioSrc = "https://kzzljjlggloknteiirlr.supabase.co/storage/v1/object/sign/assets/audioo.wav?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvYXVkaW9vLndhdiIsImlhdCI6MTc0Mzc1MDY5NCwiZXhwIjoxNzc1Mjg2Njk0fQ.ILiimV3N513cNauqqPYnzkPciQcXtF_5rDttD-1aszA" ;
+  
+  audioRef = viewChild<ElementRef<HTMLAudioElement>>('audioRef') ;
+  isPlay  = signal<boolean>(false);
   constructor(
   private chatService : ChatService ,
   private authService : AuthenticationService ,
   private activatedRoute : ActivatedRoute,
   ){
-    
     this.getChatsForAdmin();
     this.getMessages();
     this.listenForNewMessages() ; 
   }
-
 
   private getChatsForAdmin () : void {
     const user_id = this.authService.CurrentUser()?.user_id ;
@@ -43,23 +48,29 @@ export class AdminChatComponent {
       this.chatService.getChatsForAdmin(user_id)
       .pipe(takeUntilDestroyed())
       .subscribe({
-      next : (value) => {
-      this.chats.set(value)
+      next : (chats ,) => {
+      this.chats.set(chats);
+      const chatById = chats.find((chat) => chat.id === this.chatId());
+      this.chatUser.set(chatById);
       }
     })
     }
   }
+
   
   private getMessages () : void {
   combineLatest([
   this.activatedRoute.paramMap,  this.activatedRoute.queryParamMap,
   ]).pipe(
   switchMap(([paramMap, queryParamMap])  => {
-  const chat_id = Number(paramMap.get('chatId'));
+  const chat_id = +paramMap.get('chatId')! || 0 ;
   const receiver_id = queryParamMap.get('receiver-id') || '' ;
+  if(chat_id && receiver_id){
+  const chatById = this.chats().find((chat) => chat.id === chat_id);
+  this.chatUser.set(chatById);
+  }
   this.chatId.set(chat_id);
   this.receiver_id.set(receiver_id);
-
 
   return this.chatService.getMassages(chat_id, this.chatService.Admin_id);
   }),
@@ -70,6 +81,8 @@ export class AdminChatComponent {
   
   })
   }
+
+
 
   sendMessage (message : string) : void {
     if(this.chatId() && this.receiver_id() !== '') {
@@ -94,19 +107,32 @@ export class AdminChatComponent {
     this.messages.update((prev) => [...prev , updateNew]);
     if(updateNew){
     this.initChatScroll();
+    this.playAudio();
     }
     }
     })
     }
 
     private initChatScroll(): void {
-      timer(50).subscribe(() =>{
+      timer(30).subscribe(() =>{
         const container = this.chatContainer()?.chatContainer()?.nativeElement;
-        console.log(container);
-        
-        if(container){
+        if(container ){
           container.scrollTop = container.scrollHeight;
         }
       })
     }
+
+    private playAudio () : void {
+      const audioRef = this.audioRef()?.nativeElement;
+      if(audioRef){
+        if(audioRef.paused){
+          audioRef.volume = 0.4;
+          audioRef.currentTime = 0;
+          audioRef.play();
+    
+        }
+    timer(2000).subscribe(() => audioRef.pause());
+      }
+    }
+
 }

@@ -57,7 +57,9 @@
   @apply bg-[url('https://res.cloudinary.com/mohamedenara/image/upload/v1741027606/bg-space_px2q4e.jpg')]
   bg-cover bg-no-repeat
   }
-
+  .after-border {
+  @apply  after:absolute after:bottom-0  after:w-full after:h-[1px]  ;
+  }
   .animate-updown {
     animation: upAndDown 2s infinite ease-in-out;
   }
