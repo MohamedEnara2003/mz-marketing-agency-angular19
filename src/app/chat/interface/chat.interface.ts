@@ -17,5 +17,9 @@ export interface MessageType {
     chat_id : number ,
     message : string ,
     image_url? : string ,
-    
+}
+
+export interface ImagesFilesType {
+imageName : string ,
+imagePath : string ,
 }

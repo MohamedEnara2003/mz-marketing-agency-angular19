@@ -4,6 +4,7 @@ import { RegisterComponent } from './features/auth/pages/register/register.compo
 import { LoginComponent } from './features/auth/pages/login/login.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { BookingComponent } from './features/booking/booking.component';
+import { isAdminGuard } from './core/guards/is-admin.guard';
 
 
 export const routes: Routes = [
@@ -17,7 +18,7 @@ export const routes: Routes = [
     loadComponent : () => import('./categories/categories.component').then((c => c.CategoriesComponent))
     },
     
-    {path : 'dashboard' , data : {headerHide : true , layoutHide : true} ,
+    {path : 'dashboard' , data : {headerHide : true , layoutHide : true} , canMatch : [isAdminGuard] ,
     loadChildren : () => import('./dashboard/dashboard.routes').then((r) => r.dashboardRoutes),
     loadComponent : () => import('./dashboard/dashboard.component').then((c => c.DashboardComponent))
     },

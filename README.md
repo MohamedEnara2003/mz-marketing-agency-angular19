@@ -1,4 +1,4 @@
-# Project Mz marketing agency
+## Wellcome To Project Mz Marketing Agency
 
 ## Packages
 #1- npm install daisyui@latest tailwindcss@latest @tailwindcss/postcss@latest postcss@latest --force
@@ -11,7 +11,17 @@
 #8- npm i lottie-web
 #8- npm install @lordicon/element
 #9- npm install gsap 
-#10- npm install interactjs
-## Back End 
+
+## Back End => SupaBase
 #- npm install @supabase/supabase-js
 #- npm i @supabase/gotrue-js@2.61.0
+
+## State Management => NgRx
+#- ng add @ngrx/store  
+#- ng add @ngrx/store-devtools 
+#- ng add @ngrx/effects
+#- npm install ngrx-store-localstorage
+
+
+
+

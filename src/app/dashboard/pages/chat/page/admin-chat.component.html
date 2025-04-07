@@ -1,6 +1,6 @@
 <section class="size-full flex justify-center items-center">
     
-    <nav class="size-full sm:size-[95%] flex justify-between items-center  bg-gray-50">
+    <nav class="size-full sm:size-[95%] flex justify-between items-center  ">
     <app-users-messages *ngIf="!chatId()" class="w-full md:w-[30%] h-full shadow-md shadow-black 
     sm:border-r-2 border-gray-300" 
     [chats]="chats()"/>
@@ -8,13 +8,13 @@
 
         @if(chatId()){
         <div class="w-full h-full flex  flex-col justify-center items-center z-50 ">
-        <app-chat-header class="w-full py-1" pathCloseChat="/dashboard/chat"
+        <app-chat-header class="w-full" pathCloseChat="/dashboard/chat"
         [userData]="chatUser()"
         />
-        <app-chat-container #chatContainer class="w-full h-full bg-gray-50 p-1"
+        <app-chat-container #chatContainer class="w-full"
         [messagesData]="messages()"/>
-        <app-chat-form class="w-full bg-gray-50 py-1"
-        (postMessage)="sendMessage($event)"
+        <app-chat-form class="w-full "
+      
         />
     </div>
     }@else {
@@ -29,7 +29,5 @@
     </nav>
 
 
-    <audio  #audioRef  class="hidden">
-    <source [src]="audioSrc" type="audio/mpeg">
-    </audio>
+   
 </section>

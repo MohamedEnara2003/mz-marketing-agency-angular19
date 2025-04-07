@@ -1,17 +1,16 @@
 import { inject, Injectable } from '@angular/core';
 import { SingleTonSupabaseService } from '../../core/services/single-ton-supabase.service';
 import { from, map, Observable } from 'rxjs';
-import { ChatType, MessageType} from '../interface/chat.interface';
+import { ChatType, ImagesFilesType, MessageType} from '../interface/chat.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private readonly TableChat : string = "chats" ;
-  private readonly TableMessages : string = "messages" ;
-  private readonly BucketName : string = "chatfiles" ;
-  readonly Admin_id : string = "6a5c0595-c564-4050-98d9-a78316b62f5b";
-
+  private readonly TableChat : string = "chats";
+  private readonly TableMessages : string = "messages";
+  private readonly BucketName : string = "chatfiles";
+  
   private singleTonSupabaseService  = inject(SingleTonSupabaseService);
   
   getChatsForAdmin(adminId: string): Observable<ChatType[]> {
@@ -76,8 +75,12 @@ export class ChatService {
   return this.singleTonSupabaseService.postData(this.TableMessages , messageData)
   }
 
-  uploadImage(file: File): Observable<string> {
+  uploadImage(file: File): Observable<ImagesFilesType> {
   return  this.singleTonSupabaseService.uploadImage(this.BucketName, file);
+  }
+
+  deleteStorgeImage(filePath: string): Observable<void> {
+  return this.singleTonSupabaseService.deleteStorgeImage(this.BucketName, filePath);
   }
 
   listenForNewMessages(chatId: number): Observable<any> {

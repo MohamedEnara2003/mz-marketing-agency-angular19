@@ -2,10 +2,12 @@ import { Component,  signal } from '@angular/core';
 import { RelatedComponent } from "./components/related/related.component";
 import { CategoriesService } from '../../../../service/categories.service';
 import { CategoriesType } from '../../../../../shared/interfaces/categories';
-import { CategoryHeaderComponent } from "../../../category-header/category-header.component";
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { CategoriesState } from '../../../../reducers/reducers.action';
+import { select, Store } from '@ngrx/store';
+import { selectAllCategories } from '../../../../reducers/category.selector';
+import { CategoryHeaderComponent } from "../../../category-header/category-header.component";
 
 
 
@@ -21,32 +23,22 @@ export class DetailsAsideComponent{
   categoriesValues = signal<string[]>([]);
   constructor(
   private categoriesService : CategoriesService ,
-  private activatedRoute : ActivatedRoute,
+  private store : Store<CategoriesState>
   ){
   this.getCategoriesValues();
-  this.getCategoryAndInitQuery();
+  this.getCategoryFromStore() ;
   }
   
-  private getCategoryAndInitQuery() : void {
-    this.activatedRoute.queryParamMap.pipe(
-    switchMap((queryParamMap) => {
-    const category = queryParamMap.get('category')!;
-    const id = +queryParamMap.get('id')!;
-    this.queryParams.set({id : id , category : category});
-    return  this.categoriesService.getCategories(category)
-    }),
-    takeUntilDestroyed()
-    ).subscribe({
-      next : (value) => {
-      this.categoryData.set(value)
-      },
-      error : (err) => {
-      console.log(err);
-      },
-      complete : () => {}
-      })
+  private getCategoryFromStore() : void {
+  this.store.pipe(select(selectAllCategories))
+  .pipe(takeUntilDestroyed())
+  .subscribe({
+    next : (value) => {
+    this.categoryData.set(value)
+    }
+  })
   }
-
+  
   private getCategoriesValues () : void {
   this.categoriesService.getCategoriesValue()
   .pipe(takeUntilDestroyed())

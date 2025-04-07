@@ -2,7 +2,7 @@ import { Component,ElementRef, signal, viewChild } from '@angular/core';
 import { UsersMessagesComponent } from "../components/users-messages/users-messages.component";
 import { SharedModule } from '../../../../shared/modules/shared.module';
 import { ChatService } from '../../../../chat/service/chat.service';
-import { ChatType, MessageType } from '../../../../chat/interface/chat.interface';
+import { ChatType, ImagesFilesType, MessageType } from '../../../../chat/interface/chat.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthenticationService } from '../../../../features/auth/service/authentication.service';
 import { ChatHeaderComponent } from "../../../../chat/components/chat-header/chat-header.component";
@@ -28,10 +28,7 @@ export class AdminChatComponent {
   receiver_id = signal<string>('');
   chatContainer = viewChild<ChatContainerComponent>('chatContainer');
   
-  readonly audioSrc = "https://kzzljjlggloknteiirlr.supabase.co/storage/v1/object/sign/assets/audioo.wav?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvYXVkaW9vLndhdiIsImlhdCI6MTc0Mzc1MDY5NCwiZXhwIjoxNzc1Mjg2Njk0fQ.ILiimV3N513cNauqqPYnzkPciQcXtF_5rDttD-1aszA" ;
-  
-  audioRef = viewChild<ElementRef<HTMLAudioElement>>('audioRef') ;
-  isPlay  = signal<boolean>(false);
+
   constructor(
   private chatService : ChatService ,
   private authService : AuthenticationService ,
@@ -44,7 +41,7 @@ export class AdminChatComponent {
 
   private getChatsForAdmin () : void {
     const user_id = this.authService.CurrentUser()?.user_id ;
-    if(user_id === this.chatService.Admin_id){
+    if(user_id === this.authService.Admin_id){
       this.chatService.getChatsForAdmin(user_id)
       .pipe(takeUntilDestroyed())
       .subscribe({
@@ -57,7 +54,6 @@ export class AdminChatComponent {
     }
   }
 
-  
   private getMessages () : void {
   combineLatest([
   this.activatedRoute.paramMap,  this.activatedRoute.queryParamMap,
@@ -72,7 +68,7 @@ export class AdminChatComponent {
   this.chatId.set(chat_id);
   this.receiver_id.set(receiver_id);
 
-  return this.chatService.getMassages(chat_id, this.chatService.Admin_id);
+  return this.chatService.getMassages(chat_id, this.authService.Admin_id);
   }),
   takeUntilDestroyed()
   ).subscribe((value) => {
@@ -84,15 +80,27 @@ export class AdminChatComponent {
 
 
 
-  sendMessage (message : string) : void {
+  sendMessage (interaction : {message : string , files : ImagesFilesType[]} ) : void {
     if(this.chatId() && this.receiver_id() !== '') {
-      const chatData : MessageType = {
-        sender_id : this.chatService.Admin_id ,
+
+      const existingChatData : MessageType = {
+        sender_id : this.authService.Admin_id ,
         receiver_id : this.receiver_id() ,
         chat_id : this.chatId(),
-        message : message,
-      };
-    this.chatService.sendMessage(chatData).subscribe();
+        message : interaction.message ,
+      }
+        if(interaction.files.length > 0 ){
+          interaction.files.map((image , i) => {
+          const chatData : MessageType = {
+            ...existingChatData ,
+            message :  i === 0 ? interaction.message : '',
+            image_url : image.imagePath,
+        }
+        this.chatService.sendMessage(chatData).subscribe() 
+        })
+      }else{
+      this.chatService.sendMessage(existingChatData).subscribe();
+      }
     }
   }
 
@@ -107,7 +115,6 @@ export class AdminChatComponent {
     this.messages.update((prev) => [...prev , updateNew]);
     if(updateNew){
     this.initChatScroll();
-    this.playAudio();
     }
     }
     })
@@ -122,17 +129,6 @@ export class AdminChatComponent {
       })
     }
 
-    private playAudio () : void {
-      const audioRef = this.audioRef()?.nativeElement;
-      if(audioRef){
-        if(audioRef.paused){
-          audioRef.volume = 0.4;
-          audioRef.currentTime = 0;
-          audioRef.play();
-    
-        }
-    timer(2000).subscribe(() => audioRef.pause());
-      }
-    }
+
 
 }

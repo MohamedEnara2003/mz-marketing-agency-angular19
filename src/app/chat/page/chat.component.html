@@ -6,18 +6,16 @@
     
         <app-chat-header class="w-full" />
         <app-chat-container #chatContainer
-        class="w-full h-full py-1"
+        class="w-full h-full "
         [messagesData]="messagesData()"
-        [images]="images()"
         />
-        <app-chat-form class="w-full py-1"
+        <app-chat-form class="w-full "
         (postMessage)="sendMessage($event)"
-        (file)="uploadImage($event)"
         />
         
     </nav>
     
 
-    <div class="hidden md:inline-block w-full h-full absolute top-0 left-0 bg-black z-0 opacity-60"></div>
+    <div class="hidden md:inline-block w-full h-full absolute top-0 left-0 bg-black z-0 opacity-70"></div>
 </section>
 

@@ -9,13 +9,13 @@ import { ChatType } from '../../interface/chat.interface';
   imports: [LogoComponent , SharedModule],
   template : `
   <header class="bg-mz-secound text-white py-1 px-4 flex justify-between items-center ">  
-  <div class="flex flex-wrap justify-center items-center gap-2 p-1">
+  <div class="flex flex-wrap justify-center items-center gap-2 ">
         <a [routerLink]="pathCloseChat()">
         <i class="fa-solid fa-angle-left text-gray-50 cursor-pointer text-2xl"></i>
         </a>
       @if(!userData()){
         <h1 class="text-lg font-semibold mb-2">
-        <app-logo logoClass="w-20" [isPath]="false"/>
+        <app-logo logoClass="w-24" [isPath]="false"/>
         </h1>
         <div class="flex flex-col">
         <span class="capitalize text-xs sm:text-sm font-[500]">admin m&z marketing agency</span>

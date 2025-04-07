@@ -10,6 +10,9 @@ import { LoadingComponent } from "../../../shared/components/loading/loading.com
 import { CategoryHeaderComponent } from "../../components/category-header/category-header.component";
 import { RelatedVideoDetailsComponent } from "../../components/related-video-details/related-video-details.component";
 import { LocaleStorgeService } from '../../../core/services/locale-storge.service';
+import { select, Store } from '@ngrx/store';
+import { CategoriesState } from '../../reducers/reducers.action';
+import { selectAllCategories } from '../../reducers/category.selector';
 
 
 @Component({
@@ -27,47 +30,29 @@ export class CategoryComponent implements OnInit {
 
 
   constructor(
-  private activatedRoute : ActivatedRoute,
   private router : Router ,
   private categoriesService : CategoriesService,
   private localeStorgeService : LocaleStorgeService,
+  private store : Store<CategoriesState>
   ){
-
-
-  this.initSubscription () ;
   this.getCategoriesValues ();
+  this.getCategoryFromStore();
   }
 
   ngOnInit(): void {
   this.defaultQueryCategory();
   } 
 
-
-  private initSubscription () : void {
-  this.activatedRoute.queryParamMap.pipe(
-  switchMap(( queryParamMap) => {
-  const category = queryParamMap.get('category')! ;
-  const id = +queryParamMap.get('id')!
-  this.queryCategory.set(category);
-  return combineLatest([
-  this.categoriesService.getCategories(category) ,
-  id ? this.categoriesService.getCategoryById(id) : of(null)
-  ]) ;
-  }),
-  takeUntilDestroyed()
-  ).subscribe({
-  next : ([category , categoryById ]) => {
-  this.categoryData.set(category);
-  this.categoryById.set(categoryById)
-  },
-  error : (err) => {
-  console.log(err);
-  },
-  complete : () => {}
+  private getCategoryFromStore() : void {
+  this.store.pipe(select(selectAllCategories))
+  .pipe(takeUntilDestroyed())
+  .subscribe({
+    next : (value) => {
+    this.categoryData.set(value)
+    }
   })
   }
   
-
   private getCategoriesValues () : void {
   this.categoriesService.getCategoriesValue()
   .pipe(takeUntilDestroyed())

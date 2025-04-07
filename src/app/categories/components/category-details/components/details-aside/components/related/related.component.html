@@ -6,7 +6,7 @@
     [queryParams]="{id : data.id}" queryParamsHandling="merge"
     class="animate-up w-full flex  justify-between items-center text-gray-50 border-b-[1px] border-b-zinc-500
     gap-2 py-2  text-xs capitalize font-semibold bg-black"
-    [ngClass]="categoryRelatedData().id === data.id ? 'bg-zinc-800' : ''">
+    [ngClass]="relatedId() === data.id ? 'bg-zinc-800 px-1 rounded-box' : ''">
     
     <div class="flex justify-start items-start gap-2">
 

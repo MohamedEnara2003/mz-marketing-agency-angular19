@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient} from '@supabase/supabase-js';
 import { environment } from '../../../environments/environment';
 import { from, map, Observable } from 'rxjs';
+import { ImagesFilesType } from '../../chat/interface/chat.interface';
 
 
 @Injectable({
@@ -48,20 +49,22 @@ export class SingleTonSupabaseService {
   return from(promise).pipe(map(() =>{})) ;
   }
 
-  uploadImage(bucketName : string ,file: File): Observable<string> {
-    const filePath = `${Date.now()}_${file.name}`;
+  uploadImage(bucketName : string ,file: File): Observable<ImagesFilesType> {
+    const filePath = `${Date.now()}_${file.name.trim()}`;
     const promise = this.supabase.storage.from(bucketName).upload(filePath, file);
-    return from(promise).pipe(map(({ error }) => {
-      if (error) {
-      throw error;
-      }
-      const { data } = this.supabase.storage.from(bucketName).getPublicUrl(filePath)
-      return data.publicUrl;
+    return from(promise).pipe(map((res) => {
+  
+    const { data } = this.supabase.storage.from(bucketName).getPublicUrl(filePath)
+    const fileData : ImagesFilesType = {
+    imageName : res.data?.path!,
+    imagePath : data.publicUrl,
+    }
+      return fileData;
     }));
   }
 
-  deleteStorgeImage(bucketName : string ,file: File): Observable<void> {
-    const promise = this.supabase.storage.from(bucketName).remove([file.name]);
+  deleteStorgeImage(bucketName : string ,filePath: string): Observable<void> {
+    const promise = this.supabase.storage.from(bucketName).remove([filePath]);
     return from(promise).pipe(map(() => {}));
   }
 }

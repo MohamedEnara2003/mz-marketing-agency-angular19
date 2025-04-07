@@ -1,9 +1,12 @@
-import { Component, effect, ElementRef, input, signal, viewChildren } from '@angular/core';
+import { Component, effect, input, signal, viewChildren } from '@angular/core';
 import { CategoriesType } from '../../../../../../../shared/interfaces/categories';
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { CategoryViewComponent } from "../../../../../category-view/category-view.component";
 import { DayJsService } from '../../../../../../service/day-js.service';
 import { LoadingComponent } from "../../../../../../../shared/components/loading/loading.component";
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-related',
@@ -14,17 +17,29 @@ import { LoadingComponent } from "../../../../../../../shared/components/loading
 export class RelatedComponent {
   
   categoryRelated = input.required<CategoriesType[]>()
-  categoryRelatedData = input.required<{id : number , category : string}>()
-
+  relatedId = signal<number>(0) ;
   videosDurations = signal<number[]>([]) ;
   categoryViewComponent = viewChildren<CategoryViewComponent>(CategoryViewComponent) ;
 
-  constructor(private dayJsService : DayJsService){
+  constructor(
+  private dayJsService : DayJsService ,
+  private activatedRoute : ActivatedRoute,
+  ){
   effect(() => {
   this.initVideosRef();
   })
+  this.getRelatedId ();
   }
-  
+
+  private getRelatedId () : void {
+    this.activatedRoute.queryParamMap.pipe(
+    tap((queryParamMap) => {
+      const id = +queryParamMap.get('id')! ;
+      this.relatedId.set(id)
+    }), takeUntilDestroyed()
+    ).subscribe()
+  }
+
   formatTime(timestamp: string): string {
     return this.dayJsService.formatTime(timestamp)
   }

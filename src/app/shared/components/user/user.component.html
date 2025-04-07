@@ -1,4 +1,4 @@
-<ul class="flex justify-center items-center gap-1 ">
+<ul class="flex justify-center items-center gap-1  text-gray-50">
     <li class="mx-1">
         <app-selection-translate />
     </li>
@@ -7,13 +7,13 @@
 <li>
     <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]"
 
-    class="text-xs sm:text-sm text-white links bg-mz-primary rounded-3xl p-1 px-1.5 hover:bg-mz-secound duration-200">
+    class="text-xs sm:text-sm   bg-mz-primary rounded-3xl p-1 px-1.5 hover:bg-mz-secound duration-200">
     {{'auth.register' | translate}}
     </a>
 </li>
 <li>
     <a [routerLink]="[{outlets : {loginIn: 'loginIn' , register : null}}]"
-    class="text-xs sm:text-sm text-white links hover:bg-mz-primary rounded-3xl p-1 px-1.5 duration-200">
+    class="text-xs sm:text-sm   hover:bg-mz-primary rounded-3xl p-1 px-1.5 duration-200">
     {{'auth.logIn' | translate}}
     </a>
 </li>
