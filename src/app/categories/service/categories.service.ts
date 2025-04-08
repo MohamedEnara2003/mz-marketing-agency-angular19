@@ -24,7 +24,6 @@ export class CategoriesService {
   return this.singleTonSupaBaseService.getData(this.Table).pipe(
   map((data : unknown) => {
   const categories = (data as CategoriesType[]);
-
   const categoriesValues = categories.filter((prev, i) => {
   return i == categories.findIndex((cur) => prev.category === cur.category);
   }).map((res) => res.category);

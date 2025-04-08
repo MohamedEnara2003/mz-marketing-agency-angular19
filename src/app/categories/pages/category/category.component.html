@@ -1,15 +1,16 @@
 <section class="w-full flex flex-col  justify-center items-center gap-10 my-10">
 
     <app-category-header class="w-[80%] lg:w-[50%]"
-    [queryCategory]="queryCategory()"
-    [categoriesValues]="categoriesValues()"
+    [queryCategory]="''"
     />
     
 <ul [ngClass]="categoryData().length > 0 ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10' : ''">
 @for (data of categoryData(); track data.id) {
     <div [routerLink]="['/categories/watch']" 
     [queryParams]="{id : data.id}" queryParamsHandling="merge"
-    class="rounded-box cursor-pointer flex justify-center items-center  border-1 border-mz-primary">
+    class="rounded-box cursor-pointer flex justify-center items-center  border-1 border-mz-primary
+    animate-up
+    ">
 @defer (on viewport) {
     <app-category-view 
     [options]="{
@@ -17,8 +18,8 @@
     type : data.type,
     poster : data.poster ,
     class : data.category === 'reels' ? 
-    'w-[220px] h-[320px] object-cover rounded-box animate-down' :
-    'h-[200px] w-[300px] object-cover rounded-box animate-down',
+    'w-[220px] h-[320px] object-cover rounded-box ' :
+    'h-[200px] w-[300px] object-cover rounded-box ',
     muted : true,
     }"
     
@@ -41,10 +42,8 @@
 }
 </ul>
 
-<app-related-video-details class="w-full fixed z-10"
-*ngIf="categoryById() && categoryById()?.type === 'video'"
-[categoryById]="categoryById()"
-/>
+<app-related-video-details class="w-full fixed z-10"/>
+
 </section>
 
 

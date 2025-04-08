@@ -1,14 +1,19 @@
-import { Component, effect, ElementRef, input, signal, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, signal, viewChild } from '@angular/core';
 import { CategoryViewComponent } from '../category-view/category-view.component';
 import { CategoriesType } from '../../../shared/interfaces/categories';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { timer } from 'rxjs';
-import { LocaleStorgeService } from '../../../core/services/locale-storge.service';
+import { CategoryState } from '../../reducers/reducers.action';
+import { select, Store } from '@ngrx/store';
+import { categoriesActions } from '../../reducers/action-types';
+import { selectCategory } from '../../reducers/category.selector';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-related-video-details',
   imports: [CategoryViewComponent , SharedModule],
   template : `
+    @if(categoryById() !== undefined && categoryById()?.type === 'video'){ 
     <aside #asideElement 
     (click)="playPauseRelatedVideoDetails()"
     (mouseenter)="isShadow.set(true)" 
@@ -25,7 +30,8 @@ import { LocaleStorgeService } from '../../../core/services/locale-storge.servic
         <a> <i class="cursor-pointer fa-solid fa-close text-white text-xl"></i></a>
         </li>
 
-        <li routerLink="/categories/watch"  queryParamsHandling="merge">
+        <li routerLink="/categories/watch" [queryParams]="{id : categoryById()?.id }"  
+        queryParamsHandling="merge">
         <a> <i class="cursor-pointer fa-solid fa-up-right-from-square text-white text-xl"></i></a>
         </li>
 
@@ -50,10 +56,11 @@ import { LocaleStorgeService } from '../../../core/services/locale-storge.servic
     
     <div *ngIf="isShadow()" class="w-full h-full absolute left-0 top-0 bg-black opacity-70 z-20"></div>
 </aside>
+}
   `
 })
 export class RelatedVideoDetailsComponent {
-  categoryById = input.required<CategoriesType | null>()
+  categoryById = signal<CategoriesType | undefined>(undefined)
 
   categoryViewComponent = viewChild<CategoryViewComponent>('categoryViewComponent');
   asideElement = viewChild<ElementRef<HTMLElement>>('asideElement') ;
@@ -61,14 +68,28 @@ export class RelatedVideoDetailsComponent {
   isShadow = signal<boolean>(false);
   isPlay = signal<boolean | null>(null);
 
-  constructor(private localeStorgeService : LocaleStorgeService){
+  constructor(
+  private store : Store<CategoryState>
+  ){
     effect(() => {
       this.initIsPlay()
     })
+  this.getCategoryById()  ;
+  }
+  
+  private getCategoryById() : void {
+  this.store.pipe(select(selectCategory)).pipe(
+  takeUntilDestroyed(),
+  ).subscribe({
+  next : (value) => {
+  this.categoryById.set(value) ;
+  }
+  })
   }
 
   closeModle() : void {
-  this.localeStorgeService.removeItem('VideoDetailsKay');
+  this.categoryById.set(undefined)
+  this.store.dispatch(categoriesActions.GetCategotyById({category : undefined}))
   }
 
 

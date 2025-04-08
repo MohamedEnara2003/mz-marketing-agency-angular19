@@ -6,15 +6,31 @@ export const categoriesNameKay : string = 'categories' ;
 export interface CategoriesState {
     categories : CategoriesType[] ,
 }
-export const initialState : CategoriesState = { 
+export const initialCategoriesState : CategoriesState = { 
     categories : [] ,
 } 
 
 export const categoriesReducer = createReducer(
-    initialState ,
+    initialCategoriesState ,
     on(categoriesActions.GetCategories , (state , {categories}) => ({
-    ...state , categories
+    ...state , loading : false , categories ,
     })
+    )   
+)
 
+export const categoryNameKay : string = 'category' ;
+export interface CategoryState {
+    category : CategoriesType | undefined ,
+}
+
+export const initialCategoryState : CategoryState = { 
+    category : undefined ,
+} 
+
+export const categoryByIdReducer = createReducer(
+    initialCategoryState ,
+    on(categoriesActions.GetCategotyById , (state , {category}) => ({
+    ...state , category
+    })
     )
 )

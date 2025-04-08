@@ -1,7 +1,7 @@
 import { Component, effect, ElementRef,  OnInit,  signal, viewChildren} from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  EMPTY,  switchMap } from 'rxjs';
+import {  EMPTY,  noop,  switchMap, tap } from 'rxjs';
 import { CategoriesService } from '../../service/categories.service';
 import { CategoriesType } from '../../../shared/interfaces/categories';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,6 +12,10 @@ import { DetailsAsideComponent } from "./components/details-aside/details-aside.
 import { CategoryViewComponent } from "../category-view/category-view.component";
 import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 import { LocaleStorgeService } from '../../../core/services/locale-storge.service';
+import { select, Store } from '@ngrx/store';
+import { CategoryState } from '../../reducers/reducers.action';
+import { categoriesActions } from '../../reducers/action-types';
+import { selectCategory } from '../../reducers/category.selector';
 
 
 @Component({
@@ -38,17 +42,12 @@ export class CategoryDetailsComponent{
   private router : Router ,
   private categoriesService : CategoriesService,
   private sanitizer : DomSanitizer,
-  private localeStorgeService : LocaleStorgeService
+  private store : Store<CategoryState>
   ){
-  effect(() => {
-  this.continionVideoDetails();
-  this.addCategoryInHistory ();
-  })
   this.initSubscription();
+  this.getCategoryByIdFromStore() ;
   }
 
-  
-  
   private initSubscription () : void {
   this.activtedRoute.queryParamMap.pipe(
   switchMap((queryParamMap) => {
@@ -59,41 +58,31 @@ export class CategoryDetailsComponent{
   this.router.navigate(['/categories/watch/', category], {queryParams : {id : 2}});
   return EMPTY;
   }else{
-    this.queryId.set(id);
-    return this.categoriesService.getCategoryById(id);
+  this.queryId.set(id);
+  return this.categoriesService.getCategoryById(id)
+  .pipe(
+  tap((categoryById) => {
+  this.videoUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(categoryById.url));
+  this.store.dispatch(categoriesActions.GetCategotyById({category : categoryById}))
+  })
+  )
   }
   }),
   takeUntilDestroyed()
-  ).subscribe({
+  ).subscribe(
+  noop,
+  )
+  }
+  
+  private getCategoryByIdFromStore() : void {
+  this.store.pipe(select(selectCategory))
+  .pipe(takeUntilDestroyed())
+  .subscribe({
   next : (value) => {
-  this.categoryDataById.set(value);
-  this.videoUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(value.url));
-  },
-  error : (err) => {
-  console.log(err);
-  },
-  complete : () => {}
+  this.categoryDataById.set(value!)
+  }
   })
   }
   
-  private continionVideoDetails() : void {
-  this.localeStorgeService.setItem('VideoDetailsKay', this.queryId().toString())
-  }
-
-  private addCategoryInHistory(): void {
-    const HistoryKey = "HistoryKey";
-    const existingData = this.localeStorgeService.getItem(HistoryKey);
-    const CategoriesData: CategoriesType[] = existingData ? JSON.parse(existingData) : [];
-
-    const currentCategory = this.categoryDataById();
-    if (currentCategory) {
-      const existingIndex = CategoriesData.findIndex(category => category.id === currentCategory.id);
-      if (existingIndex !== -1) {
-      CategoriesData.splice(existingIndex, 1);
-      }
-      CategoriesData.unshift(currentCategory);
-      this.localeStorgeService.setItem(HistoryKey, JSON.stringify(CategoriesData));
-    }
-  }
 }
 

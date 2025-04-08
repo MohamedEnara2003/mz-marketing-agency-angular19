@@ -2,19 +2,22 @@
 <section class="w-full relative  flex  justify-center items-start ">
     
     <section *ngIf="categoryDataById()" 
-    class="w-[95%] flex flex-wrap flex-col md:flex-row justify-between items-start my-5">
+    class="w-[95%] flex flex-wrap flex-col md:flex-row justify-center items-start gap-[5%] my-5">
 
-    <div class="w-full lg:w-[65%] flex flex-col justify-center items-center gap-4 mt-3 ">
+    <div class="w-full md:w-[95%] lg:w-[65%] flex flex-col justify-center items-center gap-4 mt-3 ">
         
-        <div class="relative animate-down rounded-box shadow-2xl shadow-black border-1 border-mz-primary 
-        flex items-center md:w-full justify-center"
-        [ngClass]="categoryDataById()?.category === 'reels' ? 
-        '' :
-        ''">
-
-        <img *ngIf="categoryDataById()?.poster" [src]="categoryDataById()?.poster" 
+        <div class="relative animate-down rounded-box  border-1 border-mz-secound  
+        flex items-center md:w-full justify-center "
+        [ngClass]="categoryDataById() ? 
+        '' 
+        :
+        'h-[50vh] lg:h-[75vh]' ">
+        
+        @if(categoryDataById()?.poster && categoryDataById()?.type === 'reels'){
+        <img [src]="categoryDataById()?.poster" 
         alt="poster-video-shadow"
         class="hidden md:inline-block  w-full h-[75vh] object-cover opacity-8  absolute left-0 top-0 ">
+        }
 
         @defer (on viewport) {
         <app-category-view 
@@ -26,11 +29,11 @@
         controls : true ,
         class : categoryDataById()?.category === 'reels' ? 
         'w-[320px] h-[75vh] object-cover z-20 rounded-box' :
-        'w-full  rounded-box object-cover'
+        'w-full rounded-box '
         }"
         />
     }@placeholder {
-    <div class="w-full h-full bg-black flex justify-center items-center">
+    <div class="w-full h-full bg-black flex justify-center items-center border-1 border-mz-secound">
         <span class="loading loading-bars loading-xl  text-mz-primary "></span>
     </div>
     }

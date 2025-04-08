@@ -7,4 +7,9 @@ export const GetCategories = createAction(
     props<{categories : CategoriesType[]}>()
 )
 
+export const GetCategotyById = createAction(
+    '[get category] CategoryDetails Page' ,
+    props<{category : CategoriesType | undefined}>()
+)
+
 

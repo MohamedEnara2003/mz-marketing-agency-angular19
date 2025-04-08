@@ -1,6 +1,8 @@
 import { Component, computed, CUSTOM_ELEMENTS_SCHEMA,   ElementRef,  input ,  signal,  viewChild } from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { SwiperContainer } from 'swiper/element';
+import { CategoriesService } from '../../service/categories.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -13,9 +15,23 @@ import { SwiperContainer } from 'swiper/element';
 })
 export class CategoryHeaderComponent {
   queryCategory = input.required<string | undefined>();
-  categoriesValues = input.required<string[]>();
+  categoriesValues = signal<string[]>([]);
   pathname = signal<string>(window.location.pathname) ;
   sortedCategoryValues = computed(() => 
   this.categoriesValues().sort((a , b) => a === this.queryCategory() ? -1 : 0)) ;
   swiperRef = viewChild<ElementRef<SwiperContainer>>('swiperRef');
+
+
+  constructor(private categoriesService : CategoriesService ){
+  this.getCategoriesValues ()
+  }
+
+  private getCategoriesValues () : void {
+    this.categoriesService.getCategoriesValue()
+    .pipe(takeUntilDestroyed())
+    .subscribe((values) => {
+    this.categoriesValues.set(values);
+    })
+  }
+  
 }

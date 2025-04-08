@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef,input,  signal, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, signal, viewChild } from '@angular/core';
 import {  Comments } from '../../../../../shared/interfaces/categories';
 import { AuthenticationService } from '../../../../../features/auth/service/authentication.service';
 import { UserImageComponent } from "../../../../../shared/components/user-image/user-image.component";
