@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef,  OnInit,  signal, viewChildren} from '@angular/core';
+import { Component,  ElementRef, OnInit, signal, viewChildren} from '@angular/core';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  EMPTY,  noop,  switchMap, tap } from 'rxjs';
@@ -28,7 +28,7 @@ import { selectCategory } from '../../reducers/category.selector';
   templateUrl: './category-details.component.html',
   styleUrl: './category-details.component.css'
 })
-export class CategoryDetailsComponent{
+export class CategoryDetailsComponent implements OnInit{
 
   categoryDataById = signal<CategoriesType | null>(null);
   queryCategory  = signal<string>('');
@@ -42,10 +42,15 @@ export class CategoryDetailsComponent{
   private router : Router ,
   private categoriesService : CategoriesService,
   private sanitizer : DomSanitizer,
-  private store : Store<CategoryState>
+  private store : Store<CategoryState>,
+  private localeStorgeService : LocaleStorgeService
   ){
   this.initSubscription();
   this.getCategoryByIdFromStore() ;
+  }
+  
+  ngOnInit(): void {
+    this.addCategoryInHistory() ;
   }
 
   private initSubscription () : void {
@@ -83,6 +88,21 @@ export class CategoryDetailsComponent{
   }
   })
   }
-  
+
+  private addCategoryInHistory(): void {
+    const HistoryKey = "HistoryKey";
+    const existingData = this.localeStorgeService.getItem(HistoryKey);
+    const CategoriesData: CategoriesType[] = existingData ? JSON.parse(existingData) : [];
+
+    const currentCategory = this.categoryDataById();
+    if (currentCategory) {
+      const existingIndex = CategoriesData.findIndex(category => category.id === currentCategory.id);
+      if (existingIndex !== -1) {
+      CategoriesData.splice(existingIndex, 1);
+      }
+      CategoriesData.unshift(currentCategory);
+      this.localeStorgeService.setItem(HistoryKey, JSON.stringify(CategoriesData));
+    }
+  }
 }
 

@@ -24,7 +24,11 @@
 }
 
 @keyframes sideLeft {
-  0%,100% { transform: translateX(-400px); opacity: 0; }
+  0%,100% { transform: translateX(-500px); opacity: 0; }
+  100% { transform: translateX(0px); opacity: 1;}
+}
+@keyframes sideRight {
+  0%,100% { transform: translateX(500px); opacity: 0; }
   100% { transform: translateX(0px); opacity: 1;}
 }
 
@@ -71,6 +75,9 @@
   }
   .animate-sideLeft {
     animation: sideLeft 0.5s  ease-in-out;
+  }
+  .animate-sideRight {
+    animation: sideRight 0.5s  ease-in-out;
   }
   .animate-down {
     animation:  down 0.5s  ease-in-out;
