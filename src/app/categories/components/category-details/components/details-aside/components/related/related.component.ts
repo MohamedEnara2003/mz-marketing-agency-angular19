@@ -3,14 +3,13 @@ import { CategoriesType } from '../../../../../../../shared/interfaces/categorie
 import { SharedModule } from '../../../../../../../shared/modules/shared.module';
 import { CategoryViewComponent } from "../../../../../category-view/category-view.component";
 import { DayJsService } from '../../../../../../service/day-js.service';
-import { LoadingComponent } from "../../../../../../../shared/components/loading/loading.component";
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-related',
-  imports: [SharedModule, CategoryViewComponent, LoadingComponent],
+  imports: [SharedModule, CategoryViewComponent],
   templateUrl: './related.component.html',
   styleUrl: './related.component.css'
 })

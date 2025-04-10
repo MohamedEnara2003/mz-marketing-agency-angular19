@@ -1,6 +1,6 @@
 import { Component , OnInit, signal} from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SharedModule } from '../../../shared/modules/shared.module';
 import { CategoriesType } from '../../../shared/interfaces/categories';
@@ -24,10 +24,11 @@ import { selectAllCategories, selectCategory } from '../../reducers/category.sel
   styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit {
-
+  isLoading = signal<boolean>(false);
+  errorMsg = signal<string>('');
   categoryData = signal<CategoriesType[] >([]);
   categoriesValues = signal<string[]>([]);
-
+  
   constructor(
   private router : Router ,
   private store : Store<CategoriesState>,
@@ -41,7 +42,14 @@ export class CategoryComponent implements OnInit {
 
   private getCategoryFromStore() : void {
   this.store.pipe(select(selectAllCategories)) 
-  .pipe(takeUntilDestroyed())
+  .pipe(
+  map((data) => {
+  this.isLoading.set(data.isLoading);
+  this.errorMsg.set(data.error) ;
+  return data.categories
+  }),
+  takeUntilDestroyed()
+  )
   .subscribe({
     next : (category ) => {
     this.categoryData.set(category) ;
@@ -51,10 +59,8 @@ export class CategoryComponent implements OnInit {
   
 
   private defaultQueryCategory() : void {
-  const currentCategory = this.categoryData()[0];
   this.router.navigate(['/categories'],
-  {queryParams : {category : currentCategory.category , id : currentCategory.id} 
-  , queryParamsHandling : 'merge'})
+  {queryParams : {category : 'motion' } , queryParamsHandling : 'merge'})
   }
 
   }

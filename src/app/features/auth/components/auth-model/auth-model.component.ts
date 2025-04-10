@@ -31,6 +31,6 @@ export class AuthModelComponent {
   }
   
   closeAuth() : void {
-  this.router.navigate([{outlets : {loginIn: null , register : null}}])
+  this.router.navigate([{outlets : {loginIn: null , register : null}}],{queryParamsHandling : 'merge'})
   }
 }

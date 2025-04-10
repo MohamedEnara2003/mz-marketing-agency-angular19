@@ -6,7 +6,7 @@ export const selectCategoryState = createFeatureSelector<CategoryState>(category
 
 export const selectAllCategories = createSelector(
     selectCategoriesState,
-    (state) => state.categories
+    (state) => state
 );
 
 export const selectCategory = createSelector(

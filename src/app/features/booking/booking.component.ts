@@ -60,8 +60,8 @@ ngOnInit(): void {
 }
 
 closeBookingModle () : void{
-  this.router.navigate(['/',{outlets : {'booking-outlet':null}}])
-  this.localeStorgeService.removeItem(this.packageItemskay)
+  this.router.navigate(['/',{outlets : {'booking-outlet':null} }],{ queryParamsHandling : 'merge'});
+  this.localeStorgeService.removeItem(this.packageItemskay);
 }
 
 private getCategoriesValues() : void {

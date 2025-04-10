@@ -5,13 +5,16 @@ import { SharedModule } from '../../modules/shared.module';
   selector: 'app-loading',
   imports: [SharedModule],
   template : `
+  @if(isLoading()){
   <div class="w-full flex justify-center items-center "
   [ngClass]="loadingClass() ? loadingClass() : 'h-[80vh]'">
   <span class="loading loading-spinner  w-24 text-mz-primary"></span>
   </div>
+  }
   `
 
 })
 export class LoadingComponent {
   loadingClass = input<string>()
+  isLoading = input<boolean>(true)
 }

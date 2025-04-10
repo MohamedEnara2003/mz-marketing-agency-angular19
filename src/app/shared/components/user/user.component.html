@@ -5,14 +5,15 @@
 
     @if(authService.CurrentUser() === null ){
 <li>
-    <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]"
-
+    <a [routerLink]="[{outlets : {register : 'register' , loginIn: null }}]" 
+    queryParamsHandling="merge"
     class="text-xs sm:text-sm   bg-mz-primary rounded-3xl p-1 px-1.5 hover:bg-mz-secound duration-200">
     {{'auth.register' | translate}}
     </a>
 </li>
 <li>
     <a [routerLink]="[{outlets : {loginIn: 'loginIn' , register : null}}]"
+    queryParamsHandling="merge"
     class="text-xs sm:text-sm   hover:bg-mz-primary rounded-3xl p-1 px-1.5 duration-200">
     {{'auth.logIn' | translate}}
     </a>

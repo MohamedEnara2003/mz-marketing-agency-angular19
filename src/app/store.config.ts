@@ -1,6 +1,6 @@
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { ActionReducer, ActionReducerMap } from '@ngrx/store';
-import { categoriesNameKay, categoriesReducer, CategoriesState, categoryByIdReducer, categoryNameKay, CategoryState } from './categories/reducers/reducers.action';
+import { categoriesReducer, CategoriesState, categoryByIdReducer, categoryNameKay, CategoryState } from './categories/reducers/reducers.action';
 
 export interface AppState {
     categories: CategoriesState;
@@ -11,7 +11,7 @@ export function localStorageSyncReducer(
     reducer: ActionReducer<any>
 ): ActionReducer<any> {
     return localStorageSync({
-    keys: [categoriesNameKay, categoryNameKay],
+    keys: [categoryNameKay],
     rehydrate: true,
 })(reducer);
 }

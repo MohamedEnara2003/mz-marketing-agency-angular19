@@ -4,7 +4,8 @@
     [queryCategory]="''"
     />
     
-<ul [ngClass]="categoryData().length > 0 ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10' : ''">
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+    
 @for (data of categoryData(); track data.id) {
     <div [routerLink]="['/categories/watch']" 
     [queryParams]="{id : data.id}" queryParamsHandling="merge"
@@ -37,9 +38,9 @@
     <i class="fa-solid fa-play text-mz-secound text-lg"></i>
     </button>
     </div>
-}@empty {
-    <app-loading />
 }
+<app-loading [isLoading]="isLoading()"/>
+
 </ul>
 
 <app-related-video-details class="w-full fixed z-10"/>

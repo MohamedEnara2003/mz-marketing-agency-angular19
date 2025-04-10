@@ -6,21 +6,27 @@ import { CategoriesState } from '../../../../reducers/reducers.action';
 import { select, Store } from '@ngrx/store';
 import { selectAllCategories } from '../../../../reducers/category.selector';
 import { CategoryHeaderComponent } from "../../../category-header/category-header.component";
+import { map } from 'rxjs';
+import { LoadingComponent } from '../../../../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-details-aside',
-  imports: [RelatedComponent, CategoryHeaderComponent],
+  imports: [RelatedComponent, CategoryHeaderComponent , LoadingComponent],
   template : `
 <aside class="w-full flex flex-col  gap-1">
   <app-category-header class="w-full"
   [queryCategory]="queryParams()?.category"
   />
-  <app-related class="w-full"
-  [categoryRelated]="categoryData()"/>
+  <app-related class="w-full" [categoryRelated]="categoryData()"/>
+  <app-loading  [isLoading]="isLoading()"/>
 </aside>
   `
 })
 export class DetailsAsideComponent{
+    
+  isLoading = signal<boolean>(false);
+  errorMsg = signal<string>('');
+  
   queryParams = signal<{id : number , category : string} | null>(null);
   categoryData = signal<CategoriesType[]>([]);
   categoriesValues = signal<string[]>([]);
@@ -32,11 +38,18 @@ export class DetailsAsideComponent{
   }
   
   private getCategoryFromStore() : void {
-  this.store.pipe(select(selectAllCategories))
-  .pipe(takeUntilDestroyed())
+  this.store.pipe(select(selectAllCategories)) 
+  .pipe(
+  map((data) => {
+  this.isLoading.set(data.isLoading);
+  this.errorMsg.set(data.error) ;
+  return data.categories
+  }),
+  takeUntilDestroyed()
+  )
   .subscribe({
-    next : (value) => {
-    this.categoryData.set(value) ;
+    next : (category ) => {
+    this.categoryData.set(category) ;
     }
   })
   }
